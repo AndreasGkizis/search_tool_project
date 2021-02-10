@@ -1,3 +1,7 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
-# Create your views here.
+
+def homepage(request):
+    context_dict = {'text1': 'Home page '}
+    return render(request, 'search_tool/homepage.html', context=context_dict)
