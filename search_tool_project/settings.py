@@ -17,8 +17,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATE_DIR = Path(__file__).parent.parent.joinpath('templates')
 
 # printing directory tools
-print("Base_dir : ", BASE_DIR)
-print("template_dir : ", TEMPLATE_DIR)
+# print("Base_dir : ", BASE_DIR)
+# print("template_dir : ", TEMPLATE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'search_tool'
+    'search_tool_app'
 ]
 
 MIDDLEWARE = [
