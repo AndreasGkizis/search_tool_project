@@ -26,7 +26,7 @@ class Paper(models.Model):
     title = models.CharField(max_length=200, unique=True)
     abstract = models.CharField(max_length=1000, unique=True)
     reviewed = models.BooleanField()
-    date_added = models.DateField()
+    date_added = models.DateField(default=datetime.date.today)
     year_id = models.ForeignKey(Year, on_delete=models.CASCADE)
     type_id = models.ForeignKey(Type, on_delete=models.CASCADE)
     language = models.ForeignKey(Language, on_delete=models.CASCADE)
