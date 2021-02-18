@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+{% extends 'search_tool_app/Base_boot-strap.html' %}
+{% load static %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,7 +20,7 @@
         OR
     </h4>
     <h3>
-        <a href="/search_tool_app/post_a_publication/"> Post a publication
+        <a href="{% url 'post_a_publication' %}"> Post a publication
         </a>
     </h3>
     <h3></h3>

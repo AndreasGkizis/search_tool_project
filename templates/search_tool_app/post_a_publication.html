@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% extends 'search_tool_app/Base_boot-strap.html' %}
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +8,7 @@
 </head>
     <body>
         <div>
-            <form id="paper_form" method="post" action="/search_tool_app/post_a_publication/">
+            <form id="paper_form" method="post" action="{% url 'post_a_publication' %}">
                 {% csrf_token %}
                 {{ form }}
                 <input type="submit" name="submit" value="Post a publication">
