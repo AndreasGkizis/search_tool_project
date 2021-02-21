@@ -13,7 +13,9 @@ def post_a_publication(request):
         form = PaperForm(request.POST)
         if form.is_valid():
             pap = form.save(commit=True)
+            pap.save()
             print(pap)
+
             return homepage(request)
         else:
             print(form.errors)

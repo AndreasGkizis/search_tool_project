@@ -64,7 +64,7 @@ class Author(models.Model):
     name = models.CharField(max_length=300)
     surname = models.CharField(max_length=300)
     country_of_origin = models.CharField(max_length=300)
-    paper = models.ManyToManyField(Paper)
+    paper = models.ManyToManyField(Paper, blank=True)
 
     def __str__(self):
-        return "%s %s" % self.name, self.surname
+        return "%s %s" % (self.name, self.surname)

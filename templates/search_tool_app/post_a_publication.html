@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 {% extends 'search_tool_app/Base_boot-strap.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Post a publication</title>
-</head>
-    <body>
+{% block title_block %}
+- Post a Publication
+{% endblock %}
+{% block body_block %}
+
         <div>
             <form id="paper_form" method="post" action="{% url 'post_a_publication' %}">
                 {% csrf_token %}
-                {{ form }}
+                {{ form.as_table }}
                 <input type="submit" name="submit" value="Post a publication">
             </form>
     </div>
-    </body>
-</html>
+ {% endblock %}
