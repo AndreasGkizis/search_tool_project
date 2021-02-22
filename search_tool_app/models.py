@@ -21,6 +21,9 @@ class Year(models.Model):
     convention_published = models.CharField(max_length=300)
     convention_venue = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.year_published
+
 
 class Tag(models.Model):
     tag = models.CharField(max_length=50)
@@ -43,7 +46,7 @@ class Paper(models.Model):
     date_added = models.DateField(default=datetime.date.today, null=True)
     year_id = models.ForeignKey(Year, on_delete=models.CASCADE, null=True)
     type_id = models.ForeignKey(Type, on_delete=models.CASCADE, null=True)
-    language = models.ForeignKey(Language, on_delete=models.CASCADE, null=True)
+    language = models.ManyToManyField(Language)
     tag = models.ManyToManyField(Tag)
     material = models.ManyToManyField(Material, through='PaperUsedMaterial')
 

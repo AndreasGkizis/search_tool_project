@@ -10,15 +10,15 @@ def homepage(request):
 def post_a_publication(request):
     form = PaperForm()
     if request.method == 'POST':
-        import ipdb
-        ipdb.set_trace()
         form = PaperForm(request.POST)
         if form.is_valid():
             pap = form.save(commit=True)
             pap.save()
             print(pap)
-
             return homepage(request)
         else:
             print(form.errors)
     return render(request, 'search_tool_app/post_a_publication.html', {'form': form})
+
+# import ipdb
+# ipdb.set_trace()
