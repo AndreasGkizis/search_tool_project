@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from search_tool_app.forms import PaperForm
+from .forms import PaperForm
+# from .models import Paper
 
 
 def homepage(request):
