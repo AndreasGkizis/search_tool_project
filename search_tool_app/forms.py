@@ -4,15 +4,15 @@ from search_tool_app.models import Type, Year, Language, Paper, Material, PaperU
 
 
 class PaperForm(forms.ModelForm):
-    # title = forms.CharField(label='Publications Title', max_length=200, help_text="Enter the title of the publication ")
-    # abstract = forms.CharField(max_length=1000, help_text="Enter the abstract of the publication ")
-    # reviewed = forms.BooleanField(initial=False, required=False)
-    # date_added = forms.DateField(widget=forms.HiddenInput, required=False)
-    # year_id = forms.ModelChoiceField(queryset=Year.objects.all(), blank=False)
-    # type_id = forms.ModelChoiceField(queryset=Type.objects.all(), blank=False)
-    # # language = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), blank=False)
-    # # tag = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), blank=False)
-    # # material = forms.ModelMultipleChoiceField(queryset=Material.objects.all(), blank=False)
+    title = forms.CharField(label='Publications Title', max_length=200,)
+    abstract = forms.CharField(max_length=1000, label="Enter the abstract of the publication ")
+    reviewed = forms.BooleanField(initial=False, required=False)
+    date_added = forms.DateField(widget=forms.HiddenInput, required=False)
+    year_id = forms.ModelChoiceField(queryset=Year.objects.all(), blank=False)
+    type_id = forms.ModelChoiceField(queryset=Type.objects.all(), blank=False)
+    language = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), blank=False)
+    tag = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), blank=False)
+    material = forms.ModelMultipleChoiceField(queryset=Material.objects.all(), blank=False)
 
     class Meta:
         model = Paper

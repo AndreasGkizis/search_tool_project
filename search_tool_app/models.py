@@ -22,7 +22,7 @@ class Year(models.Model):
     convention_venue = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.year_published
+        return str(self.year_published)  # ?????
 
 
 class Tag(models.Model):
@@ -51,7 +51,7 @@ class Paper(models.Model):
     material = models.ManyToManyField(Material, through='PaperUsedMaterial')
 
     def __str__(self):
-        return self.title
+        return str(self.title)
 
 
 class PaperUsedMaterial(models.Model):
