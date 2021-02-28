@@ -9,16 +9,25 @@
 
 {% block body_block %}
         <div>
-            <div class="row col-1" >
-            <form id="paper_form" method="post" action="{% url 'post_a_publication' %}">
-                {% csrf_token %}
-                {% for field in form %}
-                    <div class="row">
-                        {{ form.field }}
-                    </div>
-                {% endfor %}
-                <input type="submit" name="submit" value="Post a publication">
+            <div class="row">
+                <div class="col-12" >
+                    <form id="paper_form" method="post" action="{% url 'post_a_publication' %}">
+                        {% csrf_token %}
+                        <br>
+                        {% for field in form %}
+                            <div class="fieldWrapper pt-3">
+                                {{ field.errors }}
+                                {{ field.label_tag }}
+                                <br>
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <p class="help">{{ field.help_text|safe }}</p>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <input type="submit" name="submit" value="Post Publication"/>
+                    </form>
                 </div>
-            </form>
-    </div>
+            </div>
+        </div>
  {% endblock %}

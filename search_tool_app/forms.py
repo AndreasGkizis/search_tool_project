@@ -1,13 +1,13 @@
 from django import forms
 import datetime
-from search_tool_app.models import Type, Year, Language, Paper, Material, PaperUsedMaterial, Tag
+from .models import Type, Year, Language, Paper, Material, PaperUsedMaterial, Tag
 
 
 class PaperForm(forms.ModelForm):
     title = forms.CharField(label='Publications Title', max_length=200,)
-    abstract = forms.CharField(max_length=1000, label="Enter the abstract of the publication ")
+    abstract = forms.Textarea()
     reviewed = forms.BooleanField(initial=False, required=False)
-    date_added = forms.DateField(widget=forms.HiddenInput, required=False)
+    # date_added = forms.DateField(widget=forms.HiddenInput, required=False)
     year_id = forms.ModelChoiceField(queryset=Year.objects.all(), blank=False)
     type_id = forms.ModelChoiceField(queryset=Type.objects.all(), blank=False)
     language = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), blank=False)
