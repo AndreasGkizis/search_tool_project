@@ -16,6 +16,7 @@
                         <br>
                         {% for field in form %}
                             <div class="fieldWrapper pt-3">
+                                {% csrf_token %}
                                 {{ field.errors }}
                                 {{ field.label_tag }}
                                 <br>
