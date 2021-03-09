@@ -11,7 +11,7 @@ def homepage(request):
 def post_a_publication(request):
     form = PaperForm()
     if request.method == 'POST':
-        form = PaperForm(request.POST)
+        form = PaperForm(request.POST, request.FILES)
         if form.is_valid():
             pap = form.save(commit=True)
             pap.save()

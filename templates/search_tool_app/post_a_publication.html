@@ -2,7 +2,10 @@
 
 {% extends 'search_tool_app/Base_boot-strap.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block title_block %}
+
+
 
 - Post a Publication
 {% endblock %}
@@ -11,7 +14,7 @@
         <div>
             <div class="row">
                 <div class="col-12" >
-                    <form id="paper_form" method="post" action="{% url 'post_a_publication' %}">
+                    <form id="paper_form" method="post" action="{% url 'post_a_publication' %}" enctype="multipart/form-data">
                         {% csrf_token %}
                         <br>
                         {% for field in form %}

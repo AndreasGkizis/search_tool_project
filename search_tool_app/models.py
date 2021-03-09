@@ -6,14 +6,14 @@ class Type(models.Model):
     type = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.type
+        return str(self.type)
 
 
 class Language(models.Model):
     language = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.language
+        return str(self.language)
 
 
 class Year(models.Model):
@@ -29,18 +29,19 @@ class Tag(models.Model):
     tag = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.tag
+        return str(self.tag)
 
 
 class Material(models.Model):
     material = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.material
+        return str(self.material)
 
 
 class Paper(models.Model):
     title = models.CharField(max_length=200, unique=True, null=False)
+    pdf = models.FileField(upload_to="papers/pdfs", null=True)
     abstract = models.TextField(max_length=1000, unique=True, null=True)
     reviewed = models.BooleanField(default=False)
     date_added = models.DateField(default=datetime.date.today, null=True)
@@ -49,6 +50,8 @@ class Paper(models.Model):
     language = models.ManyToManyField(Language)
     tag = models.ManyToManyField(Tag)
     material = models.ManyToManyField(Material, through='PaperUsedMaterial')
+
+    # def delete(self, using=None, keep_parents=False):
 
     def __str__(self):
         return str(self.title)
@@ -60,7 +63,7 @@ class PaperUsedMaterial(models.Model):
     material_used = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.paper
+        return str(self.paper)
 
 
 class Author(models.Model):
