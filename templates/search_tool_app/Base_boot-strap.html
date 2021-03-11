@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 {% load crispy_forms_tags %}
+{% load search_tool_template_tags %}
 
 <!-- saved from url=(0055)https://v4-alpha.getbootstrap.com/examples/dashboard/?# -->
 <html lang="en">
@@ -39,14 +40,15 @@
       <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Dashboard</a>
+      <a class="navbar-brand" href="{% url 'homepage' %}">Project search tool</a>
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item {% is_active request 'homepage' %}">
             <a class="nav-link" href="{% url 'homepage' %}">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {% is_active request 'post_a_publication' %}">
+<!--              den katalabainw gt ayto anabei otan den einai sto post-->
             <a class="nav-link" href="{% url 'post_a_publication' %}">Post <span class="sr-only">(current)</span></a>
           </li>
 <!--          <li class="nav-item">-->
@@ -65,75 +67,51 @@
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <a class="nav-link active" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Overview <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Reports</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Analytics</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Export</a>
-            </li>
-          </ul>
+<!--        <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">-->
+<!--          <ul class="nav nav-pills flex-column">-->
+<!--            <li class="nav-item">-->
+<!--              <a class="nav-link active" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Overview <span class="sr-only">(current)</span></a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Reports</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Analytics</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Export</a>-->
+<!--            </li>-->
+<!--          </ul>-->
 
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Nav item</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Nav item again</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">One more nav</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Another nav item</a>
-            </li>
-          </ul>
+<!--          <ul class="nav nav-pills flex-column">-->
+<!--            <li class="nav-item">-->
+<!--              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Nav item</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Nav item again</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">One more nav</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Another nav item</a>-->
+<!--            </li>-->
+<!--          </ul>-->
 
-          <ul class="nav nav-pills flex-column">
-            <li class="nav-item">
-              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Nav item again</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">One more nav</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Another nav item</a>
-            </li>
-          </ul>
-        </nav>
+<!--          <ul class="nav nav-pills flex-column">-->
+<!--            <li class="nav-item">-->
+<!--              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Nav item again</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">One more nav</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--              <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Another nav item</a>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </nav>-->
 
-        <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-<!--          <section class="row text-center placeholders">-->
-<!--            <div class="col-6 col-sm-3 placeholder">-->
-<!--              <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">-->
-<!--              <h4>Label</h4>-->
-<!--              <div class="text-muted">Something else</div>-->
-<!--            </div>-->
-<!--            <div class="col-6 col-sm-3 placeholder">-->
-<!--              <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">-->
-<!--              <h4>Label</h4>-->
-<!--              <span class="text-muted">Something else</span>-->
-<!--            </div>-->
-<!--            <div class="col-6 col-sm-3 placeholder">-->
-<!--              <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">-->
-<!--              <h4>Label</h4>-->
-<!--              <span class="text-muted">Something else</span>-->
-<!--            </div>-->
-<!--            <div class="col-6 col-sm-3 placeholder">-->
-<!--              <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">-->
-<!--              <h4>Label</h4>-->
-<!--              <span class="text-muted">Something else</span>-->
-<!--            </div>-->
-<!--          </section>-->
-
-          <h2>Section title</h2>
+        <main class="col pt-3">
             <div class="row">
                   <div class="col-12">
                     {% block body_block %}

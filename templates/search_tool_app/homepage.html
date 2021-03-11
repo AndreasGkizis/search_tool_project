@@ -8,19 +8,35 @@
 {% block body_block %}
     <h1>Welcome to the Search tool project </h1>
 
-    <h2>Would you like to..</h2>
-    <h3>
-        <a href=""> Search for a publication
-
-        </a>
-    </h3>
-    <h4>
-        OR
-    </h4>
-    <h3>
-        <a href="{% url 'post_a_publication' %}"> Post a publication
-        </a>
-    </h3>
+    <div class="row mx-auto py-2 ">
+        <h5>
+            Please select one of the following..
+        </h5>
+    </div>
+    <div class="row mx-auto py-2">
+        <div class="col ">
+            <h3>
+            Search for a publication
+            </h3>
+        </div>
+        <div class="col text-right">
+            <form action=>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search for a publication</button>
+            </form>
+        </div>
+    </div>
+        <div class="row mx-auto py-2">
+                <div class="col-6 ">
+                    <h3>
+                        Post a publication
+                    </h3>
+                </div>
+                <div class="col-6 text-right">
+                    <form action="{% url 'post_a_publication' %}">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Post a publication</button>
+                    </form>
+                </div>
+        <div>
     <h3></h3>
     <div>
         <br />
