@@ -16,22 +16,42 @@
                 <div class="col-12" >
                     <form id="paper_form" method="post" action="{% url 'post_a_publication' %}" enctype="multipart/form-data">
                         {% csrf_token %}
-                        <br>
+                        <h4>Enter your publication details</h4>
                         {% for field in form %}
-                            <div class="fieldWrapper pt-3">
-                                {% csrf_token %}
-                                {{ field.errors }}
+<!--                            <div class="fieldWrapper pt-3">-->
+<!--                                {% csrf_token %}-->
+<!--                                {{ field.errors }}-->
+<!--                                {{ field.label_tag }}-->
+<!--                                <br>-->
+<!--                                {{ field }}-->
+<!--                                {% if field.help_text %}-->
+<!--                                    <p class="help">{{ field.help_text|safe }}</p>-->
+<!--                                {% endif %}-->
+<!--                            </div>-->
+                        <div class="row mx-auto">
+                            {% csrf_token %}
+                            <div class="col-2 text-center p-2">
                                 {{ field.label_tag }}
-                                <br>
-                                {{ field }}
-                                {% if field.help_text %}
-                                    <p class="help">{{ field.help_text|safe }}</p>
-                                {% endif %}
                             </div>
+                            <div class="col text-left p-2">
+                                {{ field }}
+                            </div>
+                        </div>
                         {% endfor %}
-                        <input type="submit" name="submit" value="Post Publication"/>
+                        <div class="row">
+                            <div class="col-12">
+                                <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Post a publication</button>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>
         </div>
+
+<div>
+    <form>
+
+    </form>
+</div>
  {% endblock %}

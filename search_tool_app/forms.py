@@ -5,7 +5,6 @@ from .models import Type, Year, Language, Paper, Material, PaperUsedMaterial, Ta
 
 class PaperForm(forms.ModelForm):
     title = forms.CharField(label='Publications Title', max_length=200,)
-    abstract = forms.Textarea()
     reviewed = forms.BooleanField(initial=False, required=False)
     pdf = forms.FileField()
     year_id = forms.ModelChoiceField(queryset=Year.objects.all(), blank=False)
@@ -13,6 +12,7 @@ class PaperForm(forms.ModelForm):
     language = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), blank=False)
     tag = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), blank=False)
     material = forms.ModelMultipleChoiceField(queryset=Material.objects.all(), blank=False)
+    abstract = forms.Textarea()
 
     class Meta:
         model = Paper
