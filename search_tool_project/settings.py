@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'search_tool_app',
     'crispy_forms',
+    'django_filters'
 ]
 
 # CRISPY_TEMPLATE_PACK = 'uni_form'
