@@ -7,5 +7,4 @@ class PaperFilter(django_filters.FilterSet):
     class Meta:
         model = Paper
         fields = '__all__'
-        exclude = 'pdf'
-
+        exclude = ('pdf', 'date_added')

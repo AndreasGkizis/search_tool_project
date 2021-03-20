@@ -2,6 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% load search_tool_template_tags %}
+{% load bootstrap4 %}
 
 <!-- saved from url=(0055)https://v4-alpha.getbootstrap.com/examples/dashboard/?# -->
 <html lang="en">
@@ -49,6 +50,9 @@
           </li>
           <li class="nav-item {% is_active request 'post_a_publication' %}">
             <a class="nav-link" href="{% url 'post_a_publication' %}">Post <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item {% is_active request 'search_publication' %}">
+            <a class="nav-link" href="{% url 'search_publication' %}">Search <span class="sr-only">(current)</span></a>
           </li>
 <!--          <li class="nav-item">-->
 <!--            <a class="nav-link" href="https://v4-alpha.getbootstrap.com/examples/dashboard/?#">Profile</a>-->

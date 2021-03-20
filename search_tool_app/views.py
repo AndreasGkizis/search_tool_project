@@ -24,7 +24,6 @@ def post_a_publication(request):
 
 
 def search_publication(request):
-
     papers = Paper.objects.all()
 
     search = PaperFilter(request.GET, queryset=papers)
@@ -32,14 +31,11 @@ def search_publication(request):
 
     context = {
         'search': search,
-        'papers': papers,
-    }
-    # if request.method == "GET":
-    #     papers = PaperFilter(request.POST, request.FILES)
-    #     if papers.is_valid():
-    #         return
+        'papers': papers
+                }
 
     return render(request, 'search_tool_app/search_publication.html', context=context)
+
 
 
     # import ipdb

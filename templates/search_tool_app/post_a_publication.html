@@ -4,6 +4,8 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block title_block %}
+{% load bootstrap4 %}
+
 
 
 
@@ -17,27 +19,8 @@
                     <form id="paper_form" method="post" action="{% url 'post_a_publication' %}" enctype="multipart/form-data">
                         {% csrf_token %}
                         <h4>Enter your publication details</h4>
-                        {% for field in form %}
-<!--                            <div class="fieldWrapper pt-3">-->
-<!--                                {% csrf_token %}-->
-<!--                                {{ field.errors }}-->
-<!--                                {{ field.label_tag }}-->
-<!--                                <br>-->
-<!--                                {{ field }}-->
-<!--                                {% if field.help_text %}-->
-<!--                                    <p class="help">{{ field.help_text|safe }}</p>-->
-<!--                                {% endif %}-->
-<!--                            </div>-->
-                        <div class="row mx-auto">
-                            {% csrf_token %}
-                            <div class="col-2 text-center p-2">
-                                {{ field.label_tag }}
-                            </div>
-                            <div class="col text-left p-2">
-                                {{ field }}
-                            </div>
-                        </div>
-                        {% endfor %}
+                        {% bootstrap_form form %}
+                        {% bootstrap_form_errors form %}
                         <div class="row">
                             <div class="col-12">
                                 <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Post a publication</button>
