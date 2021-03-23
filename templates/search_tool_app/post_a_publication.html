@@ -15,7 +15,7 @@
 {% block body_block %}
         <div>
             <div class="row">
-                <div class="col-12" >
+                <div class="col-6" >
                     <form id="paper_form" method="post" action="{% url 'post_a_publication' %}" enctype="multipart/form-data">
                         {% csrf_token %}
                         <h4>Enter your publication details</h4>

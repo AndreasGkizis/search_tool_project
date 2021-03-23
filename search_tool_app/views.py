@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .forms import PaperForm
-# from .models import Paper
-from .filters import *
+from .models import Language, Year, Type, Tag
 
 
 def homepage(request):
@@ -24,15 +23,23 @@ def post_a_publication(request):
 
 
 def search_publication(request):
-    papers = Paper.objects.all()
-
-    search = PaperFilter(request.GET, queryset=papers)
-    papers = search.qs
 
     context = {
-        'search': search,
-        'papers': papers
-                }
+        "languages": Language.objects.all(),
+        "years": Year.objects.all(),
+        "tags": Tag.objects.all(),
+        "types": Type.objects.all(),
+        "results": []
+    }
+
+    if request.method == 'GET':
+        # Provide the initial data required to render the search options
+        pass
+
+    elif request.method == 'POST':
+        # import ipdb; ipdb.set_trace()
+        
+        pass
 
     return render(request, 'search_tool_app/search_publication.html', context=context)
 
