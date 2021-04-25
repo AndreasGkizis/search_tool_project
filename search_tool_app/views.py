@@ -24,26 +24,26 @@ def post_a_publication(request):
 
 def search_publication(request):
 
-    context = {
-        "languages": Language.objects.all(),
-        "years": Year.objects.all(),
-        "tags": Tag.objects.all(),
-        "types": Type.objects.all(),
-        "results": []
-    }
-
     if request.method == 'GET':
         # Provide the initial data required to render the search options
-        pass
+        context = {
+            "languages": Language.objects.all(),
+            "years": Year.objects.all(),
+            "tags": Tag.objects.all(),
+            "types": Type.objects.all(),
+            "results": []
+        }
 
     elif request.method == 'POST':
-        # import ipdb; ipdb.set_trace()
-        
+        # provide with result data to be bale to render
+        context = {
+
+        }
+
         pass
 
     return render(request, 'search_tool_app/search_publication.html', context=context)
 
 
 
-    # import ipdb
-    # ipdb.set_trace()
+    # import ipdb; ipdb.set_trace()
