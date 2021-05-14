@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .forms import PaperForm
-from .models import Language, Year, Type, Tag
+from .forms import PaperForm, SearchForm
+from search_tool_app.models import Language, Year, Type, Tag, Paper
 
 
 def homepage(request):
@@ -23,27 +23,23 @@ def post_a_publication(request):
 
 
 def search_publication(request):
-
+    form = SearchForm()
     if request.method == 'GET':
         # Provide the initial data required to render the search options
-        context = {
-            "languages": Language.objects.all(),
-            "years": Year.objects.all(),
-            "tags": Tag.objects.all(),
-            "types": Type.objects.all(),
-            "results": []
-        }
 
+        return render(request, 'search_tool_app/search_publication.html',
+                      context={'form': form}
+                      )
     elif request.method == 'POST':
-        # provide with result data to be bale to render
-        context = {
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            results = Paper.objects.filter(title__icontains=form.cleaned_data["title"])
 
-        }
+            return render(request, 'search_tool_app/search_publication.html',
+                      context={'results': results, 'form': form}
+                      )
 
-        pass
-
-    return render(request, 'search_tool_app/search_publication.html', context=context)
-
-
-
+    return render(request, 'search_tool_app/search_publication.html',
+                  context={'form': form}
+                  )
     # import ipdb; ipdb.set_trace()

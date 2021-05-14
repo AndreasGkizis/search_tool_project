@@ -5,69 +5,103 @@
 
 
 {% block title_block %}
-- Homepage
+- Search page
 {% endblock %}
 {% block body_block %}
 <div class="row">
-    <div class="col-2">
-        <form class="form-inline" method="post">
+    <div class="col-3">
+        <form class="form-group" method="post" action="{% url 'search_publication' %}" name="searched">
             {% csrf_token %}
             <div class="form-group row">
-                <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" id="inputTitle" placeholder="Title">
-                    </div>
-                <label for="inputAbstract" class="col-sm-2 col-form-label">Abstract</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" id="inputAbstract" placeholder="Abstract">
-                    </div>
-                <label for="inputAuthor" class="col-sm-2 col-form-label">Author</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" id="inputAuthor" placeholder="Author">
-                    </div>
-                <label for="inputTag" class="col-sm-2 col-form-label">Tag</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" id="inputTag" placeholder="Tag">
-                    </div>
+                <table>
+                {{ form.as_p }}
+                </table>
             </div>
-            <div class="form-group row">
-                <div class="col-sm-10">
-                    <label class="my-1 mr-2 col-form-label" for="languageSelect">Language</label>
-                        <select class="custom-select my-1 mr-sm-2" id="languageSelect">
-                           {% for lang in languages %}
-                                <option value="{{lang.language}}">{{lang.language}}</option>
-                           {% endfor %}
-                        </select>
-                </div>
-                <div class="col-sm-10">
-                    <label class="my-1 mr-2" for="tagSelect">Tags</label>
-                        <select class="custom-select my-1 mr-sm-2" id="tagSelect">
-                           {% for tag in tags %}
-                                <option value="{{tag.tag}}">{{tag.tag}}</option>
-                           {% endfor %}
-                        </select>
-                </div>
-                <div class="col-sm-10">
-                    <label class="my-1 mr-2" for="typeSelect">Types</label>
-                        <select class="custom-select my-1 mr-sm-2" id="typeSelect">
-                           {% for type in types %}
-                                <option value="{{type.type}}">{{type.type}}</option>
-                           {% endfor %}
-                        </select>
-                </div>
-                <div class="col-sm-10">
-                    <label class="my-1 mr-2" for="yearSelect">Year</label>
-                        <select class="custom-select my-1 mr-sm-2" id="yearSelect">
-                           {% for year in years %}
-                                <option value="{{year.year}}">{{year.year}}</option>
-                           {% endfor %}
-                        </select>
-                </div>
-            </div>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search for a publication</button>
+
+            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search for a publication</button>
         </form>
     </div>
-    <div class="row results">
+    <div class="row">
+        <div class="col-9">
+        <form class="form-group" method="post" action="{% url 'search_publication' %}" name="searched">
+            {% csrf_token %}
+        <div>
+            {%for result in results%}
+                <div> title ---> {{ result.title }}</div>
+                <div> year ---> {{ result.year_id }}</div>
+                <div> type ---> {{ result.type_id }}</div>
+                <div>tag --->
+                    {% for tag in result.tag.all%}
+                      <div>
+                           {{ tag }}
+                      </div>
+                    {% endfor %}
+                </div>
+                <div> language ---> {{ result.language.all }}</div>
+                <div> reviewed ---> {{ result.reviewed }}</div>
+                <div> material ---> {{ result.material.all }}</div>
+                <div> Abstract ---> {{ result.abstract }}</div>
+                <br>
+            {%endfor%}
+        </div>
+
+        </form>
+        </div>
+
     </div>
 </div>
 {% endblock %}
+
+
+<!--            <div class="form-group row">-->
+<!--                <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>-->
+<!--                    <div class="col-sm-10">-->
+<!--                        <input class="form-control" id="inputTitle" placeholder="Title">-->
+<!--                    </div>-->
+<!--                <label for="inputAbstract" class="col-sm-2 col-form-label">Abstract</label>-->
+<!--                    <div class="col-sm-10">-->
+<!--                        <input class="form-control" id="inputAbstract" placeholder="Abstract">-->
+<!--                    </div>-->
+<!--                <label for="inputAuthor" class="col-sm-2 col-form-label">Author</label>-->
+<!--                    <div class="col-sm-10">-->
+<!--                        <input class="form-control" id="inputAuthor" placeholder="Author">-->
+<!--                    </div>-->
+<!--                <label for="inputTag" class="col-sm-2 col-form-label">Tag</label>-->
+<!--                    <div class="col-sm-10">-->
+<!--                        <input class="form-control" id="inputTag" placeholder="Tag">-->
+<!--                    </div>-->
+<!--            </div>-->
+<!--            <div class="form-group row">-->
+<!--                <div class="col-sm-10">-->
+<!--                    <label class="my-1 mr-2 col-form-label" for="languageSelect">Language</label>-->
+<!--                        <select class="custom-select my-1 mr-sm-2" id="languageSelect">-->
+<!--                           {% for lang in languages %}-->
+<!--                                <option value="{{lang.language}}">{{lang.language}}</option>-->
+<!--                           {% endfor %}-->
+<!--                        </select>-->
+<!--                </div>-->
+<!--                <div class="col-sm-10">-->
+<!--                    <label class="my-1 mr-2" for="tagSelect">Tags</label>-->
+<!--                        <select class="custom-select my-1 mr-sm-2" id="tagSelect">-->
+<!--                           {% for tag in tags %}-->
+<!--                                <option value="{{tag.tag}}">{{tag.tag}}</option>-->
+<!--                           {% endfor %}-->
+<!--                        </select>-->
+<!--                </div>-->
+<!--                <div class="col-sm-10">-->
+<!--                    <label class="my-1 mr-2" for="typeSelect">Types</label>-->
+<!--                        <select class="custom-select my-1 mr-sm-2" id="typeSelect">-->
+<!--                           {% for type in types %}-->
+<!--                                <option value="{{type.type}}">{{type.type}}</option>-->
+<!--                           {% endfor %}-->
+<!--                        </select>-->
+<!--                </div>-->
+<!--                <div class="col-sm-10">-->
+<!--                    <label class="my-1 mr-2" for="yearSelect">Year</label>-->
+<!--                        <select class="custom-select my-1 mr-sm-2" id="yearSelect">-->
+<!--                           {% for year in years %}-->
+<!--                                <option value="{{year.year}}">{{year.year}}</option>-->
+<!--                           {% endfor %}-->
+<!--                        </select>-->
+<!--                </div>-->
+<!--            </div>-->

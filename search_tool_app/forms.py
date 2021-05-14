@@ -35,3 +35,12 @@ class LanguageForm(forms.ModelForm):
         model = Language
         fields = ('language',)
 
+
+class SearchForm(forms.Form):
+    title = forms.CharField(label='Publications Title', max_length=200, required=False)
+    year_id = forms.ModelChoiceField(queryset=Year.objects.all(), required=False)
+    type_id = forms.ModelChoiceField(queryset=Type.objects.all(), required=False)
+    language = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), required=False)
+    tag = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), required=False)
+    material = forms.ModelMultipleChoiceField(queryset=Material.objects.all(), required=False)
+    abstract = forms.Textarea()
