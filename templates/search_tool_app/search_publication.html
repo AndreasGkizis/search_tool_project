@@ -12,9 +12,9 @@
     <div class="col-3">
         <form class="form-group" method="post" action="{% url 'search_publication' %}" name="searched">
             {% csrf_token %}
-            <div class="form-group row">
+            <div class="form-group">
                 <table>
-                {{ form.as_p }}
+                {{ form }}
                 </table>
             </div>
 
@@ -25,26 +25,35 @@
         <div class="col-9">
         <form class="form-group" method="post" action="{% url 'search_publication' %}" name="searched">
             {% csrf_token %}
-        <div>
-            {%for result in results%}
-                <div> title ---> {{ result.title }}</div>
-                <div> year ---> {{ result.year_id }}</div>
-                <div> type ---> {{ result.type_id }}</div>
-                <div>tag --->
-                    {% for tag in result.tag.all%}
-                      <div>
-                           {{ tag }}
-                      </div>
-                    {% endfor %}
-                </div>
-                <div> language ---> {{ result.language.all }}</div>
-                <div> reviewed ---> {{ result.reviewed }}</div>
-                <div> material ---> {{ result.material.all }}</div>
-                <div> Abstract ---> {{ result.abstract }}</div>
-                <br>
-            {%endfor%}
-        </div>
-
+            <table>
+            <div>
+                {% for result in results %}
+                    <div>  {{ result }} </div>
+                    <div> year ---> {{ result.year_id }}</div>
+                    <div> type ---> {{ result.type_id }}</div>
+                    <div>tag --->
+                        {% for tag in result.tag.all %}
+                          <div>{{ tag }}</div>
+                        {% endfor %}
+                    </div>
+                    <div> language --->
+                        {% for language in result.language.all %}
+                          <div>{{ language }}</div>
+                        {% endfor %}
+                    </div>
+                    <div> reviewed ---> {{ result.reviewed }}</div>
+                    <div> material --->
+                        {% for material in result.material.all %}
+                          <div>{{ material }}</div>
+                        {% endfor %}
+                    </div>
+                    <div> Abstract ---> {{ result.abstract }}</div>
+                    <br>
+                -------------------+++++++++++----------------
+                    <br>
+                {%endfor%}
+            </div>
+            </table>
         </form>
         </div>
 

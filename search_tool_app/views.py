@@ -34,10 +34,8 @@ def search_publication(request):
         form = SearchForm(request.POST)
         if form.is_valid():
             results = Paper.objects.filter(title__icontains=form.cleaned_data["title"])
-
-            return render(request, 'search_tool_app/search_publication.html',
-                      context={'results': results, 'form': form}
-                      )
+        
+            return render(request, 'search_tool_app/search_publication.html', {'results': results, 'form': form})
 
     return render(request, 'search_tool_app/search_publication.html',
                   context={'form': form}
