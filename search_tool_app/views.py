@@ -15,7 +15,7 @@ def post_a_publication(request):
         if form.is_valid():
             pap = form.save(commit=True)
             pap.save()
-            print(pap)
+            print(pap)  # here only as a confirmation on the terminal
             return homepage(request)
         else:
             print(form.errors)
@@ -33,8 +33,13 @@ def search_publication(request):
     elif request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
-            results = Paper.objects.filter(title__icontains=form.cleaned_data["title"])
-        
+            if form.cleaned_data["type_id"] is None:
+                results = Paper.objects.filter(title__icontains=form.cleaned_data["title"])
+
+            else:
+                results = Paper.objects.filter(title__icontains=form.cleaned_data["title"],
+                                               type_id__type__icontains=form.cleaned_data["type_id"])
+
             return render(request, 'search_tool_app/search_publication.html', {'results': results, 'form': form})
 
     return render(request, 'search_tool_app/search_publication.html',

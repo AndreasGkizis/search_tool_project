@@ -6,7 +6,7 @@ from .models import Type, Year, Language, Paper, Material, PaperUsedMaterial, Ta
 class PaperForm(forms.ModelForm):
     title = forms.CharField(label='Publications Title', max_length=200,)
     reviewed = forms.BooleanField(initial=False, required=False)
-    pdf = forms.FileField()
+    pdf = forms.FileField(required=False)
     year_id = forms.ModelChoiceField(queryset=Year.objects.all(), blank=False)
     type_id = forms.ModelChoiceField(queryset=Type.objects.all(), blank=False)
     language = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), blank=False)
@@ -37,7 +37,7 @@ class LanguageForm(forms.ModelForm):
 
 
 class SearchForm(forms.Form):
-    title = forms.CharField(label='Publications Title', max_length=200, required=False)
+    title = forms.CharField(label='Publications Title',  max_length=200, required=False)
     year_id = forms.ModelChoiceField(queryset=Year.objects.all(), required=False)
     type_id = forms.ModelChoiceField(queryset=Type.objects.all(), required=False)
     language = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), required=False)

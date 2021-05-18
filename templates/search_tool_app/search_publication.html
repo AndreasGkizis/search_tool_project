@@ -21,43 +21,38 @@
             <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search for a publication</button>
         </form>
     </div>
-    <div class="row">
         <div class="col-9">
-        <form class="form-group" method="post" action="{% url 'search_publication' %}" name="searched">
-            {% csrf_token %}
             <table>
-            <div>
-                {% for result in results %}
-                    <div>  {{ result }} </div>
-                    <div> year ---> {{ result.year_id }}</div>
-                    <div> type ---> {{ result.type_id }}</div>
-                    <div>tag --->
-                        {% for tag in result.tag.all %}
-                          <div>{{ tag }}</div>
-                        {% endfor %}
-                    </div>
-                    <div> language --->
-                        {% for language in result.language.all %}
-                          <div>{{ language }}</div>
-                        {% endfor %}
-                    </div>
-                    <div> reviewed ---> {{ result.reviewed }}</div>
-                    <div> material --->
-                        {% for material in result.material.all %}
-                          <div>{{ material }}</div>
-                        {% endfor %}
-                    </div>
-                    <div> Abstract ---> {{ result.abstract }}</div>
-                    <br>
-                -------------------+++++++++++----------------
-                    <br>
-                {%endfor%}
-            </div>
+            <form class="form-group" method="post" action="{% url 'search_publication' %}" name="searched">
+                {% csrf_token %}
+                <div>
+                    {% for result in results %}
+                        <div>  {{ result }} </div>
+                        <div> year ---> {{ result.year_id }}</div>
+                        <div> type ---> {{ result.type_id }}</div>
+                        <div>tag --->
+                            {% for tag in result.tag.all %}
+                              <div>{{ tag }}</div>
+                            {% endfor %}
+                        </div>
+                        <div> language --->
+                            {% for language in result.language.all %}
+                              <div>{{ language }}</div>
+                            {% endfor %}
+                        </div>
+                        <div> reviewed ---> {{ result.reviewed }}</div>
+                        <div> material --->
+                            {% for material in result.material.all %}
+                              <div>{{ material }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="text-wrap"> Abstract ---> {{ result.abstract }}</div>
+                    <hr>
+                    {%endfor%}
+                </div>
+            </form>
             </table>
-        </form>
         </div>
-
-    </div>
 </div>
 {% endblock %}
 
