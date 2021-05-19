@@ -46,3 +46,13 @@ def search_publication(request):
                   context={'form': form}
                   )
     # import ipdb; ipdb.set_trace()
+
+
+def show_publication(request, slug):
+    # if request.method == "GET":
+        publication = Paper.objects.get(slug=slug)
+        return render(request, 'search_tool_app/show_publication.html', {'publications': publication})
+    # elif request.method == "GET":
+    #     publication = Paper.objects.get(slug=slug)
+
+

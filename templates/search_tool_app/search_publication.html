@@ -29,6 +29,14 @@
                     {% for result in results %}
                         <div>  {{ result }} </div>
                         <div> year ---> {{ result.year_id }}</div>
+                        <div> slug ---> {{ result.slug }}
+                        <ul>
+                            <li>
+                                <a href="{{ result.get_absolute_url }}">{{ result }}</a>
+                            </li>
+                        </ul>
+                        </div>
+
                         <div> type ---> {{ result.type_id }}</div>
                         <div>tag --->
                             {% for tag in result.tag.all %}

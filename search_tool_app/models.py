@@ -1,4 +1,6 @@
 from django.db import models
+from django.template.defaultfilters import slugify
+from django.urls import reverse
 import datetime
 
 
@@ -41,6 +43,7 @@ class Material(models.Model):
 
 class Paper(models.Model):
     title = models.CharField(max_length=200, unique=True, null=False)
+    slug = models.SlugField(default="no-slug")
     pdf = models.FileField(upload_to="papers/pdfs", null=True)
     abstract = models.TextField(max_length=1000, unique=True, null=True)
     reviewed = models.BooleanField(default=False)
@@ -50,6 +53,13 @@ class Paper(models.Model):
     language = models.ManyToManyField(Language)
     tag = models.ManyToManyField(Tag)
     material = models.ManyToManyField(Material, through='PaperUsedMaterial')
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Paper, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('show_publication', kwargs={'slug': self.slug})
 
     # def delete(self, using=None, keep_parents=False):
 
