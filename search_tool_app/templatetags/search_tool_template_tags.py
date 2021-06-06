@@ -11,3 +11,10 @@ def is_active(request, url):
         return "active"
     else:
         return ""
+
+#
+# @register.pub_page
+# def url_pub_page(request, slug):
+#
+#
+#     return reverse('show_publication', kwargs={'slug': self.slug})

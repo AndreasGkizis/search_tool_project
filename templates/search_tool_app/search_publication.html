@@ -22,7 +22,6 @@
         </form>
     </div>
         <div class="col-9">
-            <table>
             <form class="form-group" method="post" action="{% url 'search_publication' %}" name="searched">
                 {% csrf_token %}
                 <div>
@@ -32,7 +31,7 @@
                         <div> slug ---> {{ result.slug }}
                         <ul>
                             <li>
-                                <a href="{{ result.get_absolute_url }}">{{ result }}</a>
+                                <a href="{% url 'show_publication' result.slug %}">{{ result }}</a>
                             </li>
                         </ul>
                         </div>
@@ -59,7 +58,6 @@
                     {%endfor%}
                 </div>
             </form>
-            </table>
         </div>
 </div>
 {% endblock %}

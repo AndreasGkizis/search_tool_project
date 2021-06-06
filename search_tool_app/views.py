@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .forms import PaperForm, SearchForm
 from search_tool_app.models import Language, Year, Type, Tag, Paper
+from django.urls import reverse
 
 
 def homepage(request):
@@ -39,7 +40,6 @@ def search_publication(request):
             else:
                 results = Paper.objects.filter(title__icontains=form.cleaned_data["title"],
                                                type_id__type__icontains=form.cleaned_data["type_id"])
-
             return render(request, 'search_tool_app/search_publication.html', {'results': results, 'form': form})
 
     return render(request, 'search_tool_app/search_publication.html',
@@ -50,8 +50,12 @@ def search_publication(request):
 
 def show_publication(request, slug):
     # if request.method == "GET":
-        publication = Paper.objects.get(slug=slug)
-        return render(request, 'search_tool_app/show_publication.html', {'publications': publication})
+        obj = Paper.objects.get(slug=slug)
+        context = {
+            'publications': obj,
+            'slug': slug  # ti to ithele ayto den katalabainw
+        }
+        return render(reverse(request, 'search_tool_app/show_publication.html', context))
     # elif request.method == "GET":
     #     publication = Paper.objects.get(slug=slug)
 

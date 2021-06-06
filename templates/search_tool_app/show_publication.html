@@ -6,41 +6,5 @@
 
 
 {% block body_block %}
-    <form class="form-group" method="post" action="{% url 'show_publication' %}" >
-                {% csrf_token %}
-                <div>
-                    {% for publication in publications %}
-                        <div>  {{ result }} </div>
-                        <div> year ---> {{ publication.year_id }}</div>
-                        <div> slug ---> {{ result.slug }}
-                        <ul>
-                            <li>
-                                <a href="{{ result.get_absolute_url }}">{{ result }}</a>
-                            </li>
-                        </ul>
-                        </div>
-
-                        <div> type ---> {{ result.type_id }}</div>
-                        <div>tag --->
-                            {% for tag in result.tag.all %}
-                              <div>{{ tag }}</div>
-                            {% endfor %}
-                        </div>
-                        <div> language --->
-                            {% for language in result.language.all %}
-                              <div>{{ language }}</div>
-                            {% endfor %}
-                        </div>
-                        <div> reviewed ---> {{ result.reviewed }}</div>
-                        <div> material --->
-                            {% for material in result.material.all %}
-                              <div>{{ material }}</div>
-                            {% endfor %}
-                        </div>
-                        <div class="text-wrap"> Abstract ---> {{ result.abstract }}</div>
-                    <hr>
-                    {%endfor%}
-                </div>
-            </form>
-
+    Hello this is a publication
 {% endblock %}
