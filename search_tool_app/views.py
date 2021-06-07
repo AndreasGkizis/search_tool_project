@@ -45,17 +45,18 @@ def search_publication(request):
     return render(request, 'search_tool_app/search_publication.html',
                   context={'form': form}
                   )
-    # import ipdb; ipdb.set_trace()
 
 
 def show_publication(request, slug):
+    import ipdb; ipdb.set_trace()
+
     # if request.method == "GET":
-        obj = Paper.objects.get(slug=slug)
-        context = {
-            'publications': obj,
-            'slug': slug  # ti to ithele ayto den katalabainw
+    obj = Paper.objects.get(slug=slug)
+    context = {
+    'publications': obj,
+    'slug': slug  # ti to ithele ayto den katalabainw
         }
-        return render(reverse(request, 'search_tool_app/show_publication.html', context))
+    return render(request, 'search_tool_app/show_publication.html', context)
     # elif request.method == "GET":
     #     publication = Paper.objects.get(slug=slug)
 
