@@ -4,7 +4,7 @@ from .models import Type, Year, Language, Paper, Material, PaperUsedMaterial, Ta
 
 
 class PaperForm(forms.ModelForm):
-    title = forms.CharField(label='Publications Title', max_length=200,)
+    title = forms.CharField(label='Publications Title', max_length=400)
     reviewed = forms.BooleanField(initial=False, required=False)
     pdf = forms.FileField(required=False)
     year_id = forms.ModelChoiceField(queryset=Year.objects.all(), blank=False)

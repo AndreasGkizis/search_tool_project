@@ -2,7 +2,6 @@
 
 {% extends 'search_tool_app/Base_boot-strap.html' %}
 {% load static %}
-{% load crispy_forms_tags %}
 {% load bootstrap4 %}
 
 {% block title_block %}
@@ -10,20 +9,20 @@
 {% endblock %}
 
 {% block body_block %}
+<div class="row">
+    <div class="col" >
+        <form id="paper_form" method="post" action="{% url 'post_a_publication' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h4>Enter your publication details</h4>
+                {% bootstrap_form form %}
+                {% bootstrap_form_errors form %}
             <div class="row">
-                <div class="col" >
-                    <form id="paper_form" method="post" action="{% url 'post_a_publication' %}" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        <h4>Enter your publication details</h4>
-                            {% bootstrap_form form %}
-                            {% bootstrap_form_errors form %}
-                        <div class="row">
-                            <div class="col-12">
-                                <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Post a publication</button>
-                            </div>
-                        </div>
-
-                    </form>
+                <div class="col-12">
+                    <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Post a publication</button>
                 </div>
             </div>
+
+        </form>
+    </div>
+</div>
  {% endblock %}

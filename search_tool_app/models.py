@@ -24,7 +24,7 @@ class Year(models.Model):
     convention_venue = models.CharField(max_length=100)
 
     def __str__(self):
-        return str(self.year_published)  # ?????
+        return str(self.year_published.year)
 
 
 class Tag(models.Model):
