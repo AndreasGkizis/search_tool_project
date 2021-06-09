@@ -48,16 +48,20 @@ def search_publication(request):
 
 
 def show_publication(request, slug):
-    import ipdb; ipdb.set_trace()
-
     # if request.method == "GET":
     obj = Paper.objects.get(slug=slug)
     context = {
-    'publications': obj,
-    'slug': slug  # ti to ithele ayto den katalabainw
+        'publications': obj,
+        'slug': slug  # ti to ithele ayto den katalabainw
         }
+    if request.method == "GET":
+        result = Paper.objects.filter(slug__contains="slug")
+
+        context={
+
+        }
+        return render(request, 'search_tool_app/show_publication.html', context)
     return render(request, 'search_tool_app/show_publication.html', context)
-    # elif request.method == "GET":
-    #     publication = Paper.objects.get(slug=slug)
+
 
 

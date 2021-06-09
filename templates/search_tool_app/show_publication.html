@@ -4,7 +4,53 @@
 {% load static %}
 {% load bootstrap4 %}
 
+{% block title_block %}
+-
+{% endblock %}
 
 {% block body_block %}
     Hello this is a publication
+<div class="row">
+    <div class="col">
+        <form class="form-group" method="get" action="{% url 'search_publication' %}" name="searched">
+            {% csrf_token %}
+            <div>
+                {% for result in results %}
+                    <div>  {{ result }} </div>
+                    <div> year ---> {{ result.year_id }}</div>
+                    <div> slug ---> {{ result.slug }}
+                    <ul>
+                        <li>
+                            <a href="{% url 'show_publication' result.slug %}">{{ result }}</a>
+                        </li>
+                    </ul>
+                    </div>
+
+                    <div> type ---> {{ result.type_id }}</div>
+                    <div>tag --->
+                        {% for tag in result.tag.all %}
+                          <div>{{ tag }}</div>
+                        {% endfor %}
+                    </div>
+                    <div> language --->
+                        {% for language in result.language.all %}
+                          <div>{{ language }}</div>
+                        {% endfor %}
+                    </div>
+                    <div> reviewed ---> {{ result.reviewed }}</div>
+                    <div> material --->
+                        {% for material in result.material.all %}
+                          <div>{{ material }}</div>
+                        {% endfor %}
+                    </div>
+                    <div class="text-wrap"> Abstract ---> {{ result.abstract }}</div>
+                <hr>
+                {%endfor%}
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
 {% endblock %}

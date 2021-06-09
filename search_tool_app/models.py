@@ -58,6 +58,10 @@ class Paper(models.Model):
         self.slug = slugify(self.title)
         super(Paper, self).save(*args, **kwargs)
 
+    def delete(self, *args, **kwargs):
+        self.pdf.delete()
+        super().delete(*args, **kwargs)  # Call the "real" save() method.
+
     # def get_absolute_url(self):
     #     return reverse('show_publication', kwargs={'slug': self.slug})
 
