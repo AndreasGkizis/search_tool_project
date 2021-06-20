@@ -10,6 +10,8 @@ def homepage(request):
 
 
 def post_a_publication(request):
+    # import ipdb; ipdb.set_trace()
+
     form = PaperForm()
     if request.method == 'POST':
         form = PaperForm(request.POST, request.FILES)
@@ -20,7 +22,7 @@ def post_a_publication(request):
             return homepage(request)
         else:
             print(form.errors)
-    return render(request, 'search_tool_app/post_a_publication.html', {'form': form})
+    return render(request, 'search_tool_app/post_a_publication.html', context={'form': form})
 
 
 def search_publication(request):
@@ -57,7 +59,7 @@ def show_publication(request, slug):
     if request.method == "GET":
         result = Paper.objects.filter(slug__contains="slug")
 
-        context={
+        context={ # Paper obj mallon me slug filter
 
         }
         return render(request, 'search_tool_app/show_publication.html', context)

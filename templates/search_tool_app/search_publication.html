@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 {% extends 'search_tool_app/Base_boot-strap.html' %}
 {% load static %}
-{% load bootstrap4 %}
 
 
 {% block title_block %}
@@ -13,15 +12,20 @@
     <form class="form-group" method="post" action="{% url 'search_publication' %}" name="searched">
         {% csrf_token %}
         <div class="form-group">
-            <div>
-                {% bootstrap_field form.title placeholder='Enter Publication title to search' %}
-            </div>
-            <div>
-                {% for field in form %}
-                    {% bootstrap_field field %}
-                {% endfor %}
-            </div>
-    </div>
+            <label for="search" >  {{ form.title }} pub </label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+        </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1">
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+<!--        >-->
 
         <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search for a publication</button>
     </form>
@@ -32,35 +36,31 @@
             {% csrf_token %}
             <div>
                 {% for result in results %}
-                    <div>  {{ result }} </div>
-                    <div> year ---> {{ result.year_id }}</div>
-                    <div> slug ---> {{ result.slug }}
-                    <ul>
-                        <li>
-                            <a href="{% url 'show_publication' result.slug %}">{{ result }}</a>
-                        </li>
-                    </ul>
-                    </div>
+                    <div class="card p-2">
+                        <div class="card-body" > {{ result.title }} </div>
+                        <div class="card-body" > year ---> {{ result.year_id }}</div>
+                        <div> slug ---> <a href="{% url 'show_publication' result.slug %}">{{ result }}</a>
+                        </div>
 
-                    <div> type ---> {{ result.type_id }}</div>
-                    <div>tag --->
-                        {% for tag in result.tag.all %}
-                          <div>{{ tag }}</div>
-                        {% endfor %}
-                    </div>
-                    <div> language --->
-                        {% for language in result.language.all %}
-                          <div>{{ language }}</div>
-                        {% endfor %}
-                    </div>
-                    <div> reviewed ---> {{ result.reviewed }}</div>
-                    <div> material --->
-                        {% for material in result.material.all %}
-                          <div>{{ material }}</div>
-                        {% endfor %}
-                    </div>
-                    <div class="text-wrap"> Abstract ---> {{ result.abstract }}</div>
-                <hr>
+                        <div> type ---> {{ result.type_id }}</div>
+                        <div>tag --->
+                            {% for tag in result.tag.all %}
+                              <div>{{ tag }}</div>
+                            {% endfor %}
+                        </div>
+                        <div> language --->
+                            {% for language in result.language.all %}
+                              <div>{{ language }}</div>
+                            {% endfor %}
+                        </div>
+                        <div> reviewed ---> {{ result.reviewed }}</div>
+                        <div> material --->
+                            {% for material in result.material.all %}
+                              <div>{{ material }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="text-wrap"> Abstract ---> {{ result.abstract }}</div>
+                    <div>
                 {%endfor%}
             </div>
         </form>
