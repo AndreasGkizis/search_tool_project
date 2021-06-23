@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 {% extends 'search_tool_app/Base_boot-strap.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
+
 
 
 {% block title_block %}
@@ -11,112 +13,99 @@
     <div class="col-lg-3">
         <form class="form-group" method="POST" action="{% url 'search_publication' %}" name="searched">
             {% csrf_token %}
-            {{form}}
+
             <div class="form-group row">
                 <div class="col-4">
                     <label class="control-label" for="Title" > {{form.title.label}} :</label>
                 </div>
-                <div class="col-8">
-                    <input type="text" class="form-control" id="Title">
+                <div  id="Title">
+                    {{ form.title }}
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
                     <label class="control-label" for="year" > {{form.year.label}} :</label>
                 </div>
-                <div class="col-8 align-self-end">
-                    <select id="year" class="selectpicker" multiple>
-                        {% for i in form.year %}
-                            <option>{{i}}</option>
-                        {% endfor %}
-                    </select>
+                <div class="col-8 align-self-end" id="year">
+                    {{form.year}}
                     </div>
                 </div>
             <div class="form-group row">
                 <div class="col-4">
                     <label class="control-label" for="type" > {{form.type.label}} :</label>
                 </div>
-                <div class="col-8 align-self-end">
-                    <select id="type" class="selectpicker" multiple>
-                        {% for i in form.type %}
-                            <option>{{i}}</option>
-                        {% endfor %}
-                    </select>
-                    </div>
+                <div class="col-8 align-self-end" id="type">
+                    {{form.type}}
                 </div>
+            </div>
             <div class="form-group row">
                 <div class="col-4">
                     <label class="control-label" for="language" > {{form.language.label}} :</label>
                 </div>
-                <div class="col-8 align-self-end">
-                    <select id="language" class="selectpicker" multiple>
-                        {% for i in form.language %}
-                            <option>{{i}}</option>
-                        {% endfor %}
-                    </select>
-                    </div>
+                <div class="col-8 align-self-end" id="language">
+                    {{form.language}}
                 </div>
+            </div>
             <div class="form-group row">
                 <div class="col-4">
                     <label class="control-label" for="tag" > {{form.tag.label}} :</label>
                 </div>
-                <div class="col-8 align-self-end">
-                    <select id="tag" class="selectpicker" multiple>
-                        {% for i in form.tag %}
-                            <option>{{i}}</option>
-                        {% endfor %}
-                    </select>
-                    </div>
+                <div class="col-8 align-self-end" id="tag">
+                    {{form.tag}}
                 </div>
+            </div>
             <div class="form-group row">
                 <div class="col-4">
                     <label class="control-label" for="material" > {{form.material.label}} :</label>
                 </div>
-                <div class="col-8 align-self-end">
-                    <select id="material" class="selectpicker" multiple>
-                        {% for i in form.material %}
-                            <option>{{i}}</option>
-                        {% endfor %}
-                    </select>
-                    </div>
+                <div class="col-8 align-self-end" id="material">
+                    {{form.material}}
                 </div>
+            </div>
 
             <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search for publication</button>
         </form>
     </div>
 
     <div class="col-9 px-2">
-        <form class="form-group" method="post" action="{% url 'search_publication' %}" name="searched">
+        <form class="form-group" method="POST" action="{% url 'search_publication' %}" name="searched">
             {% csrf_token %}
-            <div>
-                {% for result in results %}
-                    <div class="card p-2">
-                        <div class="card-body" > {{ result.title }} </div>
-                        <div class="card-body" > year ---> {{ result.year_id }}</div>
-                        <div> slug ---> <a href="{% url 'show_publication' result.slug %}">{{ result }}</a>
-                        </div>
+            {% for result in results %}
 
-                        <div> type ---> {{ result.type_id }}</div>
-                        <div>tag --->
-                            {% for tag in result.tag.all %}
-                              <div>{{ tag }}</div>
-                            {% endfor %}
-                        </div>
-                        <div> language --->
+            <div class="card p-2">
+                <div class="card-header">
+                     <h5>
+                         <strong> Publication Title :</strong> {{ result.title }}
+                     </h5>
+<!--                     # make functions for all model labels? or try using Form somehow ?? -->
+                </div>
+                <div class="card-body">
+                    <p> <strong> Year Published :</strong> {{ result.year_id }}</p>
+                    <p> <strong> Type :</strong> {{ result.type_id }} </p>
+                    <p> <strong> Language Written :</strong>
                             {% for language in result.language.all %}
-                              <div>{{ language }}</div>
+                                {{ language }} ,
                             {% endfor %}
-                        </div>
-                        <div> reviewed ---> {{ result.reviewed }}</div>
-                        <div> material --->
-                            {% for material in result.material.all %}
-                              <div>{{ material }}</div>
-                            {% endfor %}
-                        </div>
-                        <div class="text-wrap"> Abstract ---> {{ result.abstract }}</div>
-                    <div>
-                {%endfor%}
+                    </p>
+                    <p> <strong> Materials Examined :</strong>
+                        {% for material in result.material.all %}
+                            {{ material }} ,
+                        {% endfor %}
+                    </p>
+                    <p> <strong> Materials Used :</strong> {{ result. }} </p>
+                    <p> <strong> Abstract :</strong> {{ result.abstract }} </p>
+                    <p> <strong>  Tags :</strong>
+                        {% for tag in result.tag.all %}
+                            {{ tag }} ,
+                        {% endfor %}
+                    </p>
+                    <p> <strong>  placeholder :</strong> {{ result. }} </p>
+                    <div class="text-right">
+                        <a href="{% url 'show_publication' result.slug %}" class="btn btn-outline-success align-self-end">View Publication</a>
+                    </div>
+                </div>
             </div>
+            {% endfor %}
         </form>
     </div>
 

@@ -2,7 +2,6 @@
 
 {% extends 'search_tool_app/Base_boot-strap.html' %}
 {% load static %}
-{% load bootstrap4 %}
 
 {% block title_block %}
 -
@@ -10,9 +9,10 @@
 
 {% block body_block %}
     Hello this is a publication
+    {{ result }}
 <div class="row">
     <div class="col">
-        <form class="form-group" method="get" action="{% url 'search_publication' %}" name="searched">
+        <form class="form-group" method="post" action="{% url 'search_publication' %}" name="searched">
             {% csrf_token %}
             <div>
                 {% for result in results %}

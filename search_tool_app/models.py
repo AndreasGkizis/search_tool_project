@@ -45,7 +45,7 @@ class Paper(models.Model):
     title = models.CharField(max_length=200, unique=True, null=False)
     slug = models.SlugField(default="no-slug")
     pdf = models.FileField(upload_to="papers/pdfs", null=True)
-    abstract = models.TextField(max_length=1000, unique=True, null=True)
+    abstract = models.TextField(max_length=3000, unique=True, null=True)
     reviewed = models.BooleanField(default=False)
     date_added = models.DateField(default=datetime.date.today, null=True)
     year_id = models.ForeignKey(Year, on_delete=models.CASCADE, null=True)

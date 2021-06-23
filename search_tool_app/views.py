@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import PaperForm, SearchForm
-from search_tool_app.models import Language, Year, Type, Tag, Paper
+from .models import Language, Year, Type, Tag, Paper
 from django.urls import reverse
 
 
@@ -26,6 +26,8 @@ def post_a_publication(request):
 
 
 def search_publication(request):
+    # import ipdb;ipdb.set_trace()
+
     form = SearchForm()
     if request.method == 'GET':
         # Provide the initial data required to render the search options
@@ -34,7 +36,6 @@ def search_publication(request):
                       context={'form': form}
                       )
     elif request.method == 'POST':
-        import ipdb;ipdb.set_trace()
         form = SearchForm(request.POST)
         if form.is_valid():
             if form.cleaned_data["type"] is None:

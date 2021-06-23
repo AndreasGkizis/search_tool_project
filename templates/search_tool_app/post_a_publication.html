@@ -13,10 +13,7 @@
         <form id="paper_form" method="post" action="{% url 'post_a_publication' %}" enctype="multipart/form-data">
             {% csrf_token %}
             <h4>Enter your publication details</h4>
-                {% for field in form %}
-                    {% bootstrap_field field %}
-                    {% bootstrap_form_errors form %}
-                {% endfor%}
+            {{ form.as_p }}
             <div class="row">
                 <div class="col-12">
                     <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Post a publication</button>

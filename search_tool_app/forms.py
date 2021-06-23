@@ -37,10 +37,22 @@ class LanguageForm(forms.ModelForm):
 
 
 class SearchForm(forms.Form):
-    title = forms.CharField(max_length=200, required=False)
-    year = forms.ModelChoiceField(queryset=Year.objects.all(), required=False)
-    type = forms.ModelChoiceField(queryset=Type.objects.all(), required=False)
-    language = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), required=False)
-    tag = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), required=False)
-    material = forms.ModelMultipleChoiceField(queryset=Material.objects.all(), required=False)
+    title = forms.CharField(max_length=200,
+                            required=False)
+    year = forms.ModelChoiceField(queryset=Year.objects.all(),
+                                  required=False,
+                                  widget=forms.CheckboxSelectMultiple)
+    type = forms.ModelChoiceField(queryset=Type.objects.all(),
+                                  required=False,
+                                  widget=forms.CheckboxSelectMultiple)
+    language = forms.ModelMultipleChoiceField(queryset=Language.objects.all(),
+                                              required=False,
+                                              widget=forms.CheckboxSelectMultiple)
+    tag = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(),
+                                         required=False,
+                                         widget=forms.CheckboxSelectMultiple)
+    material = forms.ModelMultipleChoiceField(queryset=Material.objects.all(),
+                                              required=False,
+                                              widget=forms.CheckboxSelectMultiple)
+    # material_used = forms.ModelMultipleChoiceField(queryset=PaperUsedMaterial.objects.exclude())
     abstract = forms.Textarea()
