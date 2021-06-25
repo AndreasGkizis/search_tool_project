@@ -38,13 +38,16 @@ def search_publication(request):
     elif request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
-            if form.cleaned_data["type"] is None:
+            if not form.cleaned_data["type"]:
+                #  maybe this should not be None since it returns an empty list nad not None
                 results = Paper.objects.filter(title__icontains=form.cleaned_data["title"])
 
             else:
-                results = Paper.objects.filter(title__icontains=form.cleaned_data["title"],
+                results = Paper.objects.filter(title__icontains=form.cleaned_data["title"]).filter(
                                                type_id__type__icontains=form.cleaned_data["type"])
             return render(request, 'search_tool_app/search_publication.html', {'results': results, 'form': form})
+        else:
+            return "firm is not valid"
 
     return render(request, 'search_tool_app/search_publication.html',
                   context={'form': form}

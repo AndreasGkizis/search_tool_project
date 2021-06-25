@@ -11,16 +11,89 @@
 <div class="row">
     <div class="col" >
         <form id="paper_form" method="post" action="{% url 'post_a_publication' %}" enctype="multipart/form-data">
-            {% csrf_token %}
-            <h4>Enter your publication details</h4>
-            {{ form.as_p }}
-            <div class="row">
-                <div class="col-12">
+            <fieldset>
+                {% csrf_token %}
+                <div class="card p-2 bg-dark text-white">
+                    <div class="card-header">
+                        <h5>
+                            <strong>Enter Publication Details Below</strong>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col">
+                                <label class="control-label" for="Title"> {{form.title.label}} </label>
+                                <div id="Title">
+                                    {{form.title}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col">
+                                <label class="control-label" for="Pdf" > {{form.pdf.label}}</label>
+                                <div class="form-control" id="Pdf">
+                                    {{ form.pdf }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col">
+                                <label class="control-label" for="Year" > {{form.year_id.label}}</label>
+                                <select class="form-control" id="Year">
+
+                                    {% for i in form.year_id %}
+                                    <option>{{ i.field }}</option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col">
+                                <label class="control-label" for="Type" > {{form.type_id.label}}</label>
+                                <div  id="Type">
+                                    {{ form.type_id }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col">
+                                <label class="control-label" for="Language" > {{form.language.label}}</label>
+                                <div  id="Language">
+                                    {{ form.language }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col">
+                                <label class="control-label" for="Tag" > {{form.tag.label}}</label>
+                                <div  id="Tag">
+                                    {{ form.tag }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col">
+                                <label class="control-label" for="material" > {{form.material.label}}</label>
+                                <div  id="material">
+                                    {{ form.material }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col">
+                                <label class="control-label" for="abstract" > {{form.abstract.label}}</label>
+                                <div  id="abstract">
+                                    {{ form.abstract }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Post a publication</button>
                 </div>
-            </div>
-
+            </fieldset>
         </form>
     </div>
 </div>
- {% endblock %}
+
+{% endblock %}

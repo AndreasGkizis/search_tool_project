@@ -6,7 +6,7 @@ from .models import Type, Year, Language, Paper, Material, PaperUsedMaterial, Ta
 class PaperForm(forms.ModelForm):
     title = forms.CharField(label='Publications Title', max_length=400)
     reviewed = forms.BooleanField(initial=False, required=False)
-    pdf = forms.FileField(required=False)
+    pdf = forms.FileField(label="PDF file", required=False)
     year_id = forms.ModelChoiceField(queryset=Year.objects.all(), blank=False)
     type_id = forms.ModelChoiceField(queryset=Type.objects.all(), blank=False)
     language = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), blank=False)
@@ -17,7 +17,7 @@ class PaperForm(forms.ModelForm):
     class Meta:
         model = Paper
         fields = '__all__'
-        exclude = ('date_added',)
+        exclude = ('date_added', 'slug')
 
 
 class TypeForm(forms.ModelForm):
@@ -39,20 +39,30 @@ class LanguageForm(forms.ModelForm):
 class SearchForm(forms.Form):
     title = forms.CharField(max_length=200,
                             required=False)
-    year = forms.ModelChoiceField(queryset=Year.objects.all(),
-                                  required=False,
-                                  widget=forms.CheckboxSelectMultiple)
-    type = forms.ModelChoiceField(queryset=Type.objects.all(),
-                                  required=False,
-                                  widget=forms.CheckboxSelectMultiple)
+
+    year = forms.ModelMultipleChoiceField(queryset=Year.objects.all(),
+                                          required=False,
+                                          widget=forms.CheckboxSelectMultiple)
+
+    type = forms.ModelMultipleChoiceField(queryset=Type.objects.all(),
+                                          required=False,
+                                          widget=forms.CheckboxSelectMultiple)
+
+    #     type = forms.ModelChoiceField(queryset=Type.objects.all(),
+    #                                   required=False,
+    #                                   widget=forms.CheckboxSelectMultiple) DO NOT KNOW WHY THIS WAS FIXED BY THE ABOVE
+
     language = forms.ModelMultipleChoiceField(queryset=Language.objects.all(),
                                               required=False,
                                               widget=forms.CheckboxSelectMultiple)
+
     tag = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(),
                                          required=False,
                                          widget=forms.CheckboxSelectMultiple)
+
     material = forms.ModelMultipleChoiceField(queryset=Material.objects.all(),
                                               required=False,
                                               widget=forms.CheckboxSelectMultiple)
+
     # material_used = forms.ModelMultipleChoiceField(queryset=PaperUsedMaterial.objects.exclude())
     abstract = forms.Textarea()

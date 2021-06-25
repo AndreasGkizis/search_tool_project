@@ -9,61 +9,90 @@
 - Search page
 {% endblock %}
 {% block body_block %}
-<div class="row mx-auto">
+<div class="row mx-auto " >
     <div class="col-lg-3">
         <form class="form-group" method="POST" action="{% url 'search_publication' %}" name="searched">
-            {% csrf_token %}
-
-            <div class="form-group row">
-                <div class="col-4">
-                    <label class="control-label" for="Title" > {{form.title.label}} :</label>
+            <fieldset>
+                {% csrf_token %}
+                <div class="card p-2 bg-dark text-white">
+                    <div class="card-header">
+                     <h5>
+                         <strong>Search by .. </strong>
+                     </h5>
                 </div>
-                <div  id="Title">
-                    {{ form.title }}
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-4">
-                    <label class="control-label" for="year" > {{form.year.label}} :</label>
-                </div>
-                <div class="col-8 align-self-end" id="year">
-                    {{form.year}}
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label class="control-label" for="Title" > {{form.title.label}} :</label>
+                            </div>
+                            <div  id="Title">
+                                {{ form.title }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label class="control-label" for="year" > {{form.year.label}} :</label>
+                            </div>
+                            <div class="col-8 align-self-end" id="year">
+                                {% for checkbox in form.year %}
+                                        <div class="row">
+                                            {{checkbox}}
+                                        </div>
+                                    {% endfor %}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label class="control-label" for="type" > {{form.type.label}} :</label>
+                            </div>
+                            <div class="col-8 align-self-end" id="type">
+                                    {% for checkbox in form.type %}
+                                        <div class="row">
+                                            {{checkbox}}
+                                        </div>
+                                    {% endfor %}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label class="control-label" for="language" > {{form.language.label}} :</label>
+                            </div>
+                            <div class="col-8 align-self-end" id="language">
+                                {% for checkbox in form.language %}
+                                        <div class="row">
+                                            {{checkbox}}
+                                        </div>
+                                    {% endfor %}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label class="control-label" for="tag" > {{form.tag.label}} :</label>
+                            </div>
+                            <div class="col-8 align-self-end" id="tag">
+                                {% for checkbox in form.tag %}
+                                        <div class="row">
+                                            {{checkbox}}
+                                        </div>
+                                    {% endfor %}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-4">
+                                <label class="control-label" for="material" > {{form.material.label}} :</label>
+                            </div>
+                            <div class="col-8 align-self-end" id="material">
+                                    {% for checkbox in form.material %}
+                                        <div class="row">
+                                            {{checkbox}}
+                                        </div>
+                                    {% endfor %}
+                            </div>
+                        </div>
                     </div>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search for publication</button>
                 </div>
-            <div class="form-group row">
-                <div class="col-4">
-                    <label class="control-label" for="type" > {{form.type.label}} :</label>
-                </div>
-                <div class="col-8 align-self-end" id="type">
-                    {{form.type}}
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-4">
-                    <label class="control-label" for="language" > {{form.language.label}} :</label>
-                </div>
-                <div class="col-8 align-self-end" id="language">
-                    {{form.language}}
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-4">
-                    <label class="control-label" for="tag" > {{form.tag.label}} :</label>
-                </div>
-                <div class="col-8 align-self-end" id="tag">
-                    {{form.tag}}
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-4">
-                    <label class="control-label" for="material" > {{form.material.label}} :</label>
-                </div>
-                <div class="col-8 align-self-end" id="material">
-                    {{form.material}}
-                </div>
-            </div>
-
-            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search for publication</button>
+            </fieldset>
         </form>
     </div>
 
@@ -71,8 +100,7 @@
         <form class="form-group" method="POST" action="{% url 'search_publication' %}" name="searched">
             {% csrf_token %}
             {% for result in results %}
-
-            <div class="card p-2">
+            <div class="card p-2 bg-dark text-white">
                 <div class="card-header">
                      <h5>
                          <strong> Publication Title :</strong> {{ result.title }}

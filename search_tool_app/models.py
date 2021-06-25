@@ -43,7 +43,7 @@ class Material(models.Model):
 
 class Paper(models.Model):
     title = models.CharField(max_length=200, unique=True, null=False)
-    slug = models.SlugField(default="no-slug")
+    slug = models.SlugField(default="no-slug", blank=True)
     pdf = models.FileField(upload_to="papers/pdfs", null=True)
     abstract = models.TextField(max_length=3000, unique=True, null=True)
     reviewed = models.BooleanField(default=False)
