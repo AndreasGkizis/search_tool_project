@@ -99,41 +99,41 @@
     <div class="col-9 px-2">
         <form class="form-group" method="POST" action="{% url 'search_publication' %}" name="searched">
             {% csrf_token %}
-            {% for result in results %}
-            <div class="card p-2 bg-dark text-white">
-                <div class="card-header">
-                     <h5>
-                         <strong> Publication Title :</strong> {{ result.title }}
-                     </h5>
-<!--                     # make functions for all model labels? or try using Form somehow ?? -->
-                </div>
-                <div class="card-body">
-                    <p> <strong> Year Published :</strong> {{ result.year_id }}</p>
-                    <p> <strong> Type :</strong> {{ result.type_id }} </p>
-                    <p> <strong> Language Written :</strong>
-                            {% for language in result.language.all %}
-                                {{ language }} ,
+                {% for result in results %}
+                <div class="card p-2 bg-dark text-white">
+                    <div class="card-header">
+                         <h5>
+                             <strong> Publication Title :</strong> {{ result.title }}
+                         </h5>
+    <!--                     # make functions for all model labels? or try using Form somehow ?? -->
+                    </div>
+                    <div class="card-body">
+                        <p> <strong> Year Published :</strong> {{ result.year_id }}</p>
+                        <p> <strong> Type :</strong> {{ result.type_id }} </p>
+                        <p> <strong> Language Written :</strong>
+                                {% for language in result.language.all %}
+                                    {{ language }} ,
+                                {% endfor %}
+                        </p>
+                        <p> <strong> Materials Examined :</strong>
+                            {% for material in result.material.all %}
+                                {{ material }} ,
                             {% endfor %}
-                    </p>
-                    <p> <strong> Materials Examined :</strong>
-                        {% for material in result.material.all %}
-                            {{ material }} ,
-                        {% endfor %}
-                    </p>
-                    <p> <strong> Materials Used :</strong> {{ result. }} </p>
-                    <p> <strong> Abstract :</strong> {{ result.abstract }} </p>
-                    <p> <strong>  Tags :</strong>
-                        {% for tag in result.tag.all %}
-                            {{ tag }} ,
-                        {% endfor %}
-                    </p>
-                    <p> <strong>  placeholder :</strong> {{ result. }} </p>
-                    <div class="text-right">
-                        <a href="{% url 'show_publication' result.slug %}" class="btn btn-outline-success align-self-end">View Publication</a>
+                        </p>
+                        <p> <strong> Materials Used :</strong> {{ result. }} </p>
+                        <p> <strong> Abstract :</strong> {{ result.abstract }} </p>
+                        <p> <strong>  Tags :</strong>
+                            {% for tag in result.tag.all %}
+                                {{ tag }} ,
+                            {% endfor %}
+                        </p>
+                        <p> <strong>  placeholder :</strong> {{ result. }} </p>
+                        <div class="text-right">
+                            <a href="{% url 'show_publication' result.slug %}" class="btn btn-outline-success align-self-end">View Publication</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {% endfor %}
+                {% endfor %}
         </form>
     </div>
 
