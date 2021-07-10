@@ -4,14 +4,19 @@ from .models import Type, Year, Language, Paper, Material, PaperUsedMaterial, Ta
 
 
 class PaperForm(forms.ModelForm):
-    title = forms.CharField(label='Publications Title', max_length=400)
+    title = forms.CharField(label='Publications Title', max_length=400,
+                            widget=forms.TextInput(attrs={'class': 'form-control',
+                                                          }))
     reviewed = forms.BooleanField(initial=False, required=False)
-    pdf = forms.FileField(label="PDF file", required=False)
-    year_id = forms.ModelChoiceField(queryset=Year.objects.all(), blank=False)
-    type_id = forms.ModelChoiceField(queryset=Type.objects.all(), blank=False)
-    language = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), blank=False)
-    tag = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), blank=False)
-    material = forms.ModelMultipleChoiceField(queryset=Material.objects.all(), blank=False)
+    pdf = forms.FileField(label="PDF file", required=False, widget=forms.FileInput(attrs={'class': 'form-control',
+                                                                                          }))
+    year_id = forms.ModelChoiceField(queryset=Year.objects.all(), blank=False, widget=forms.Select(attrs={
+        'class': 'form-control'
+    }))
+    type_id = forms.ModelMultipleChoiceField(queryset=Type.objects.all(), blank=False, widget=forms.CheckboxSelectMultiple)
+    language = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), blank=False, widget=forms.CheckboxSelectMultiple)
+    tag = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), blank=False, widget=forms.CheckboxSelectMultiple)
+    material = forms.ModelMultipleChoiceField(queryset=Material.objects.all(), blank=False, widget=forms.CheckboxSelectMultiple)
     abstract = forms.Textarea()
 
     class Meta:
@@ -38,7 +43,7 @@ class LanguageForm(forms.ModelForm):
 
 class SearchForm(forms.Form):
     title = forms.CharField(max_length=200,
-                            required=False)
+                            required=False, widget=forms.TextInput)
 
     year = forms.ModelMultipleChoiceField(queryset=Year.objects.all(),
                                           required=False,

@@ -8,9 +8,9 @@
 {% endblock %}
 
 {% block body_block %}
-<div class="row">
+<div class="row mx-auto">
     <div class="col" >
-        <form id="paper_form" method="post" action="{% url 'post_a_publication' %}" enctype="multipart/form-data">
+        <form class="form-group" id="paper_form" method="post" action="{% url 'post_a_publication' %}" enctype="multipart/form-data">
             <fieldset>
                 {% csrf_token %}
                 <div class="card p-2 bg-dark text-white">
@@ -24,51 +24,53 @@
                             <div class="col">
                                 <label class="control-label" for="Title"> {{form.title.label}} </label>
                                 <div id="Title">
-                                    {{form.title}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col">
-                                <label class="control-label" for="Pdf" > {{form.pdf.label}}</label>
-                                <div class="form-control" id="Pdf">
-                                    {{ form.pdf }}
+                                    {{ form.title }}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col">
                                 <label class="control-label" for="Year" > {{form.year_id.label}}</label>
-                                <select class="form-control" id="Year">
-
-                                    {% for i in form.year_id %}
-                                    <option>{{ i.field }}</option>
-                                    {% endfor %}
-
-                                </select>
+                                <div id="Year">
+                                    {{ form.year_id }}
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col">
-                                <label class="control-label" for="Type" > {{form.type_id.label}}</label>
-                                <div  id="Type">
-                                    {{ form.type_id }}
+                                <label class="control-label" for="Type" > {{form.type_id.label}} :</label>
+                                <div id="Type">
+                                    {% for i in form.type_id %}
+                                    <div class="px-4">
+                                        {{ i }}
+                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <div class="col">
                                 <label class="control-label" for="Language" > {{form.language.label}}</label>
                                 <div  id="Language">
-                                    {{ form.language }}
+                                    {% for i in form.language %}
+                                        <div class="px-4">
+                                             {{ i }}
+                                        </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <div class="col">
                                 <label class="control-label" for="Tag" > {{form.tag.label}}</label>
                                 <div  id="Tag">
-                                    {{ form.tag }}
+                                    {% for i in form.tag %}
+                                        <div class="px-4">
+                                            {{ i }}
+                                        </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -76,10 +78,22 @@
                             <div class="col">
                                 <label class="control-label" for="material" > {{form.material.label}}</label>
                                 <div  id="material">
-                                    {{ form.material }}
+                                    {% for i in form.material %}
+                                    <div class="px-4">
+                                        {{ i }}
+                                    </div>
+                                    {% endfor %}                                                             </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col">
+                                <label class="control-label" for="Pdf" > {{form.pdf.label}}</label>
+                                <div id="Pdf">
+                                    {{ form.pdf }}
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <div class="col">
                                 <label class="control-label" for="abstract" > {{form.abstract.label}}</label>
