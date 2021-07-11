@@ -13,7 +13,9 @@ class PaperForm(forms.ModelForm):
     year_id = forms.ModelChoiceField(queryset=Year.objects.all(), blank=False, widget=forms.Select(attrs={
         'class': 'form-control'
     }))
-    type_id = forms.ModelMultipleChoiceField(queryset=Type.objects.all(), blank=False, widget=forms.CheckboxSelectMultiple)
+    type_id = forms.ModelChoiceField(queryset=Type.objects.all(), blank=False, widget=forms.Select(attrs={
+        'class': 'form-control'
+    }))
     language = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), blank=False, widget=forms.CheckboxSelectMultiple)
     tag = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), blank=False, widget=forms.CheckboxSelectMultiple)
     material = forms.ModelMultipleChoiceField(queryset=Material.objects.all(), blank=False, widget=forms.CheckboxSelectMultiple)

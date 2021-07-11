@@ -40,11 +40,7 @@
                             <div class="col">
                                 <label class="control-label" for="Type" > {{form.type_id.label}} :</label>
                                 <div id="Type">
-                                    {% for i in form.type_id %}
-                                    <div class="px-4">
-                                        {{ i }}
-                                    </div>
-                                    {% endfor %}
+                                    {{ form.type_id }}
                                 </div>
                             </div>
                         </div>

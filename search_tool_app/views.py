@@ -12,15 +12,21 @@ def homepage(request):
 
 
 def post_a_publication(request):
-    # import ipdb; ipdb.set_trace()
 
     form = PaperForm()
     if request.method == 'POST':
+        # for i, k in request.POST.lists():
+        #     for j in k:
+        #         print()
+
         form = PaperForm(request.POST, request.FILES)
+        # import ipdb;
+        # ipdb.set_trace()
+
         if form.is_valid():
             pap = form.save(commit=True)
             pap.save()
-            print(pap)  # here only as a confirmation on the terminal
+            print('Paper ', pap, "has been registered")  # here only as a confirmation on the terminal
             return homepage(request)
         else:
             print(form.errors)
@@ -38,7 +44,10 @@ def search_publication(request):
                       context={'form': form}
                       )
     elif request.method == 'POST':
+        # import ipdb;
+        # ipdb.set_trace()
         form = SearchForm(request.POST)
+
         if form.is_valid():
             title_filter = form.cleaned_data['title']
             year_filter = form.cleaned_data['year'].values_list('id', flat=True)
