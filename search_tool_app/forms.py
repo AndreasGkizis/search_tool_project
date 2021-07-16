@@ -27,6 +27,15 @@ class PaperForm(forms.ModelForm):
         exclude = ('date_added', 'slug')
 
 
+class MaterialUsedForm(forms.ModelForm):
+    material_used = forms.BooleanField()
+    material = forms.CharField()
+
+    class Meta:
+        model = PaperUsedMaterial
+        exclude = ('paper',)
+
+
 class TypeForm(forms.ModelForm):
     type = forms.CharField(max_length=100, help_text="Please enter the type's name")
 

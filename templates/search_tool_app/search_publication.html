@@ -10,6 +10,8 @@
 {% endblock %}
 {% block body_block %}
 <div class="row mx-auto " >
+<!--SEARCH PART -->
+
     <div class="col-lg-3">
         <form class="form-group" method="POST" action="{% url 'search_publication' %}" name="searched">
             <fieldset>
@@ -96,6 +98,8 @@
         </form>
     </div>
 
+<!--    RESULTS PART  -->
+
     <div class="col-9 px-2">
         <form class="form-group" method="POST" action="{% url 'search_publication' %}" name="searched">
             {% csrf_token %}
@@ -120,14 +124,24 @@
                                 {{ material }} ,
                             {% endfor %}
                         </p>
-                        <p> <strong> Materials Used :</strong> {{ result. }} </p>
+                        <p> <strong> Materials Used :</strong>
+<!--                            na to dei o sergios na m pei an einai swstos tropos, fainetai na douleuei-->
+                            {% for i in mat_results.all %}
+                                {% if result.title|stringformat:'s' == i|stringformat:'s' %}
+                                    {% if i.material_used %}
+                                        {{ i.material }},
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+
+                        </p>
                         <p> <strong> Abstract :</strong> {{ result.abstract }} </p>
-                        <p> <strong>  Tags :</strong>
+                        <p> <strong> Tags :</strong>
                             {% for tag in result.tag.all %}
                                 {{ tag }} ,
                             {% endfor %}
                         </p>
-                        <p> <strong>  placeholder :</strong> {{ result. }} </p>
+                        <p> <strong> placeholder :</strong> {{ result. }} </p>
                         <div class="text-right">
                             <a href="{% url 'show_publication' result.slug %}" class="btn btn-outline-success align-self-end">View Publication</a>
                         </div>

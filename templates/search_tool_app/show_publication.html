@@ -8,49 +8,64 @@
 {% endblock %}
 
 {% block body_block %}
-    Hello this is a publication
-    {{ result }}
+
 <div class="row">
-    <div class="col">
-        <form class="form-group" method="post" action="{% url 'search_publication' %}" name="searched">
-            {% csrf_token %}
-            <div>
-                {% for result in results %}
-                    <div>  {{ result }} </div>
-                    <div> year ---> {{ result.year_id }}</div>
-                    <div> slug ---> {{ result.slug }}
-                    <ul>
-                        <li>
-                            <a href="{% url 'show_publication' result.slug %}">{{ result }}</a>
-                        </li>
-                    </ul>
-                    </div>
-
-                    <div> type ---> {{ result.type_id }}</div>
-                    <div>tag --->
-                        {% for tag in result.tag.all %}
-                          <div>{{ tag }}</div>
-                        {% endfor %}
-                    </div>
-                    <div> language --->
+    <div class="col px-2 align-self-center">
+<!--        <form class="form-group" method="POST" action="{% url 'show_publication' slug %}" name="show_publication">-->
+<!--            {% csrf_token %}-->
+<!--            {% for result in results %}-->
+            <div class="card p-2 bg-dark text-white">
+                <div class="card-header">
+                    <h5>
+                        <strong> Publication Title :</strong> {{ result.title }}
+                    </h5>
+                </div>
+                <img class="card-img-top" src="search_tool_project/media/pictures/foodcalendar.jpg" alt="Cover image">
+                <div class="card-body">
+                    <p> <strong> Year Published :</strong> {{ result.year_id }}</p>
+                    <p> <strong> Type :</strong> {{ result.type_id }} </p>
+                    <p> <strong> Language Written :</strong>
                         {% for language in result.language.all %}
-                          <div>{{ language }}</div>
+                            {{ language }} ,
                         {% endfor %}
-                    </div>
-                    <div> reviewed ---> {{ result.reviewed }}</div>
-                    <div> material --->
+                    </p>
+                    <p> <strong> Materials Examined :</strong>
                         {% for material in result.material.all %}
-                          <div>{{ material }}</div>
+                            {{ material }} ,
                         {% endfor %}
+                    </p>
+                    <p> <strong> Materials Used :</strong>
+                        {% for i in mat.all %}
+                            {% if i.material_used %}
+                                {{ i.material }},
+                            {% endif %}
+                        {% endfor %}
+                    </p>
+                    <p> <strong> Abstract :</strong> {{ result.abstract }} </p>
+                    <p> <strong>  Tags :</strong>
+                        {% for tag in result.tag.all %}
+                            {{ tag }} ,
+                        {% endfor %}
+                    </p>
+                    <p> <strong>  placeholder :</strong> {{ result. }} </p>
+                    <div class="text-right">
+                        <a href="{% url 'show_publication' result.slug %}" class="btn btn-outline-success align-self-end">Download Publication</a>
+                    <!--                        to add functionality -->
                     </div>
-                    <div class="text-wrap"> Abstract ---> {{ result.abstract }}</div>
-                <hr>
-                {%endfor%}
+                </div>
             </div>
-        </form>
-
+<!--            {% endfor %}-->
+<!--        </form>-->
     </div>
+
+
 </div>
+                {% for mat in matfrom.all %}
+                    {{ mat }}
+                    {{ i }}
+                    {{ i.paper }}
+                {% endfor %}
+
 
 
 {% endblock %}
