@@ -41,17 +41,16 @@ def search_publication(request):
                       context={'form': form}
                       )
     elif request.method == 'POST':
-        # import ipdb; ipdb.set_trace()
 
         form = SearchForm(request.POST)
 
         if form.is_valid():
             title_filter = form.cleaned_data['title']
-            year_filter = form.cleaned_data['year'].values_list('id', flat=True)
-            type_filter = form.cleaned_data['type'].values_list('id', flat=True)
-            lang_filter = form.cleaned_data['language'].values_list('id', flat=True)
-            tag_filter = form.cleaned_data['tag'].values_list('id', flat=True)
-            material_filter = form.cleaned_data['material'].values_list('id', flat=True)
+            year_filter = list(form.cleaned_data['year'].values_list('id', flat=True))
+            type_filter = list(form.cleaned_data['type'].values_list('id', flat=True))
+            lang_filter = list(form.cleaned_data['language'].values_list('id', flat=True))
+            tag_filter = list(form.cleaned_data['tag'].values_list('id', flat=True))
+            material_filter = list(form.cleaned_data['material'].values_list('id', flat=True))
             filters_dict = {}
             mat_filters_dict = {}
 
@@ -74,12 +73,14 @@ def search_publication(request):
                 filters_dict['material__in'] = material_filter
                 mat_filters_dict['paper__material__in'] = material_filter
 
-            results = Paper.objects.filter(**filters_dict)
-            mat_results = PaperUsedMaterial.objects.filter(**mat_filters_dict)  # not returning correct results
+            # this is not the best way to do this. SQLite though doesn't support `DISTINCT`
+            # Fix this when we change to PostgreSQL
+            results = set(Paper.objects.filter(**filters_dict))
+            papers_materials = PaperUsedMaterial.objects.filter(paper_id__in=[p.id for p in results])
 
             return render(request, 'search_tool_app/search_publication.html', {
                 'results': results,
-                'mat_results': mat_results,
+                'papers_materials': papers_materials,
                 'form': form
             })
         else:
