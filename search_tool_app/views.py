@@ -13,6 +13,7 @@ def homepage(request):
 
 def post_a_publication(request):
     form = PaperForm()
+    matform = MaterialUsedForm()
     if request.method == 'POST':
         # for i, k in request.POST.lists():
         #     for j in k:
@@ -29,7 +30,8 @@ def post_a_publication(request):
             return homepage(request)
         else:
             print(form.errors)
-    return render(request, 'search_tool_app/post_a_publication.html', context={'form': form})
+    return render(request, 'search_tool_app/post_a_publication.html', context={'form': form,
+                                                                               'matform': matform})
 
 
 def search_publication(request):

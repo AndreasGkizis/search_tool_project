@@ -19,6 +19,7 @@ class PaperForm(forms.ModelForm):
     language = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), blank=False, widget=forms.CheckboxSelectMultiple)
     tag = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), blank=False, widget=forms.CheckboxSelectMultiple)
     material = forms.ModelMultipleChoiceField(queryset=Material.objects.all(), blank=False, widget=forms.CheckboxSelectMultiple)
+    # material_used = forms.ModelMultipleChoiceField(queryset=, blank=True, widget=forms.CheckboxSelectMultiple)
     abstract = forms.Textarea()
 
     class Meta:
@@ -63,10 +64,6 @@ class SearchForm(forms.Form):
     type = forms.ModelMultipleChoiceField(queryset=Type.objects.all(),
                                           required=False,
                                           widget=forms.CheckboxSelectMultiple)
-
-    #     type = forms.ModelChoiceField(queryset=Type.objects.all(),
-    #                                   required=False,
-    #                                   widget=forms.CheckboxSelectMultiple) DO NOT KNOW WHY THIS WAS FIXED BY THE ABOVE
 
     language = forms.ModelMultipleChoiceField(queryset=Language.objects.all(),
                                               required=False,

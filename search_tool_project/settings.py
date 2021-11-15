@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'search_tool_app',
     'crispy_forms',
     'django_filters',
+    # 'vueapp.apps.VueAppConfig',
+
 ]
 
 # CRISPY_TEMPLATE_PACK = 'uni_form'

@@ -28,6 +28,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <div class="col">
                                 <label class="control-label" for="Year" > {{form.year_id.label}}</label>
@@ -36,6 +37,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <div class="col">
                                 <label class="control-label" for="Type" > {{form.type_id.label}} :</label>
@@ -70,6 +72,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <div class="col">
                                 <label class="control-label" for="material" > {{form.material.label}}</label>
@@ -78,9 +81,21 @@
                                     <div class="px-4">
                                         {{ i }}
                                     </div>
-                                    {% endfor %}                                                             </div>
+                                    {% endfor %}
+                                </div>
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            {% for i in matform %}
+                                {{ i.material_used }}
+                            {% endfor %}
+
+                            <div class="col">
+
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <div class="col">
                                 <label class="control-label" for="Pdf" > {{form.pdf.label}}</label>
@@ -98,6 +113,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <button class="btn btn-outline-success my-2 my-sm-0 " type="submit">Post a publication</button>
                 </div>
