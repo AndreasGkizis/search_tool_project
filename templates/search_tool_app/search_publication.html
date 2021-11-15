@@ -121,15 +121,14 @@
                         </p>
                         <p> <strong> Materials Examined :</strong>
                             {% for material in result.material.all %}
-                                {{ material }} ,
+                                {{ material }}
                             {% endfor %}
                         </p>
                         <p> <strong> Materials Used :</strong>
-<!--                            na to dei o sergios na m pei an einai swstos tropos, fainetai na douleuei-->
-                            {% for i in mat_results.all %}
-                                {% if result.title|stringformat:'s' == i|stringformat:'s' %}
-                                    {% if i.material_used %}
-                                        {{ i.material }},
+                            {% for pm in papers_materials.all %}
+                                {% if pm.paper_id == result.id %}
+                                    {% if pm.material_used %}
+                                        {{ pm.material }},
                                     {% endif %}
                                 {% endif %}
                             {% endfor %}
