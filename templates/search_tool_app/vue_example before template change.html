@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends 'search_tool_app/Base_boot-strap.html' %}
+{% load static %}
+
+{% block title_block %}
+- Vuepage 
+{% endblock %}
+
+
+{% block body_block %}
+<h1>Welcome to the Search tool project super funky yeah vue template implementation extravaganza </h1>
+<h2>Just for fun heading </h2>
+<h3>Fun..</h3>
+<h4>Fun.</h4>
+<h5>fun</h5>
+<div>
+    {% if items %}
+    <ul>
+      {% for item in items %}
+      <li>
+        <a href="{{item.url}}">{{ item.name }}</a> <button>Hey!</button>
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No items available.</p>
+  {% endif %}</div>
+
+
+{% endblock %}
+
+#currently not routed at all 

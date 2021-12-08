@@ -4,10 +4,14 @@ from .models import Language, Year, Type, Tag, Paper, PaperUsedMaterial
 from functools import reduce
 from django.db.models import Q
 from django.urls import reverse
+#new things for Vue in template
+import json
+import random
 
 
 def homepage(request):
-    context_dict = {'text1': 'Home page '}
+    context_dict = {}
+
     return render(request, 'search_tool_app/homepage.html', context=context_dict)
 
 
@@ -110,3 +114,23 @@ def show_publication(request, slug):
             'slug': slug  # ti to ithele ayto den katalabainw
         }
     return render(request, 'search_tool_app/show_publication.html', context)
+
+def vue_example(request):
+
+    names = ("Takis", "Makis", "Sakis", "Lakis", "Thrasiboulos")
+
+    items = []
+    for i in range(100):
+        items.append({
+            "name": random.choice(names),
+            "age": random.randint(20,80),
+            "url": "https://example.com",
+            "clicked": False
+        })
+
+    context = {}
+    context["items"] = items
+    context["items_json"] = json.dumps(items)
+
+    return render(request, 'search_tool_app/vue_example.html', context=context)
+
