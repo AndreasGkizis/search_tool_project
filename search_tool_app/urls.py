@@ -1,6 +1,9 @@
 from django.urls import path
 from . import views
+from rest_framework import routers
 
+router = routers.SimpleRouter()
+router.register(r'paper', views.PaperViewSet)
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
@@ -10,5 +13,6 @@ urlpatterns = [
     path('vue_example/', views.vue_example, name='vue_example'),
     path('vue_search/', views.vue_search, name='vue_search'),
     path('type/', views.TypeView.as_view(), name='type_view'),
-    # path('paper/', views.PaperView.as_view(), name='paper_view')
-]
+    path('vue_paper_search/', views.vue_paper_search, name='vue_paper_search'),
+    # path('paper/', views.PaperViewSet.as_view(), name='paper_view')
+] + router.urls

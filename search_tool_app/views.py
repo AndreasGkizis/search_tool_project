@@ -19,12 +19,12 @@ from rest_framework.viewsets import ModelViewSet
 ''' start of class based views for rest_framework '''
 
 
-# class PaperViewSet(ModelViewSet):
-#     queryset = Paper.objects.all()
-#
-#     serializer_class = PaperSerializer
-#
-#
+class PaperViewSet(ModelViewSet):
+    queryset = Paper.objects.all()
+
+    serializer_class = PaperSerializer
+
+
 class TypeView(generics.RetrieveAPIView):
     queryset = Type.objects.all()
 
@@ -172,10 +172,10 @@ def vue_example(request):
 
 
 def vue_search(request):
-    papers = Paper.objects.all()
+    return render(request, 'search_tool_app/vue_search.html', context={})
 
-    context = {}
-    context["papers"] = papers
-    context["papers_json"] = PaperSerializer(papers, many=True)
 
-    return render(request, 'search_tool_app/vue_search.html', context=context)
+def vue_paper_search(request):
+    return render(request, 'search_tool_app/vue_paper_search.html', context={})
+
+

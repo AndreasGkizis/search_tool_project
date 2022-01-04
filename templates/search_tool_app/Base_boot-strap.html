@@ -47,13 +47,19 @@
               <a class="nav-link" href="{% url 'search_publication' %}">Search <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item {% is_active request 'vue_example' %}">
-              <a class="nav-link" href="{% url 'vue_example' %}">Vue example betchezzz <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{% url 'vue_example' %}">Vue example <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item {% is_active request 'vue_search' %}">
-              <a class="nav-link" href="{% url 'vue_search' %}">Vue function base view search <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{% url 'vue_search' %}">Vue example API consumption <span class="sr-only">(current)</span></a>
             </li>
               <li class="nav-item {% is_active request 'type_view' %}">
-              <a class="nav-link" href="{% url 'type_view' %}">test button <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{% url 'type_view' %}">API endpoint type <span class="sr-only">(current)</span></a>
+            </li>
+              <li class="nav-item {% is_active request 'type_view' %}">
+              <a class="nav-link" href=" http://127.0.0.1:8000/search_tool_app/paper/">API endpoint Paper <span class="sr-only">(current)</span></a>
+            </li>
+              <li class="nav-item {% is_active request 'vue_paper_search' %}">
+              <a class="nav-link" href="{% url 'vue_paper_search' %}">Paper APi consumption <span class="sr-only">(current)</span></a>
             </li>
           </ul>
         </div>
