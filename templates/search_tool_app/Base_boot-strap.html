@@ -25,42 +25,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
    
-    <style>
-      body{
-          background: #eee(219, 2, 2, 0.815);
-          max-width: 960;
-          margin: 20 auto;
-      }
-      p, h3, ul{
-          margin: 0;
-          padding: 0;
-      }
-      li{
-          list-style-type: none;
-          background: #fff;
-          margin: 20px auto;
-          padding: 10px 20px;
-          border-radius: 10px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          height: 50;
-      }
-      li.clicked{
-          background: #45bd95;
-          color: rgb(67, 75, 71);
-      }
-      img {
-          border: 1px solid rgb(0, 0, 0);
-          border-radius: 4px;
-          padding: 5px;
-          width: auto;
-          height: auto;
-          max-width: 40;
-          max-height: 40;
-          background-color: rgb(88, 88, 88);
-          }
-    </style>
+    
   </head>
 
 <body class="bg-secondary ">
@@ -84,6 +49,12 @@
             <li class="nav-item {% is_active request 'vue_example' %}">
               <a class="nav-link" href="{% url 'vue_example' %}">Vue example betchezzz <span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item {% is_active request 'vue_search' %}">
+              <a class="nav-link" href="{% url 'vue_search' %}">Vue function base view search <span class="sr-only">(current)</span></a>
+            </li>
+              <li class="nav-item {% is_active request 'type_view' %}">
+              <a class="nav-link" href="{% url 'type_view' %}">test button <span class="sr-only">(current)</span></a>
+            </li>
           </ul>
         </div>
 
@@ -101,6 +72,7 @@
       body block here
       {% endblock %}
   </div>
+
   <!-- Option 2: Separate Popper and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

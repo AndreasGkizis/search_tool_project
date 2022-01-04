@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'search_tool_app',
     'crispy_forms',
     'django_filters',
+    'rest_framework',
     # 'vueapp.apps.VueAppConfig',
 
 ]

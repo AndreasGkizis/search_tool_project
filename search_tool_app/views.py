@@ -1,12 +1,47 @@
 from django.shortcuts import render
 from .forms import PaperForm, SearchForm, MaterialUsedForm
-from .models import Language, Year, Type, Tag, Paper, PaperUsedMaterial
+from .models import *
 from functools import reduce
 from django.db.models import Q
 from django.urls import reverse
-#new things for Vue in template
+# new things for Vue in template
 import json
 import random
+# for objects to serialise to json
+
+from django.core import serializers
+# imports for rest_framework
+
+from rest_framework.response import Response
+from rest_framework import generics
+from .serializers import *
+from rest_framework.viewsets import ModelViewSet
+''' start of class based views for rest_framework '''
+
+
+# class PaperViewSet(ModelViewSet):
+#     queryset = Paper.objects.all()
+#
+#     serializer_class = PaperSerializer
+#
+#
+class TypeView(generics.RetrieveAPIView):
+    queryset = Type.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = TypeSerializer(queryset, many=True)
+        return Response(serializer.data)
+#
+#
+# class PaperView(ModelViewSet):
+#     queryset = Paper.objects.all()
+#     template_name = "../templates/search_tool_app/vue_search.html"
+#
+#     serializer_class = PaperSerializer
+#     # def get(self, request, *args, **kwargs):
+#
+#     #     return Response(serializer.data)
 
 
 def homepage(request):
@@ -115,12 +150,13 @@ def show_publication(request, slug):
         }
     return render(request, 'search_tool_app/show_publication.html', context)
 
+
 def vue_example(request):
 
     names = ("Takis", "Makis", "Sakis", "Lakis", "Thrasiboulos")
 
     items = []
-    for i in range(100):
+    for i in range(5):
         items.append({
             "name": random.choice(names),
             "age": random.randint(20,80),
@@ -134,3 +170,12 @@ def vue_example(request):
 
     return render(request, 'search_tool_app/vue_example.html', context=context)
 
+
+def vue_search(request):
+    papers = Paper.objects.all()
+
+    context = {}
+    context["papers"] = papers
+    context["papers_json"] = PaperSerializer(papers, many=True)
+
+    return render(request, 'search_tool_app/vue_search.html', context=context)

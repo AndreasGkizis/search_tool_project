@@ -1,25 +1,18 @@
-<!DOCTYPE html>
 {% extends 'search_tool_app/Base_boot-strap.html' %}
 {% load static %}
 
 {% block title_block %}
-- Vuepage 
+- vue_search
 {% endblock %}
 
-
 {% block body_block %}
-<h1>Welcome to the Search tool project super funky yeah vue template implementation extravaganza </h1>
-<h2>Just for fun heading </h2>
-<h3>Fun..</h3>
-<h4>Fun.</h4>
-<h5>fun</h5>
+<h1> Search with vue</h1>
+
 <div>
-    {% if items %}
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script type='text/javascript'>
-        var people = {{ items_json|safe }};
-    </script>
-    <style scoped>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <style >
       body{
           background: rgba(192, 180, 180, 0)(219, 2, 2, 0.815);
           max-width: 960;
@@ -58,14 +51,11 @@
     </style>
 
       <div id="app">
-        [[message]]
+                [[info]]
+          <div v-for="id in info">
+              <a>[[id]] -- [[id.type]]</a>
 
-        <ul>
-          <li v-for="person in people" :class="{clicked: person.clicked}">
-            <a>[[ person.name ]]</a> <a>[[person.clicked]]</a><button v-on:click="changeIsClicked(person)">hey</button>
-          </li>
-        </ul>
-
+          </div>
       </div>
 
       <script>
@@ -73,19 +63,18 @@
           delimiters: ['[[', ']]'],
           el: '#app',
           data: {
-              message: 'Hello Vue!',
-              people: people,
+                info: null
           },
-          methods: {
-            changeIsClicked(people){
-            people.clicked= !people.clicked
-              }
-          }
+          mounted () {
+          axios
+             .get('http://127.0.0.1:8000/search_tool_app/type/')
+             .then(response => this.info = response.data)
+             console.log("aasd")
+
+             },
         });
       </script>
 
-    {% else %}
-    <p>No items available.</p>
-  {% endif %}</div>
+</div>
 
 {% endblock %}
