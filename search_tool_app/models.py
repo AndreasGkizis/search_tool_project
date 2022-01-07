@@ -41,6 +41,14 @@ class Material(models.Model):
         return str(self.material)
 
 
+class Author(models.Model):
+    name = models.CharField(max_length=300)
+    country_of_origin = models.CharField(max_length=300)
+
+    def __str__(self):
+        return "%s" % self.name
+
+
 class Paper(models.Model):
     title = models.CharField(max_length=200, unique=True, null=False)
     slug = models.SlugField(default="no-slug", blank=True)
@@ -51,6 +59,7 @@ class Paper(models.Model):
     year_id = models.ForeignKey(Year, on_delete=models.CASCADE, null=True)
     type_id = models.ForeignKey(Type, on_delete=models.CASCADE, null=True)
     language = models.ManyToManyField(Language)
+    author = models.ManyToManyField(Author)
     tag = models.ManyToManyField(Tag)
     material = models.ManyToManyField(Material, through='PaperUsedMaterial')
 
@@ -78,13 +87,3 @@ class PaperUsedMaterial(models.Model):
 
     def __str__(self):
         return str(self.paper)
-
-
-class Author(models.Model):
-    name = models.CharField(max_length=300)
-    surname = models.CharField(max_length=300)
-    country_of_origin = models.CharField(max_length=300)
-    paper = models.ManyToManyField(Paper, blank=True)
-
-    def __str__(self):
-        return "%s %s" % (self.name, self.surname)

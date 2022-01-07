@@ -25,6 +25,33 @@ class PaperViewSet(ModelViewSet):
     serializer_class = PaperSerializer
 
 
+class YearView(generics.RetrieveAPIView):
+    queryset = Year.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = YearSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+class TagView(generics.RetrieveAPIView):
+    queryset = Tag.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = TagSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+class AuthorView(generics.RetrieveAPIView):
+    queryset = Author.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = AuthorSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+
 class TypeView(generics.RetrieveAPIView):
     queryset = Type.objects.all()
 

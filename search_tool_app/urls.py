@@ -13,6 +13,9 @@ urlpatterns = [
     path('vue_example/', views.vue_example, name='vue_example'),
     path('vue_search/', views.vue_search, name='vue_search'),
     path('type/', views.TypeView.as_view(), name='type_view'),
+    path('tag/', views.TagView.as_view(), name='tag_view'),
+    path('year/', views.YearView.as_view(), name='year_view'),
+    path('author/', views.AuthorView.as_view(), name='author_view'),
     path('vue_paper_search/', views.vue_paper_search, name='vue_paper_search'),
     # path('paper/', views.PaperViewSet.as_view(), name='paper_view')
 ] + router.urls

@@ -12,63 +12,174 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    <style >
-      body{
-          background: rgba(192, 180, 180, 0)(219, 2, 2, 0.815);
-          max-width: 960;
-          margin: 20 auto;
-      }
-      p, h3, ul{
-          margin: 0;
-          padding: 0;
-      }
+    <style>
+        body {
+            background: rgba(192, 180, 180, 0)(219, 2, 2, 0.815);
+            max-width: 960;
+            margin: 20 auto;
+        }
 
-      img {
-          border: 1px solid rgb(0, 0, 0);
-          border-radius: 4px;
-          padding: 5px;
-          width: auto;
-          height: auto;
-          max-width: 40;
-          max-height: 40;
-          background-color: rgb(88, 88, 88);
-          }
+        p,
+        h3,
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 4px;
+            padding: 5px;
+            width: auto;
+            height: auto;
+            max-width: 40;
+            max-height: 40;
+            background-color: rgb(88, 88, 88);
+        }
+
     </style>
 
-      <div id="app">
-          <div >
-              <ul v-for="item in info">
+    <div id="app">
+        [[selected]]
+        <hr>
+        [[authors]]
+        <hr>
+        <div class="row">
+            <!--            FILTERS -->
+            <div class="col-lg-3 p-1">
+                <h1 class="mt-4">Filters</h1>
 
-                  <a>[[item.title]]</a>
-                  <a>[[item.year_id]]</a>
-                  <a>[[item.type_id]]</a>
-                  <a>[[item.language]]</a>
-                  <a>[[item.tag]]</a>
-                  <a>[[item.material]]</a>
-                  <a>[[item.abstract]]</a>
-              </ul>
+                <p class="m-2">Type : </p>
+                <div class="form-check" v-for="item in paper_types">
+                    <input :id="item" :value="item.type" class="form-check-input" type="checkbox"
+                           v-model="selected.year_published">
+                    <label :for="item.type" class="form-check-label">
+                        [[item.type]]
+                    </label>
+                </div>
+
+                <p class="m-2">Authors : </p>
+                <div class="form-check" v-for="item in authors">
+                    <input :id="item" :value="item.name" class="form-check-input" type="checkbox"
+                           v-model="selected.authors">
+                    <label :for="item.type" class="form-check-label">
+                        [[item.name]]
+                    </label>
+                </div>
+
+                <p class="m-2">Year Published: </p>
+                <div class="form-check" v-for="item in years">
+                    <input :id="item" :value="item.year_published" class="form-check-input" type="checkbox"
+                           v-model="selected.year_published">
+                    <label :for="item.type" class="form-check-label">
+                        [[item.year_published]]
+                    </label>
+                </div>
 
 
-          </div>
-      </div>
+                <p class="m-2">Tags: </p>
+                <div class="form-check" v-for="item in tags">
+                    <input :id="item" :value="item.tag" class="form-check-input" type="checkbox"
+                           v-model="selected.tags">
+                    <label :for="item.type" class="form-check-label">
+                        [[item.tag]]
+                    </label>
+                </div>
+            </div>
+            <!--                RESULTS -->
+            <div class="col-9">
+                <div class="row mt-4">
+                    <div class="col-12 p-1" v-for="item in papers">
+                        <div class="card bg-dark text-white">
+                            <div class="card-header">
+                                <h5>
+                                    <strong> Publication Title :</strong> [[item.title]]
+                                </h5>
 
-      <script>
-        var app = new Vue({
-          delimiters: ['[[', ']]'],
-          el: '#app',
-          data: {
-                info: null
-          },
-          mounted () {
-          axios
-             .get('http://127.0.0.1:8000/search_tool_app/paper/')
-             .then(response => this.info = response.data)
-             console.log("aasd")
+                            </div>
+                            <div class="card-body">
+                                <p><strong> Author :</strong>
 
-             },
-        });
-      </script>
+                                    <div v-for="i in item.author">
+                                        [[i]]
+                                    </div></p>
+                                        <p><strong> Year Published :</strong> [[item.year_id]]</p>
+                                        <p><strong> Type :</strong> [[item.type_id]] </p>
+                                        <p><strong> Language Written :</strong>
+                                            <a v-for="lan in item.language"> [[lan]] </a>
+                                        </p>
+                                        <p><strong> Materials Examined :</strong>
+                                            <a v-for="mat in item.material"> [[mat]] </a>
+                                        </p>
+                                        <p><strong> Abstract :</strong> {{ result.abstract }} </p>
+                                        <p><strong> Tags :</strong>
+                                            <a v-for="mat in item.tag"> [[mat]] </a>
 
-</div>
+                                        </p>
+                                        <p><strong> placeholder :</strong> {{ result. }} </p>
+                                        <div class="text-right">
+                                            <a class="btn btn-outline-success align-self-end" href="">View
+                                                Publication</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </div>
 
-{% endblock %}
+            <script>
+                var app = new Vue({
+                    delimiters: ['[[', ']]'],
+                    el: '#app',
+                    data: {
+                        papers: null,
+                        paper_types: null,
+                        authors: null,
+                        years: null,
+                        tags: null,
+                        selected: {
+                            title: [],
+                            authors: [],
+                            type: [],
+                            language: [],
+                            year_published: [],
+                            materials: [],
+                            tags: [],
+                        }
+                    },
+                    mounted() {
+                        axios
+                            .get('http://127.0.0.1:8000/search_tool_app/paper/')
+                            .then(response => this.papers = response.data)
+                        console.log("Paper objects gotten")
+
+                        axios
+                            .get('http://127.0.0.1:8000/search_tool_app/type/')
+                            .then(response => this.paper_types = response.data)
+                        console.log("type objects gotten")
+
+                        axios
+                            .get('http://127.0.0.1:8000/search_tool_app/author/')
+                            .then(response => this.authors = response.data)
+                        console.log("author objects gotten")
+
+                        axios
+                            .get('http://127.0.0.1:8000/search_tool_app/year/')
+                            .then(response => this.years = response.data)
+                        console.log("years objects gotten")
+
+                        axios
+                            .get('http://127.0.0.1:8000/search_tool_app/tag/')
+                            .then(response => this.tags = response.data)
+                        console.log("Tags objects gotten")
+                    }
+
+                });
+
+            </script>
+
+
+            {% endblock %}
+        </div>
