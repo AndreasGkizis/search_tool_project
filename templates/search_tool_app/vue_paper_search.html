@@ -41,37 +41,44 @@
 
     <div id="app">
         [[selected]]
-        <hr>
-        [[authors]]
-        <hr>
+
         <div class="row">
             <!--            FILTERS -->
-            <div class="col-lg-3 p-1">
-                <h1 class="mt-4">Filters</h1>
+            <div class="col-3 p-1 form-group">
+                <h1 class="m-2">Filters</h1>
 
-                <p class="m-2">Type : </p>
+             <div class="form-inline form-group">
+                <label id="title" class="form-label"> Title :</label>
+                        <input for="title" class="form-control m-1" type="text" v-model="selected.title">
+                 </div>
+
+                <div class="m-2">Type :</div>
                 <div class="form-check" v-for="item in paper_types">
+
                     <input :id="item" :value="item.type" class="form-check-input" type="checkbox"
-                           v-model="selected.year_published">
-                    <label :for="item.type" class="form-check-label">
+                           v-model="selected.type">
+                    <label class="form-check-label">
                         [[item.type]]
                     </label>
                 </div>
 
-                <p class="m-2">Authors : </p>
+
+                <div class="m-2 ">Author :</div>
                 <div class="form-check" v-for="item in authors">
+
                     <input :id="item" :value="item.name" class="form-check-input" type="checkbox"
                            v-model="selected.authors">
-                    <label :for="item.type" class="form-check-label">
+                    <label class="form-check-label">
                         [[item.name]]
                     </label>
+
                 </div>
 
                 <p class="m-2">Year Published: </p>
                 <div class="form-check" v-for="item in years">
                     <input :id="item" :value="item.year_published" class="form-check-input" type="checkbox"
                            v-model="selected.year_published">
-                    <label :for="item.type" class="form-check-label">
+                    <label class="form-check-label">
                         [[item.year_published]]
                     </label>
                 </div>
@@ -147,6 +154,11 @@
                             year_published: [],
                             materials: [],
                             tags: [],
+                        }
+                    },
+                    computed: {
+                        filtered() {
+                            return this.selected.map( ??? edw emeina sergioooooo => geiiaaaa )
                         }
                     },
                     mounted() {
