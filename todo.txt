@@ -7,12 +7,12 @@
     2 MAKE SEARCH BAR ACTIVE AND SAME EVERYWHERE
 
 # SEARCH PAGE
-    1 PAGES OF RESULTS
+    1 PAGES OF RESULTS (https://www.django-rest-framework.org/api-guide/pagination/)
     2 SHOW PICTURES
-    3 INTERACTIVE FILTER BAR
-        [DOING, NEED TO USE THE SELECTED FIELDS TO FILTER THE RESULTS]
+    3 INTERACTIVE FILTER BAR (https://www.django-rest-framework.org/api-guide/filtering/)
+        [DOING, NEED TO USE THE SELECTED FIELDS TO FILTER THE RESULTS] (https://v3.vuejs.org/guide/computed.html#computed-properties-and-watchers)
 
-    4 MAKE SERIALIZERS FOR EVERYTHING NEEDED (EVERY MODEL?)
+    4 MAKE SERIALIZERS FOR EVERYTHING NEEDED (EVERY MODEL?) (https://www.django-rest-framework.org/api-guide/relations/#nested-relationships)
 
 # POST PAGE
     1 DE SERIALIZE?
