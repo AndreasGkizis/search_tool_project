@@ -30,7 +30,7 @@ class PaperSerializer(serializers.ModelSerializer):
     year_id = serializers.SlugRelatedField(many=False, read_only=True, slug_field='year_published')
     type_id = serializers.SlugRelatedField(many=False, read_only=True, slug_field='type')
     language = serializers.SlugRelatedField(many=True, read_only=True, slug_field='language')
-    author = serializers.SlugRelatedField(many=True, read_only=True, slug_field='name')
+    author = AuthorSerializer(many=True, read_only=True)
     tag = serializers.SlugRelatedField(many=True, read_only=True, slug_field='tag')
     material = serializers.SlugRelatedField(many=True, read_only=True, slug_field='material')
 
@@ -46,8 +46,5 @@ class PaperSerializer(serializers.ModelSerializer):
                   'type_id',
                   'language',
                   'author',
-                  'author',
                   'tag',
-                  'material',
-
-                  ]
+                  'material', ]

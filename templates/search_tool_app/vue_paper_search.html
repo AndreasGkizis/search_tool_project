@@ -109,30 +109,31 @@
 
                                     <div v-for="i in item.author">
                                         [[i]]
-                                    </div></p>
-                                        <p><strong> Year Published :</strong> [[item.year_id]]</p>
-                                        <p><strong> Type :</strong> [[item.type_id]] </p>
-                                        <p><strong> Language Written :</strong>
-                                            <a v-for="lan in item.language"> [[lan]] </a>
-                                        </p>
-                                        <p><strong> Materials Examined :</strong>
-                                            <a v-for="mat in item.material"> [[mat]] </a>
-                                        </p>
-                                        <p><strong> Abstract :</strong> {{ result.abstract }} </p>
-                                        <p><strong> Tags :</strong>
-                                            <a v-for="mat in item.tag"> [[mat]] </a>
-
-                                        </p>
-                                        <p><strong> placeholder :</strong> {{ result. }} </p>
-                                        <div class="text-right">
-                                            <a class="btn btn-outline-success align-self-end" href="">View
-                                                Publication</a>
-                                        </div>
                                     </div>
+                                </p>
+                                <p><strong> Year Published :</strong> [[item.year_id]]</p>
+                                <p><strong> Type :</strong> [[item.type_id]] </p>
+                                <p><strong> Language Written :</strong>
+                                    <a v-for="lan in item.language"> [[lan]] </a>
+                                </p>
+                                <p><strong> Materials Examined :</strong>
+                                    <a v-for="mat in item.material"> [[mat]] </a>
+                                </p>
+                                <p><strong> Abstract :</strong> {{ result.abstract }} </p>
+                                <p><strong> Tags :</strong>
+                                    <a v-for="mat in item.tag"> [[mat]] </a>
+
+                                </p>
+                                <p><strong> placeholder :</strong> {{ result. }} </p>
+                                <div class="text-right">
+                                    <a class="btn btn-outline-success align-self-end" href="">View
+                                        Publication</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -158,7 +159,7 @@
                     },
                     computed: {
                         filtered() {
-                            return this.selected.map( ??? edw emeina sergioooooo => geiiaaaa )
+                            return this.selected.map()
                         }
                     },
                     mounted() {

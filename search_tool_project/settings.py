@@ -138,3 +138,7 @@ MEDIA_ROOT = MEDIA_DIR
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}

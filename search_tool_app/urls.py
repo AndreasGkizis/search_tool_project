@@ -3,7 +3,7 @@ from . import views
 from rest_framework import routers
 
 router = routers.SimpleRouter()
-router.register(r'paper', views.PaperViewSet)
+router.register(r'paper', views.PaperViewSet, basename="Paper")
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),

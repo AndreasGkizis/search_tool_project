@@ -20,9 +20,12 @@ from rest_framework.viewsets import ModelViewSet
 
 
 class PaperViewSet(ModelViewSet):
-    queryset = Paper.objects.all()
-
     serializer_class = PaperSerializer
+    filterset_fields = ['slug', 'title']
+
+    def get_queryset(self):
+        return Paper.objects.filter()
+
 
 
 class YearView(generics.RetrieveAPIView):
