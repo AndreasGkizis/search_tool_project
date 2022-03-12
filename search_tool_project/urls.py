@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('search_tool_app/', include('search_tool_app.urls')),
-    path('', views.homepage, name='homepage')
+    path('', include('search_tool_app.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# search_tool_app

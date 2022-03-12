@@ -27,7 +27,6 @@ class PaperViewSet(ModelViewSet):
         return Paper.objects.filter()
 
 
-
 class YearView(generics.RetrieveAPIView):
     queryset = Year.objects.all()
 
