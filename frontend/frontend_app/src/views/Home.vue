@@ -1,18 +1,11 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Homepage</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est, accusantium vel quasi adipisci deleniti eligendi accusamus ipsum voluptatum doloremque. Illo, numquam sint tempora natus libero mollitia velit, exercitationem eum enim molestias debitis accusantium voluptates necessitatibus ex laboriosam fuga neque omnis sequi dolores dicta quaerat voluptate modi perspiciatis quis. Doloremque ad dolorem reprehenderit nisi iste, recusandae quasi incidunt, hic aspernatur quaerat repellat unde velit exercitationem praesentium maiores fugiat debitis dolore deleniti explicabo nostrum temporibus perferendis error sint? A perferendis, sunt ex, atque culpa tempore exercitationem praesentium, fuga dolor saepe eaque ipsum esse? Nobis quae perspiciatis beatae dolore rerum minus, alias facere.
+    </p>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto tempore ipsam exercitationem quos quibusdam! Neque dolor sint quod atque ipsum harum culpa soluta maiores corrupti modi consectetur ullam expedita eos, tempora quae excepturi omnis. Et assumenda dolore obcaecati quasi perferendis earum ad sequi dolor quo! Possimus repudiandae nemo facilis id amet, eaque quis sequi fugiat velit, iure mollitia corrupti a provident laboriosam ab dignissimos! Quisquam, quidem accusamus iusto culpa tempora hic quos rerum dicta numquam dolorum eum iste similique quam odio reprehenderit ratione id aut in cum temporibus magni non quo! Et laboriosam eligendi consequuntur esse nemo provident aut alias iusto reprehenderit! Ipsum veniam id nostrum, numquam consectetur accusamus labore quidem libero fugit perferendis voluptatibus, modi quis nulla inventore aliquam consequuntur cupiditate impedit, delectus omnis voluptas ab quo dolores. Eum exercitationem labore alias porro voluptatem laudantium numquam nisi obcaecati illo maiores non asperiores autem aliquid ratione, iusto quis perspiciatis aperiam nam vel inventore minus. Laudantium enim numquam repellendus soluta ipsam id. Porro adipisci, deserunt consequatur nobis earum amet natus voluptatem, deleniti cumque iste modi enim? Tempora eum ab rem ipsam enim minima quaerat hic quos placeat iure atque, repellat, laboriosam autem debitis molestiae quibusdam culpa optio quidem explicabo voluptate sapiente.</p>
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
-</script>

@@ -1,9 +1,12 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link :to= "{ name: 'Home' }">Home</router-link> |
+    <router-link :to= "{ name: 'About' }">About</router-link> |
+    <router-link :to= "{ name: 'Search'}">Search</router-link> |
+    <router-link :to= "{ name: 'Post'}"> Post </router-link>
   </div>
   <router-view/>
+  <!-- all components (pages..) are injected into the router-view component . all else stays the same FOR EVERY PAGE  -->
 </template>
 
 <style>
@@ -22,9 +25,13 @@
 #nav a {
   font-weight: bold;
   color: #2c3e50;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 4px;
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #ffffff;
+  background: #2c3e50;
 }
 </style>
