@@ -2,30 +2,32 @@
 <div class="search">
 
     <h1>Search page</h1>
-    <p>what the hell...</p>
-    <button >
-        <router-link :to="{ name: 'SearchDetail'}"> Details </router-link>
-    </button>
-
-    <div v-for="paper in papers" :key="paper.id">
-        <p>looped</p>
-        {{ paper.title }}
+    <div v-for="i in APIdata" :key="i.id">
+        <router-link :to="{ name: 'SearchDetail', params: {id:i.id }}">
+            {{i.title}}
+        </router-link>
     </div>
 </div>
 </template>
 
 <script>
+import{getAPI} from '../..//axios-api'
 export default {
     data() {
-        return 
-            papers: []
+        return {
+            APIdata: []
+        }
+            
         },
     mounted() {
-        fetch('http://127.0.0.1:8000/paper/') 
-            // .then(res => res.json())
-            .then(data => this.papers = data)
-            .catch(err => console.log(err.message))
-        console.log("fetched papers")
+        getAPI.get('/paper/',)
+        .then(response => {
+            console.log('Paper api data recieved ')
+            this.APIdata = response.data
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 }
 </script>

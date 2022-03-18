@@ -2,8 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import About from "../views/About.vue"
 import Search from "../views/Search/Search.vue"
-import SearchDetail from "../views/Search/SearchDetail"
+import SearchDetail from "../views/Search/SearchDetail.vue"
 import Post from "../views/Post.vue"
+import PageNotFound from "../views/PageNotFound.vue"
 
 
 const routes = [
@@ -23,16 +24,22 @@ const routes = [
     component: Search
   },
   {
-    path: '/search/detail',
-    name: 'SearchDetail',
-    component: SearchDetail
-  },  
-  {
     path: '/post',
     name: 'Post',
     component: Post
   },  
-  
+  {
+    path: '/search/detail/:id/',
+    name: 'SearchDetail',
+    component: SearchDetail,
+    props:  true 
+    // This will allow to grap parameters into the props pas of each component 
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'PageNotFound',
+    component: PageNotFound
+  }
 ]
 
 const router = createRouter({
