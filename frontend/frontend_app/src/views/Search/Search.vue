@@ -1,33 +1,32 @@
 <template>
-<div class="search">
-
-    <h1>Search page</h1>
-    <div v-for="i in APIdata" :key="i.id">
-        <router-link :to="{ name: 'SearchDetail', params: {id:i.id }}">
-            {{i.title}}
-        </router-link>
+<div class="container">
+    <div class="filter">
+        <Filter 
+        />
     </div>
 </div>
+
 </template>
 
 <script>
-import{getAPI} from '../..//axios-api'
+import Filter from './Filter.vue'
+
 export default {
-    data() {
-        return {
-            APIdata: []
-        }
-            
-        },
-    mounted() {
-        getAPI.get('/paper/',)
-        .then(response => {
-            console.log('Paper api data recieved ')
-            this.APIdata = response.data
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }
+    components: {
+        Filter,
+        
+    },
 }
 </script>
+
+<style>
+.container {
+    display: flex;
+    margin: 20px;
+    align-content: center;
+    width: 100%;
+    padding: auto;
+}
+
+
+</style>

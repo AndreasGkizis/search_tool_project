@@ -3,7 +3,8 @@ from . import views
 from rest_framework import routers
 
 router = routers.SimpleRouter()
-router.register(r'paper', views.PaperViewSet, basename="Paper")
+router.register(r'paper', views.PaperViewSet, basename="paper")
+router.register(r'year', views.YearViewSet, basename="year")
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
@@ -16,6 +17,8 @@ urlpatterns = [
     path('tag/', views.TagView.as_view(), name='tag_view'),
     path('year/', views.YearView.as_view(), name='year_view'),
     path('author/', views.AuthorView.as_view(), name='author_view'),
+    path('material/', views.MaterialView.as_view(), name='material_view'),
+    path('language/', views.LanguageView.as_view(), name='language_view'),
     path('vue_paper_search/', views.vue_paper_search, name='vue_paper_search'),
     # path('paper/', views.PaperViewSet.as_view(), name='paper_view')
 ] + router.urls

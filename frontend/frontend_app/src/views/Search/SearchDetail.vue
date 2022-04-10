@@ -2,6 +2,7 @@
     <div class="searchdetail">
         <h1>search detail</h1>
         <p>The Id is {{$route.params.id}} ( via $route thing) </p>
+        <p>The Id is {{$route.params}} ( via $route thing) </p>
         <p>The Id is {{id}} ( via prop thing) </p>
         <p>{{APIdata}}</p>
     </div>
@@ -20,7 +21,7 @@ export default {
     mounted(){
         getAPI.get('/paper/' + this.id ,)
         .then(response => {
-            console.log('Paper api data with id = ' +this.id +' recieved ')
+            console.log('Paper api data with id = ' +this.id +' received ')
             this.APIdata = response.data
         })
         .catch(err => {

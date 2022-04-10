@@ -1,3 +1,4 @@
+from dataclasses import fields
 from rest_framework import serializers
 from .models import *
 
@@ -25,8 +26,21 @@ class TagSerializer(serializers.ModelSerializer):
         model = Tag
         fields = '__all__'
 
+        
+class MaterialSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Material
+        fields = '__all__'
+
+
+class LanguageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Language
+        fields = '__all__'
+
 
 class PaperSerializer(serializers.ModelSerializer):
+
     year_id = serializers.SlugRelatedField(many=False, read_only=True, slug_field='year_published')
     type_id = serializers.SlugRelatedField(many=False, read_only=True, slug_field='type')
     language = serializers.SlugRelatedField(many=True, read_only=True, slug_field='language')
@@ -47,4 +61,7 @@ class PaperSerializer(serializers.ModelSerializer):
                   'language',
                   'author',
                   'tag',
-                  'material', ]
+                  'material',
+                  'id' ]
+
+

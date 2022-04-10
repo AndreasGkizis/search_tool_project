@@ -1,3 +1,6 @@
+from turtle import title
+from unittest import result
+from urllib import request
 from django.shortcuts import render
 from .forms import PaperForm, SearchForm, MaterialUsedForm
 from .models import *
@@ -16,16 +19,76 @@ from rest_framework.response import Response
 from rest_framework import generics
 from .serializers import *
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import AllowAny
+
 ''' start of class based views for rest_framework '''
 
-
+'''
+CLASS BASED VIEWS 
+'''
 class PaperViewSet(ModelViewSet):
     serializer_class = PaperSerializer
-    filterset_fields = ['slug', 'title']
+    permission_classes = [AllowAny]
+    #added for later on permissions of users etc.. not a bad idea to define
 
     def get_queryset(self):
-        return Paper.objects.filter()
+        filters_dict = {}
+        mat_filters_dict = {}
 
+        title_param = self.request.query_params.get('title')
+        # print(self.request.GET.getlist('tag[]'))
+        # print(self.request.GET.getlist('author[]'))
+
+        if self.request.query_params.get('title'):
+            print("title query == "+ self.request.query_params.get('title'))
+            filters_dict['title__icontains'] = self.request.query_params.get('title')
+
+        # import ipdb; ipdb.set_trace()
+
+
+        # if self.request.GET.getlist('tag[]'):
+        #     # print("tag query == "+ self.request.GET.getlist('tag[]'))
+        #     print(self.request.GET.getlist('tag[]'))
+        #     filters_dict['tag__tag'] = self.request.GET.getlist('tag[]')
+
+# edw kapou paizei h malakia, psaxnei lathos rpagmata se lathos pedia 
+     
+
+        # if title_filter:
+        #     filters_dict['title__icontains'] = title_filter
+        #     mat_filters_dict['paper__title__icontains'] = title_filter
+        # if year_filter:
+        #     filters_dict['year_id__in'] = year_filter
+        #     mat_filters_dict['paper__year_id__in'] = year_filter
+        # if type_filter:
+        #     filters_dict['type_id__in'] = type_filter
+        #     mat_filters_dict['paper__type_id__in'] = type_filter
+        # if lang_filter:
+        #     filters_dict['language__in'] = lang_filter
+        #     mat_filters_dict['paper__language__in'] = lang_filter
+        # if tag_filter:
+        #     filters_dict['tag__in'] = tag_filter
+        #     mat_filters_dict['paper__tag__in'] = tag_filter
+        # if material_filter:
+        #     filters_dict['material__in'] = material_filter
+        #     mat_filters_dict['paper__material__in'] = material_filter
+
+        # # this is not the best way to do this. SQLite though doesn't support `DISTINCT`
+        # # Fix this when we change to PostgreSQL
+        results = set(Paper.objects.filter(**filters_dict))
+        # papers_materials = PaperUsedMaterial.objects.filter(paper_id__in=[p.id for p in results])
+
+        # print('title parameter ', title_param)
+        # results = {}
+
+        
+        return results
+
+
+class YearViewSet(ModelViewSet):
+    serializer_class = YearSerializer
+    queryset = Year.objects.all()
+# na ginoun ola ModelViewSet?? anti gia generics.RetrieveAPIView ..nomizw kalutera gia pio polla options 
 
 class YearView(generics.RetrieveAPIView):
     queryset = Year.objects.all()
@@ -61,8 +124,26 @@ class TypeView(generics.RetrieveAPIView):
         queryset = self.get_queryset()
         serializer = TypeSerializer(queryset, many=True)
         return Response(serializer.data)
-#
-#
+
+
+class LanguageView(generics.RetrieveAPIView):
+    queryset = Language.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = LanguageSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+class MaterialView(generics.RetrieveAPIView):
+    queryset = Material.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = MaterialSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+        
 # class PaperView(ModelViewSet):
 #     queryset = Paper.objects.all()
 #     template_name = "../templates/search_tool_app/vue_search.html"
@@ -72,7 +153,7 @@ class TypeView(generics.RetrieveAPIView):
 #
 #     #     return Response(serializer.data)
 
-
+''' FUNCTION BASED VIEWS '''
 def homepage(request):
     context_dict = {}
 

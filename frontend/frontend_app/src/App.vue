@@ -1,4 +1,5 @@
 <template>
+<div>
   <div id="nav">
     <router-link :to= "{ name: 'Home' }">Home</router-link> |
     <router-link :to= "{ name: 'About' }">About</router-link> |
@@ -7,15 +8,13 @@
   </div>
   <router-view/>
   <!-- all components (pages..) are injected into the router-view component . all else stays the same FOR EVERY PAGE  -->
+</div>
+  
 </template>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  font-family: Avenir
 }
 
 #nav {
