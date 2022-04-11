@@ -40,18 +40,26 @@ class PaperViewSet(ModelViewSet):
         # print(self.request.GET.getlist('author[]'))
 
         if self.request.query_params.get('title'):
-            print("title query == "+ self.request.query_params.get('title'))
             filters_dict['title__icontains'] = self.request.query_params.get('title')
+            
+        if self.request.query_params.get('year[]'):
+            filters_dict['year_id__in'] = self.request.query_params.get('year[]')
 
-        # import ipdb; ipdb.set_trace()
+        if self.request.GET.getlist('type[]'):
+            filters_dict['type_id__in'] = self.request.GET.getlist('type[]')
 
+        if self.request.query_params.get('langueage[]'):
+            filters_dict['language__in'] = self.request.query_params.get('langueage[]')
 
-        # if self.request.GET.getlist('tag[]'):
-        #     # print("tag query == "+ self.request.GET.getlist('tag[]'))
-        #     print(self.request.GET.getlist('tag[]'))
-        #     filters_dict['tag__tag'] = self.request.GET.getlist('tag[]')
+        if self.request.query_params.get('author[]'):
+            filters_dict['language__in'] = self.request.query_params.get('author[]')
 
-# edw kapou paizei h malakia, psaxnei lathos rpagmata se lathos pedia 
+        if self.request.GET.getlist('tag[]'):
+            filters_dict['tag__in'] = self.request.GET.getlist('tag[]')
+
+        if self.request.query_params.get('material[]'):
+            filters_dict['material__in'] = self.request.query_params.get('material[]')
+
      
 
         # if title_filter:

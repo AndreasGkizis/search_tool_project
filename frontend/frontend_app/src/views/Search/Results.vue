@@ -49,7 +49,6 @@ export default {
             tag: this.filter_data.tag,
             material: this.filter_data.material,
         },
-        // prepei na prosthesw ola ta filtra  ayto fainete na douleuei kai me adeia pedia, alla DEN me fernei sthn selida an to balw sto url bar kateytheian
       });
 
       getAPI
@@ -86,57 +85,57 @@ export default {
       });
   },
   methods: {
-    updateNav() {
-      // console.log('updateNav ' + this.$route.href.split("?")[1])
-      // { title: ..., tags: [..]}
-      // this.$router.push({query: this.fields})
-      // this.$router.push({path: this.$route.path, query:  this.fields})
-      // this.$router.push({path: 'about', query: {title: this.title}})
+    // updateNav() {
+    //   // console.log('updateNav ' + this.$route.href.split("?")[1])
+    //   // { title: ..., tags: [..]}
+    //   // this.$router.push({query: this.fields})
+    //   // this.$router.push({path: this.$route.path, query:  this.fields})
+    //   // this.$router.push({path: 'about', query: {title: this.title}})
 
-      this.$router.push({
-        path: "/search",
-        query: {
-          title: this.selected_fields.title,
-          tag: this.selected_fields.tags,
-          author: this.selected_fields.author,
-        },
-        // prepei na prosthesw ola ta filtra  ayto fainete na douleuei kai me adeia pedia, alla DEN me fernei sthn selida an to balw sto url bar kateytheian
-      });
+    //   this.$router.push({
+    //     path: "/search",
+    //     query: {
+    //       title: this.selected_fields.title,
+    //       tag: this.selected_fields.tags,
+    //       author: this.selected_fields.author,
+    //     },
+    //     // prepei na prosthesw ola ta filtra  ayto fainete na douleuei kai me adeia pedia, alla DEN me fernei sthn selida an to balw sto url bar kateytheian
+    //   });
 
-      // console.log('this.selected_fields.tag = ' + this.selected_fields.tags)
-      // console.log('this.selected_fields.title = ' + this.selected_fields.title)
-      // console.log('href = ' + this.$route.href)
-      // console.log('query = ' + this.$route.params)
+    //   // console.log('this.selected_fields.tag = ' + this.selected_fields.tags)
+    //   // console.log('this.selected_fields.title = ' + this.selected_fields.title)
+    //   // console.log('href = ' + this.$route.href)
+    //   // console.log('query = ' + this.$route.params)
 
-      console.log("this.$route.href = " + this.$route.href);
+    //   console.log("this.$route.href = " + this.$route.href);
 
-      getAPI
-        .get("/paper", {
-          params: {
-            title: this.selected_fields.title,
-            tag: this.selected_fields.tags,
-            author: this.selected_fields.author,
-          },
-        })
-        .then((response) => {
-          this.APIpaperData = response.data;
-        })
-        .catch((err) => {
-          console.log(err);
+    //   getAPI
+    //     .get("/paper", {
+    //       params: {
+    //         title: this.selected_fields.title,
+    //         tag: this.selected_fields.tags,
+    //         author: this.selected_fields.author,
+    //       },
+    //     })
+    //     .then((response) => {
+    //       this.APIpaperData = response.data;
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
 
-          // hard coded sinithos to ?title=kati
+    //       // hard coded sinithos to ?title=kati
 
-          // this.$router.push({path: this.$route.path, query: {title: this.title}})
+    //       // this.$router.push({path: this.$route.path, query: {title: this.title}})
 
-          console.log("===== after 2 =====");
-          console.log("title = " + this.title);
-          console.log(
-            "this.$route.query = " + JSON.stringify(this.$route.query)
-          );
-          console.log("this.$route.href = " + this.$route.href);
-          console.log(response.data);
-        });
-    },
+    //       console.log("===== after 2 =====");
+    //       console.log("title = " + this.title);
+    //       console.log(
+    //         "this.$route.query = " + JSON.stringify(this.$route.query)
+    //       );
+    //       console.log("this.$route.href = " + this.$route.href);
+    //       console.log(response.data);
+    //     });
+    // },
     sayhi() {
       console.log("hi hi hi");
     },

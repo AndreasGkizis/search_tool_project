@@ -12,7 +12,7 @@
           <input
             type="checkbox"
             :id="i.tag"
-            :value="i.tag.toLowerCase()"
+            :value="i.id"
             v-model="filtered_data.tag"
           />
           <label :for="i.tag"> {{ i.tag }}</label>
@@ -25,7 +25,7 @@
           <input
             type="checkbox"
             :id="i.type"
-            :value="i.type.toLowerCase()"
+            :value="i.id"
             v-model="filtered_data.type"
           />
           <label :for="i.type"> {{ i.type }}</label>
@@ -38,7 +38,7 @@
           <input
             type="checkbox"
             :id="i.year_published"
-            :value="i.year_published.toLowerCase()"
+            :value="i.id"
             v-model="filtered_data.year"
           />
           <label :for="i.year_published"> {{ i.year_published }}</label>
@@ -51,7 +51,7 @@
           <input
             type="checkbox"
             :id="i.name"
-            :value="i.name.toLowerCase()"
+            :value="i.id"
             v-model="filtered_data.author"
           />
           <label :for="i.name"> {{ i.name }}</label>
