@@ -3,6 +3,8 @@ from django.template.defaultfilters import slugify
 from django.urls import reverse
 import datetime
 
+from pkg_resources import require
+
 
 class Type(models.Model):
     type = models.CharField(max_length=100)
@@ -25,6 +27,9 @@ class Year(models.Model):
 
     def __str__(self):
         return str(self.year_published.year)
+
+    def year(self):
+        return self.year_published.year
 
 
 class Tag(models.Model):

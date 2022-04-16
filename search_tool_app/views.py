@@ -49,7 +49,7 @@ class PaperViewSet(ModelViewSet):
             filters_dict['language__in'] = list(map(int, self.request.query_params.get('langueage[]')))
 
         if self.request.query_params.get('author[]'):
-            filters_dict['language__in'] = list(map(int, self.request.query_params.get('author[]')))
+            filters_dict['author__in'] = list(map(int, self.request.query_params.get('author[]')))
 
         if self.request.GET.getlist('tag[]'):
             filters_dict['tag__in'] = list(map(int, self.request.GET.getlist('tag[]')))
