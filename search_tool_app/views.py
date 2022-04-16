@@ -33,62 +33,32 @@ class PaperViewSet(ModelViewSet):
 
     def get_queryset(self):
         filters_dict = {}
-        mat_filters_dict = {}
 
         title_param = self.request.query_params.get('title')
-        # print(self.request.GET.getlist('tag[]'))
-        # print(self.request.GET.getlist('author[]'))
 
         if self.request.query_params.get('title'):
             filters_dict['title__icontains'] = self.request.query_params.get('title')
             
         if self.request.query_params.get('year[]'):
-            filters_dict['year_id__in'] = self.request.query_params.get('year[]')
+            filters_dict['year_id__in'] = list(map(int, self.request.query_params.get('year[]')))
 
         if self.request.GET.getlist('type[]'):
-            filters_dict['type_id__in'] = self.request.GET.getlist('type[]')
+            filters_dict['type_id__in'] = list(map(int, self.request.GET.getlist('type[]')))
 
         if self.request.query_params.get('langueage[]'):
-            filters_dict['language__in'] = self.request.query_params.get('langueage[]')
+            filters_dict['language__in'] = list(map(int, self.request.query_params.get('langueage[]')))
 
         if self.request.query_params.get('author[]'):
-            filters_dict['language__in'] = self.request.query_params.get('author[]')
+            filters_dict['language__in'] = list(map(int, self.request.query_params.get('author[]')))
 
         if self.request.GET.getlist('tag[]'):
-            filters_dict['tag__in'] = self.request.GET.getlist('tag[]')
+            filters_dict['tag__in'] = list(map(int, self.request.GET.getlist('tag[]')))
 
         if self.request.query_params.get('material[]'):
-            filters_dict['material__in'] = self.request.query_params.get('material[]')
+            filters_dict['material__in'] = list(map(int, self.request.query_params.get('material[]')))
 
-     
-
-        # if title_filter:
-        #     filters_dict['title__icontains'] = title_filter
-        #     mat_filters_dict['paper__title__icontains'] = title_filter
-        # if year_filter:
-        #     filters_dict['year_id__in'] = year_filter
-        #     mat_filters_dict['paper__year_id__in'] = year_filter
-        # if type_filter:
-        #     filters_dict['type_id__in'] = type_filter
-        #     mat_filters_dict['paper__type_id__in'] = type_filter
-        # if lang_filter:
-        #     filters_dict['language__in'] = lang_filter
-        #     mat_filters_dict['paper__language__in'] = lang_filter
-        # if tag_filter:
-        #     filters_dict['tag__in'] = tag_filter
-        #     mat_filters_dict['paper__tag__in'] = tag_filter
-        # if material_filter:
-        #     filters_dict['material__in'] = material_filter
-        #     mat_filters_dict['paper__material__in'] = material_filter
-
-        # # this is not the best way to do this. SQLite though doesn't support `DISTINCT`
-        # # Fix this when we change to PostgreSQL
         results = set(Paper.objects.filter(**filters_dict))
-        # papers_materials = PaperUsedMaterial.objects.filter(paper_id__in=[p.id for p in results])
-
-        # print('title parameter ', title_param)
-        # results = {}
-
+        
         
         return results
 
@@ -237,6 +207,11 @@ def search_publication(request):
             results = set(Paper.objects.filter(**filters_dict))
             papers_materials = PaperUsedMaterial.objects.filter(paper_id__in=[p.id for p in results])
 
+            # import ipdb; ipdb.set_trace()
+
+            print("django Filters_dict ----->" , filters_dict)
+            print("django results -----> " , results)
+
             return render(request, 'search_tool_app/search_publication.html', {
                 'results': results,
                 'papers_materials': papers_materials,
@@ -244,6 +219,7 @@ def search_publication(request):
             })
         else:
             return "form is not valid"
+    
 
     return render(request, 'search_tool_app/search_publication.html', {
         'form': form

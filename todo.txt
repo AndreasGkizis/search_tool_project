@@ -1,18 +1,21 @@
 # CSS
     1 MAKE GLOBAL CSS FILE
         1.1 CHOOSE COLOUR SCHEME
+        1.2 DARK MODE?
 
 # NAVBAR
     1 MAKE COMPATIBLE WITH SMALL SCREENS
     2 MAKE SEARCH BAR ACTIVE AND SAME EVERYWHERE
 
 # SEARCH PAGE
-    1 PAGES OF RESULTS (https://www.django-rest-framework.org/api-guide/pagination/)
-    2 SHOW PICTURES
-    3 INTERACTIVE FILTER BAR (https://www.django-rest-framework.org/api-guide/filtering/)
-        [DOING, NEED TO USE THE SELECTED FIELDS TO FILTER THE RESULTS] (https://v3.vuejs.org/guide/computed.html#computed-properties-and-watchers)
+    - PAGES OF RESULTS (https://www.django-rest-framework.org/api-guide/pagination/)
+    - SHOW PICTURES
+    - LINK TO DETAILS PAGE
+    - MAKE FILTERS APPLY LIKE CHOICE 1 AND CHOICE 2
 
-    4 MAKE SERIALIZERS FOR EVERYTHING NEEDED (EVERY MODEL?) (https://www.django-rest-framework.org/api-guide/relations/#nested-relationships)
+    DONE 3 INTERACTIVE FILTER BAR (https://www.django-rest-framework.org/api-guide/filtering/)
+    DONE    [DOING, NEED TO USE THE SELECTED FIELDS TO FILTER THE RESULTS] (https://v3.vuejs.org/guide/computed.html#computed-properties-and-watchers)
+    DONE 4 MAKE SERIALIZERS FOR EVERYTHING NEEDED (EVERY MODEL?) (https://www.django-rest-framework.org/api-guide/relations/#nested-relationships)
 
 # POST PAGE
     1 DE SERIALIZE?

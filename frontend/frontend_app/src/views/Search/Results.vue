@@ -5,8 +5,9 @@
         Filters passed down to child <br />
         {{ filter_data }}
       </div>
+      <button @click="datatest1 += 1"></button>
       <br />
-      <div>Data filtered_data: <br />{{ filteredPapers }}</div>
+      <!-- <div>Data filtered_data: <br />{{ filteredPapers }}</div> -->
     </div>
     <h1>RESULTS</h1>
     <div v-for="i in filtered_data" :key="i.id">
@@ -18,26 +19,20 @@
 
 <script>
 import { getAPI } from "../..//axios-api";
-
 export default {
   props: {
     filter_data: Object,
   },
   data() {
     return {
+      datatest1: [],
       initial_data: [],
       filtered_data: [],
     };
   },
-  // watch : {
-  //   filter_data: function(value) {
-  //     console.log(value)
-  //   }
-  // },
   computed: {
     filteredPapers() {
       console.log("filteredPapers run ");
-
       this.$router.push({
         path: "/search",
         query: {
@@ -50,7 +45,6 @@ export default {
             material: this.filter_data.material,
         },
       });
-
       getAPI
         .get("/paper", {
           params: {
@@ -71,7 +65,51 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+        return this.filtered_data
     },
+  },
+  watch: {
+    filter_data(newValue) { 
+      console.log("watchFilters run + newValue" + newValue);
+      this.$router.push({
+        path: "/search",
+        query: {
+          title: this.filter_data.title,
+            year: this.filter_data.year,
+            type: this.filter_data.type,
+            language: this.filter_data.language,
+            author: this.filter_data.author,
+            tag: this.filter_data.tag,
+            material: this.filter_data.material,
+        },
+      });
+      getAPI
+        .get("/paper", {
+          params: {
+            title: this.filter_data.title,
+            year: this.filter_data.year,
+            type: this.filter_data.type,
+            language: this.filter_data.language,
+            author: this.filter_data.author,
+            tag: this.filter_data.tag,
+            material: this.filter_data.material,
+          },
+        })
+        .then((response) => {
+          console.log("getapi filteredPapers hit");
+          console.log();
+          this.filtered_data = response.data;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+        return this.filtered_data
+    },
+    datatest1 () {
+      this.datatest1 = this.filter_data
+      console.log("hello hello" + this.datatest1.title)
+    }
+
   },
   mounted() {
     getAPI
@@ -84,8 +122,33 @@ export default {
         console.log(err);
       });
   },
-  methods: {
-    // updateNav() {
+  methods: {},
+};
+</script>
+
+ // watch : {
+  //   filter_data: function(value) {
+  //     console.log(value)
+  //   }
+  // },
+
+//  console.log(this.$route.query)
+//         getAPI.get('/paper/'+ this.$route.href.split('?')[1] )
+//         .then(response => {
+//             console.log('Paper api data recieved ')
+//             this.APIpaperData = response.data
+//         })
+//         .catch(err => {
+//             console.log(err)
+//         })
+
+ // computed: {
+  //     urlUpdate() {
+
+  //         return this.$router.push({query: {title: this.title }})
+  //     }
+  // }
+ // updateNav() {
     //   // console.log('updateNav ' + this.$route.href.split("?")[1])
     //   // { title: ..., tags: [..]}
     //   // this.$router.push({query: this.fields})
@@ -139,22 +202,3 @@ export default {
     sayhi() {
       console.log("hi hi hi");
     },
-  },
-  // computed: {
-  //     urlUpdate() {
-
-  //         return this.$router.push({query: {title: this.title }})
-  //     }
-  // }
-};
-
-//  console.log(this.$route.query)
-//         getAPI.get('/paper/'+ this.$route.href.split('?')[1] )
-//         .then(response => {
-//             console.log('Paper api data recieved ')
-//             this.APIpaperData = response.data
-//         })
-//         .catch(err => {
-//             console.log(err)
-//         })
-</script>

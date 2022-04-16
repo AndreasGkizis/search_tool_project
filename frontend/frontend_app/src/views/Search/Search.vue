@@ -1,7 +1,7 @@
 <template>
 <div class="container">
     <div class="filter">
-        <Filter 
+        <Filter
         />
     </div>
 </div>
@@ -14,7 +14,6 @@ import Filter from './Filter.vue'
 export default {
     components: {
         Filter,
-        
     },
 }
 </script>
