@@ -2,18 +2,20 @@
   <div class="row cols-2 mx-auto">
     <div class="filters col-3">
       <h2>Filters</h2>
-      <!-- <div class="title"> -->
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="label">Title </span>
-        <input
-          id="title"
-          type="text"
-          class="form-control"
-          placeholder="Enter Title here.."
-          aria-label="Username"
-          aria-describedby="label"
-          v-model="filters_selected.title"
-        />
+
+      <div class="title">
+        <div class="mb-3 dark">
+          <label for="exampleInputEmail1" class="form-label"
+            ><h4>Title</h4></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            placeholder="Enter here to search by title "
+            v-model="filters_selected.title"
+          />
+        </div>
       </div>
 
       <!-- <label for="title">Title:</label>
@@ -22,20 +24,49 @@
 
       <div class="tags">
         <h4>Tags</h4>
-        <div v-for="i in initial_filter_data.tag" :key="i.id">
-          <div class="form-check form-switch">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              role="switch"
-              :id="i.tag"
-              :value="i.id"
-              v-model="filters_selected.tag"
-            />
-            <label class="form-check-label" :for="i.tag"
-              > {{ i.tag }}</label
-            >
+        <button
+          class="btn pt-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapsetags"
+          aria-expanded="false"
+          aria-controls="collapsetags"
+        >
+          Show tags
+        </button>
+
+        <div class="collapse" id="collapsetags">
+          <input type="text" class="form-control" v-model="tagQuery" 
+          placeholder="filter tags "/>
+          <br />
+          <div v-for="i in computedTags" :key="i.id">
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                :id="i.tag"
+                :value="i.id"
+                v-model="filters_selected.tag"
+              />
+              <label class="form-check-label" :for="i.tag"> {{ i.tag }}</label>
+            </div>
           </div>
+          <br />
+
+          <!-- <div v-for="i in initial_filter_data.tag" :key="i.id">
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                :id="i.tag"
+                :value="i.id"
+                v-model="filters_selected.tag"
+              />
+              <label class="form-check-label" :for="i.tag"> {{ i.tag }}</label>
+            </div>
+          </div> -->
         </div>
       </div>
 
@@ -51,9 +82,9 @@
               :value="i.id"
               v-model="filters_selected.type"
             />
-            <label class="form-check-label" :for="i.type"> 
-                {{ i.type }}
-                </label>
+            <label class="form-check-label" :for="i.type">
+              {{ i.type }}
+            </label>
           </div>
         </div>
       </div>
@@ -61,39 +92,63 @@
       <div class="year">
         <h3>Years</h3>
         <div v-for="i in initial_filter_data.year" :key="i.id">
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              :id="i.year_published"
+              :value="i.id"
+              v-model="filters_selected.year"
+            />
+            <label class="form-check-label" :for="i.year_published">
+              {{ i.year_published }}</label
+            >
+          </div>
+          <!-- 
           <input
             type="checkbox"
             :id="i.year_published"
             :value="i.id"
             v-model="filters_selected.year"
           />
-          <label :for="i.year_published"> {{ i.year_published }}</label>
+          <label :for="i.year_published"> {{ i.year_published }}</label> -->
         </div>
       </div>
 
       <div class="author">
         <h3>Author</h3>
         <div v-for="i in initial_filter_data.author" :key="i.id">
-          <input
-            type="checkbox"
-            :id="i.name"
-            :value="i.id"
-            v-model="filters_selected.author"
-          />
-          <label :for="i.name"> {{ i.name }}</label>
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              :id="i.name"
+              :value="i.id"
+              v-model="filters_selected.author"
+            />
+            <label class="form-check-label" :for="i.name"> {{ i.name }}</label>
+          </div>
         </div>
       </div>
 
       <div class="material">
         <h3>Material</h3>
         <div v-for="i in initial_filter_data.material" :key="i.id">
-          <input
-            type="checkbox"
-            :id="i.material"
-            :value="i.id"
-            v-model="filters_selected.material"
-          />
-          <label :for="i.material">{{ i.material }}</label>
+          <div class="form-check form-switch">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              :id="i.material"
+              :value="i.id"
+              v-model="filters_selected.material"
+            />
+            <label class="form-check-label" :for="i.material">
+              {{ i.material }}</label
+            >
+          </div>
         </div>
       </div>
       <!-- last div closes Filters -->
@@ -103,24 +158,67 @@
       <div v-for="i in results_data" :key="i.id">
         <div class="card">
           <div class="card-header">
-            <h3>Title: {{ i.title }}</h3>
+            <h4>{{ i.title }}</h4>
           </div>
-          <div class="card-body">
-            <p>Abstract: {{ i.abstract }}</p>
-            Authors:
-            <div v-for="p in i.author.length" :key="p.id" id="authors">
-              <p>{{ i.author[p - 1].name }}</p>
-            </div>
-            Tags:
-            <div v-for="p in i.tag.length" :key="p.id" id="tags">
-              <p>{{ i.tag[p - 1] }}</p>
-            </div>
+          <div class="card-body row">
+            <dl class="row">
+              <dt class="col">Abstract:</dt>
+              <dd class="col-sm-11">
+                {{ i.abstract }}
+              </dd>
+
+              <dt class="col">Tags:</dt>
+              <dd class="col-sm-11">
+                <div
+                  class="list-inline-item"
+                  v-for="p in i.tag.length"
+                  :key="p.id"
+                  id="tags"
+                >
+                  {{ i.tag[p - 1] }}
+                </div>
+              </dd>
+
+              <dt class="col">Type:</dt>
+              <dd class="col-11">
+                <div class="list-inline-item" id="type_id">
+                  {{ i.type_id }}
+                </div>
+              </dd>
+
+              <dt class="col">Year:</dt>
+              <dd class="col-sm-11">
+                <div id="year">
+                  {{ i.year_id }}
+                </div>
+              </dd>
+
+              <dt class="col">Materials:</dt>
+              <dd class="col-sm-11">
+                <div
+                  class="list-inline-item"
+                  v-for="p in i.material.length"
+                  :key="p.id"
+                  id="material"
+                >
+                  {{ i.material[p - 1] }}
+                </div>
+              </dd>
+
+              <dt class="col-1">Author:</dt>
+              <dd class="col-sm-11">
+                <div
+                  id="author"
+                  class="list-inline-item"
+                  v-for="p in i.author.length"
+                  :key="p.id"
+                >
+                  {{ i.author[p - 1].name }}
+                </div>
+              </dd>
+            </dl>
           </div>
         </div>
-
-        <p></p>
-        <p></p>
-        <p></p>
       </div>
     </div>
   </div>
@@ -150,6 +248,8 @@ export default {
         material: [],
       },
       results_data: [],
+      tagQuery: [],
+      computedtags: [],
     };
   },
   mounted() {
@@ -199,6 +299,7 @@ export default {
       .then((response) => {
         console.log("Tag api data recieved ");
         this.initial_filter_data.tag = response.data;
+        this.computedtags = response.data;
       })
       .catch((err) => {
         console.log(err);
@@ -229,7 +330,7 @@ export default {
       handler() {
         console.log("filters_selected watcher");
         this.$router.push({
-          path: "/search",
+          path: "/search/",
           query: {
             title: this.filters_selected.title,
             year: this.filters_selected.year,
@@ -242,7 +343,7 @@ export default {
         });
 
         getAPI
-          .get("/paper", {
+          .get("/paper/", {
             params: {
               title: this.filters_selected.title,
               year: this.filters_selected.year,
@@ -263,6 +364,13 @@ export default {
           });
       },
       deep: true,
+    },
+  },
+  computed: {
+    computedTags(tagQuery) {
+      return this.initial_filter_data.tag.filter((x) =>
+        x.tag.toLowerCase().includes(this.tagQuery)
+      );
     },
   },
 };

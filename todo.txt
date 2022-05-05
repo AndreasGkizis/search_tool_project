@@ -17,9 +17,6 @@
     DONE    [DOING, NEED TO USE THE SELECTED FIELDS TO FILTER THE RESULTS] (https://v3.vuejs.org/guide/computed.html#computed-properties-and-watchers)
     DONE 4 MAKE SERIALIZERS FOR EVERYTHING NEEDED (EVERY MODEL?) (https://www.django-rest-framework.org/api-guide/relations/#nested-relationships)
 
-# POST PAGE
-    1 DE SERIALIZE?
-
 # PUBLICATION PAGE
     1 DOWNLOAD OPTION
     2 FULL DETAILS
@@ -29,6 +26,14 @@
     1 REVIEW WHICH DATA IS NEEDED/ NOT NEEDED
 
 # CHANGE TO POSTGRESQL
-
+# POST PAGE
+    1 DE SERIALIZE?
 
 ### ADD PAPERS.......###
+
+THINGS TO LOOK AT 
+
+FIXTURES. giana mhn xanw thn bash 
+django-registration.( OXI AN EINAI APO ADMIN)
+MANY TAGS, HOW TO HANDLE 
+
