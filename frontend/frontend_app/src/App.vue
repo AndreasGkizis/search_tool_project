@@ -13,7 +13,7 @@
 
 <style>
 #app {
-  font-family: Avenir;
+  /* font-family: Avenir; */
 }
 
 #nav {

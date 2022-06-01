@@ -36,8 +36,12 @@
         </button>
 
         <div class="collapse" id="collapsetags">
-          <input type="text" class="form-control" v-model="tagQuery" 
-          placeholder="filter tags "/>
+          <input
+            type="text"
+            class="form-control"
+            v-model="tagQuery"
+            placeholder="filter tags "
+          />
           <br />
           <div v-for="i in computedTags" :key="i.id">
             <div class="form-check form-switch">
@@ -159,14 +163,11 @@
         <div class="card">
           <div class="card-header">
             <h4>{{ i.title }}</h4>
+            <h4 class="display-6">{{ i.title }}</h4>
+            <!-- change all to disply, they do look nicer -->
           </div>
           <div class="card-body row">
             <dl class="row">
-              <dt class="col">Abstract:</dt>
-              <dd class="col-sm-11">
-                {{ i.abstract }}
-              </dd>
-
               <dt class="col">Tags:</dt>
               <dd class="col-sm-11">
                 <div
@@ -205,7 +206,7 @@
                 </div>
               </dd>
 
-              <dt class="col-1">Author:</dt>
+              <dt class="col">Author:</dt>
               <dd class="col-sm-11">
                 <div
                   id="author"
@@ -217,7 +218,12 @@
                 </div>
               </dd>
             </dl>
+            <details>
+              <summary>Abstract</summary>
+                {{i.abstract}}
+            </details>
           </div>
+          <br />
         </div>
       </div>
     </div>
