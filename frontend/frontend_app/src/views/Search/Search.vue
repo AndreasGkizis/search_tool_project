@@ -1,4 +1,5 @@
 <template>
+<div class="container-fluid">
   <div class="row cols-2 mx-auto">
     <div class="filters col-3">
       <h2>Filters</h2>
@@ -166,7 +167,7 @@
             <h4 class="display-6">{{ i.title }}</h4>
             <!-- change all to disply, they do look nicer -->
           </div>
-          <div class="card-body row">
+          <div class="card-body text-start">
             <dl class="row">
               <dt class="col">Tags:</dt>
               <dd class="col-sm-11">
@@ -227,6 +228,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
