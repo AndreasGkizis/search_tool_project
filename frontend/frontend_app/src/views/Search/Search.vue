@@ -1,17 +1,17 @@
 <template>
-<div class="container-fluid">
+<div class="container-xxl">
   <div class="row cols-2 mx-auto">
     <div class="filters col-3">
       <h2>Filters</h2>
 
-      <div class="title">
-        <div class="mb-3 dark">
+      <div class="title ">
+        <div class="mb-3 ">
           <label for="exampleInputEmail1" class="form-label"
             ><h4>Title</h4></label
           >
           <input
             type="text"
-            class="form-control"
+            class="form-control "
             id="title"
             placeholder="Enter here to search by title "
             v-model="filters_selected.title"
@@ -159,7 +159,7 @@
       <!-- last div closes Filters -->
     </div>
 
-    <div class="results col">
+    <div class="results col ">
       <div v-for="i in results_data" :key="i.id">
         <div class="card">
           <div class="card-header">
