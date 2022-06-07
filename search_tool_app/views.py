@@ -11,7 +11,6 @@ from django.urls import reverse
 import json
 import random
 # for objects to serialise to json
-
 from django.core import serializers
 # imports for rest_framework
 
@@ -20,8 +19,12 @@ from rest_framework import generics
 from .serializers import *
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import AllowAny
+from rest_framework.pagination import PageNumberPagination
 
 ''' start of class based views for rest_framework '''
+
+class PagePagination(PageNumberPagination): 
+    page_size = 2
 
 '''
 CLASS BASED VIEWS 
@@ -30,7 +33,8 @@ class PaperViewSet(ModelViewSet):
     serializer_class = PaperSerializer
     permission_classes = [AllowAny]
     #added for later on permissions of users etc.. not a bad idea to define
-
+    pagination_class = PagePagination
+    # defines size of page 
     def get_queryset(self):
         filters_dict = {}
 
@@ -57,8 +61,8 @@ class PaperViewSet(ModelViewSet):
         if self.request.query_params.get('material[]'):
             filters_dict['material__in'] = list(map(int, self.request.query_params.get('material[]')))
 
-        results = set(Paper.objects.filter(**filters_dict))
-        
+        results = list(Paper.objects.filter(**filters_dict))
+        #changed from set() to list() after implementing pagination, ask sergios
         
         return results
 
