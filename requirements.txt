@@ -1,4 +1,4 @@
-ipython
-ipdb
-djangorestframework
-django-filter
+Django==3.1.6
+django_filter==2.4.0
+djangorestframework==3.13.1
+setuptools==47.1.0

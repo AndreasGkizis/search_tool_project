@@ -26,6 +26,15 @@ from rest_framework.pagination import PageNumberPagination
 class PagePagination(PageNumberPagination): 
     page_size = 2
 
+    def get_paginated_response(self, data):
+        return Response({
+            'next': self.get_next_link(),
+            'previous': self.get_previous_link(),
+            'count': self.page.paginator.count,
+            'total_pages': self.page.paginator.num_pages,
+            'results': data
+            })
+
 '''
 CLASS BASED VIEWS 
 '''
@@ -34,7 +43,7 @@ class PaperViewSet(ModelViewSet):
     permission_classes = [AllowAny]
     #added for later on permissions of users etc.. not a bad idea to define
     pagination_class = PagePagination
-    # defines size of page 
+    # defines Pagination 
     def get_queryset(self):
         filters_dict = {}
 
@@ -62,7 +71,7 @@ class PaperViewSet(ModelViewSet):
             filters_dict['material__in'] = list(map(int, self.request.query_params.get('material[]')))
 
         results = list(Paper.objects.filter(**filters_dict))
-        #changed from set() to list() after implementing pagination, ask sergios
+        # ############### changed from set() to list() after implementing pagination, ask sergios
         
         return results
 

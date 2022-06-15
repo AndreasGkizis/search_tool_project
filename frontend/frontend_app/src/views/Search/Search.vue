@@ -3,6 +3,23 @@
     <div class="row cols-2 mx-auto">
       <div class="filters col-3">
         <h2>Filters</h2>
+        <span>Current page {{ currentPage }}</span>
+        <br />
+        <span> Total Pages {{ results_data.total_pages }} </span>
+        <br />
+        <span>
+          Next Link
+          <hr />
+          {{ results_data.next }}</span
+        >
+        <br />
+        <br />
+
+        <span
+          >Previous Link -->
+          <hr />
+          {{ results_data.previous }}</span
+        >
 
         <div class="title">
           <div class="mb-3">
@@ -235,44 +252,31 @@
             </div>
           </div>
         </div>
+
+        <nav aria-label="Page navigation" v-if="results_data.total_pages > 1">
+          <ul class="pagination justify-content-center">
+            <li class="page-item" :class="{disabled : hidePreviousButton}">
+              <a class="page-link" @click="loadPrev()">Previous</a>
+            </li>
+            <div v-for="i in results_data.total_pages" :key="i.id">
+              <li class="page-item" >
+                <a class="page-link" @click="goToPage(i)"> {{ i }} </a>
+                
+                
+              </li>
+            </div>
+              <li class="page-item" :class="{disabled : hideNextButton}">
+              <a class="page-link" @click="loadNext()">Next</a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
-
-    <nav aria-label="Page navigation">
-      <ul class="pagination justify-content-end">
-        <div v-if="showPreviousButton">
-          <!-- checking to show prev and next buttons   -->
-            <ul class="pagination justify-content-end">
-          <li class="page-item">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-          </li>
-        </ul>
-        </div>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"></li>
-      
-      <div v-if="showNextButton">
-          <a class="page-link" :href="results_data.next">Next</a>
-        </div>
-        </ul>
-
-      <div v-for="i in results_data" :key="i">
-        <ul class="pagination justify-content-end">
-          <li class="page-item">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-          </li>
-
-          <a class="page-link" href="#">Next</a>
-        </ul>
-      </div>
-    </nav>
   </div>
 </template>
 
 <script>
-import { getAPI } from "../..//axios-api";
+import { getAPI, getPage } from "../..//axios-api";
 
 export default {
   data() {
@@ -297,8 +301,9 @@ export default {
       results_data: [],
       tagQuery: [],
       computedtags: [],
-      showNextButton: false,
-      showPreviousButton: false,
+      hideNextButton: true,
+      hidePreviousButton: false,
+      currentPage: 1,
     };
   },
   mounted() {
@@ -364,15 +369,14 @@ export default {
         console.log(err);
       });
     //  RESULTS INITIAL DATA
+
     getAPI
       .get("/paper/")
       .then((response) => {
         this.results_data = response.data;
-        this.showNextButton = false;
-        this.showPreviousButton = false;
-        if (this.results_data.next) {
-          this.showNextButton = true;
-        }
+        this.hideNextButton = false;
+        this.hidePreviousButton = true;
+        
         console.log("Paper api data recieved and logged , no error!");
       })
       .catch((err) => {
@@ -382,7 +386,9 @@ export default {
   watch: {
     filters_selected: {
       handler() {
-        console.log("filters_selected watcher");
+        this.currentPage = 1;
+        this.hideNextButton = false;
+        this.hidePreviousButton = true;
         this.$router.push({
           path: "/search/",
           query: {
@@ -412,14 +418,6 @@ export default {
             console.log(this.$router.params);
             console.log(response.data);
             this.results_data = response.data;
-            this.showNextButton = false;
-            this.showPreviousButton = false;
-            if (this.results_data.next) {
-              this.showNextButton = true;
-            }
-            if (this.results_data.previous) {
-              this.showPreviousButton = true
-            }
           })
           .catch((err) => {
             console.log(err);
@@ -434,11 +432,105 @@ export default {
         x.tag.toLowerCase().includes(this.tagQuery)
       );
     },
-  },
+     },
   methods: {
     loadNext() {
       this.currentPage += 1;
-      this.filters_selected.handler();
+
+      getAPI
+        .get(`/paper/?page=${this.currentPage}`, {
+          params: {
+            title: this.filters_selected.title,
+            year: this.filters_selected.year,
+            type: this.filters_selected.type,
+            language: this.filters_selected.language,
+            author: this.filters_selected.author,
+            tag: this.filters_selected.tag,
+            material: this.filters_selected.material,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+
+          this.results_data = response.data;
+
+          this.hideNextButton = true;
+          if (this.results_data.next) {
+            this.hideNextButton = false;
+          }
+          this.hidePreviousButton = true;
+          if (this.results_data.previous) {
+            this.hidePreviousButton = false;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    loadPrev() {
+      this.currentPage -= 1;
+
+      getAPI
+        .get(`/paper/?page=${this.currentPage}`, {
+          params: {
+            title: this.filters_selected.title,
+            year: this.filters_selected.year,
+            type: this.filters_selected.type,
+            language: this.filters_selected.language,
+            author: this.filters_selected.author,
+            tag: this.filters_selected.tag,
+            material: this.filters_selected.material,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          this.results_data = response.data;
+
+          this.hideNextButton = true;
+          if (this.results_data.next) {
+            this.hideNextButton = false;
+          }
+          this.hidePreviousButton = true;
+          if (this.results_data.previous) {
+            this.hidePreviousButton = false;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    goToPage(i) {
+      this.currentPage = i;
+      getAPI
+        .get(`/paper/?page=${this.currentPage}`, {
+          params: {
+            title: this.filters_selected.title,
+            year: this.filters_selected.year,
+            type: this.filters_selected.type,
+            language: this.filters_selected.language,
+            author: this.filters_selected.author,
+            tag: this.filters_selected.tag,
+            material: this.filters_selected.material,
+            page: this.currentPage,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          this.results_data = response.data;
+
+          this.hideNextButton = true;
+          if (this.results_data.next) {
+            this.hideNextButton = false;
+          }
+          this.hidePreviousButton = true;
+          if (this.results_data.previous) {
+            this.hidePreviousButton = false;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };
