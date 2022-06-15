@@ -1,6 +1,6 @@
 <template>
   <div class="container-xxl">
-    <div class="row cols-2 mx-auto">
+    <div class="row mx-auto">
       <div class="filters col-3">
         <h2>Filters</h2>
         <span>Current page {{ currentPage }}</span>
@@ -180,92 +180,124 @@
         <!-- last div closes Filters -->
       </div>
 
-      <div class="results col">
+      <div class="results col-9">
         <div class="pb-1 m-0" v-for="i in results_data.results" :key="i.id">
           <div class="card">
-            <div class="card-header">
-              <h1 class="display-6">Title : {{ i.title }}</h1>
-            </div>
-            <div class="card-body text-start p-0">
-              <ul class="list-group-flush my-1">
-                <li class="list-group-item">
-                  <ul class="list-group list-group-horizontal border-0 m-0 p-0">
-                    <li class="list-group-item border-0 p-0 mx-auto">
-                      <strong>Type: </strong>
-                      <div class="list-inline-item" id="type_id">
-                        {{ i.type_id }}
-                      </div>
-                    </li>
-                    <li
-                      class="list-group-item border-0 align-end m-0 p-0 mx-auto"
-                    >
-                      <strong>Year: </strong>
-                      <div class="list-inline-item" id="year">
-                        {{ i.year_id }}
-                      </div>
-                    </li>
-                  </ul>
-                </li>
+            <div class="col">
+              <div class="card-header">
+                <h1 class="display-6 my-0">Title : {{ i.title }}</h1>
+              </div>
+              <div class="container-xxl">
+                <div class="row align-items-center">
+                  <div class="card-body text-start p-0 col-md-8">
+                    <ul class="list-group-flush my-1">
+                      <li class="list-group-item">
+                        <ul
+                          class="
+                            list-group list-group-horizontal
+                            border-0
+                            m-0
+                            p-0
+                          "
+                        >
+                          <li class="list-group-item border-0 p-0 mx-auto">
+                            <strong>Type: </strong>
+                            <div class="list-inline-item" id="type_id">
+                              {{ i.type_id }}
+                            </div>
+                          </li>
+                          <li
+                            class="
+                              list-group-item
+                              border-0
+                              align-end
+                              m-0
+                              p-0
+                              mx-auto
+                            "
+                          >
+                            <strong>Year: </strong>
+                            <div class="list-inline-item" id="year">
+                              {{ i.year_id }}
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
 
-                <li class="list-group-item">
-                  <div class="fw-bold">Materials :</div>
-                  <div
-                    class="list-inline-item"
-                    v-for="p in i.material.length"
-                    :key="p.id"
-                    id="material"
-                  >
-                    {{ i.material[p - 1] }}
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="fw-bold">Author(s) :</div>
-                  <div
-                    id="author"
-                    class="list-inline-item"
-                    v-for="p in i.author.length"
-                    :key="p.id"
-                  >
-                    {{ i.author[p - 1].name }}
-                  </div>
-                </li>
+                      <li class="list-group-item">
+                        <div class="fw-bold">Materials :</div>
+                        <div
+                          class="list-inline-item"
+                          v-for="p in i.material.length"
+                          :key="p.id"
+                          id="material"
+                        >
+                          {{ i.material[p - 1] }}
+                        </div>
+                      </li>
+                      <li class="list-group-item">
+                        <div class="fw-bold">Author(s) :</div>
+                        <div
+                          id="author"
+                          class="list-inline-item"
+                          v-for="p in i.author.length"
+                          :key="p.id"
+                        >
+                          {{ i.author[p - 1].name }}
+                        </div>
+                      </li>
 
-                <li class="list-group-item">
-                  <div class="fw-bold">Tags :</div>
-                  <div
-                    class="list-inline-item"
-                    v-for="p in i.tag.length"
-                    :key="p.id"
-                    id="tags"
-                  >
-                    {{ i.tag[p - 1] }}
-                  </div>
-                </li>
+                      <li class="list-group-item">
+                        <div class="fw-bold">Tags :</div>
+                        <div
+                          class="list-inline-item"
+                          v-for="p in i.tag.length"
+                          :key="p.id"
+                          id="tags"
+                        >
+                          {{ i.tag[p - 1] }}
+                        </div>
+                      </li>
 
-                <li class="list-group-item">
-                  <details>
-                    <summary>Abstract</summary>
-                    {{ i.abstract }}
-                  </details>
-                </li>
-              </ul>
+                      <li class="list-group-item">
+                        <details>
+                          <summary>Abstract</summary>
+                          {{ i.abstract }}
+                        </details>
+                      </li>
+                    </ul>
+                  </div>
+                  <div
+                    class="
+                      card-body
+                      col-md-3
+                      mx-auto
+                      text-center
+                      d-none d-md-block
+                    "
+                  >
+                    <img class="img-fluid" :src="i.pdf" alt="" />
+                    <button type="button" class="btn btn-success">
+                      View detailed Page
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <nav aria-label="Page navigation" v-if="results_data.total_pages > 1">
-          <ul class="pagination justify-content-center">
-            <li class="page-item" :class="{disabled : hidePreviousButton}">
+          <ul class="pagination justify-content-center-bottom">
+            <li class="page-item" :class="{ disabled: hidePreviousButton }">
               <a class="page-link" @click="loadPrev()">Previous</a>
             </li>
             <div v-for="i in results_data.total_pages" :key="i.id">
-              <li class="page-item" :class="{active:currentPage == i}">
+              <li class="page-item" :class="{ active: currentPage == i }">
                 <a class="page-link" @click="goToPage(i)"> {{ i }} </a>
-                
-                
               </li>
             </div>
-              <li class="page-item" :class="{disabled : hideNextButton}">
+            <li class="page-item" :class="{ disabled: hideNextButton }">
               <a class="page-link" @click="loadNext()">Next</a>
             </li>
           </ul>
@@ -376,7 +408,7 @@ export default {
         this.results_data = response.data;
         this.hideNextButton = false;
         this.hidePreviousButton = true;
-        
+
         console.log("Paper api data recieved and logged , no error!");
       })
       .catch((err) => {
@@ -432,7 +464,7 @@ export default {
         x.tag.toLowerCase().includes(this.tagQuery)
       );
     },
-     },
+  },
   methods: {
     loadNext() {
       this.currentPage += 1;

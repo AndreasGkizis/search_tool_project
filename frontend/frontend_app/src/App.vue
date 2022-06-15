@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="nav">
-      <nav class="navbar navbar-expand-lg navbar-light">
+      <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
           <a class="navbar-brand"> Search Tool Project </a>
           <button
@@ -13,6 +13,7 @@
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
+           <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
