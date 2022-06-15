@@ -259,7 +259,7 @@
               <a class="page-link" @click="loadPrev()">Previous</a>
             </li>
             <div v-for="i in results_data.total_pages" :key="i.id">
-              <li class="page-item" >
+              <li class="page-item" :class="{active:currentPage == i}">
                 <a class="page-link" @click="goToPage(i)"> {{ i }} </a>
                 
                 
