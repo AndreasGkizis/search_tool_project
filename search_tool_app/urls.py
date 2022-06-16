@@ -5,7 +5,12 @@ from rest_framework import routers
 router = routers.DefaultRouter()
 router.register(r'paper', views.PaperViewSet, basename="paper")
 router.register(r'year', views.YearViewSet, basename="year")
-router.register(r'tag', views.TagView, basename="tag")
+router.register(r'tag', views.TagViewSet, basename="tag")
+router.register(r'author', views.AuthorViewSet, basename="author")
+router.register(r'type', views.TypeViewSet, basename="type")
+router.register(r'language', views.LanguageViewSet, basename="language")
+router.register(r'material', views.MaterialViewSet, basename="material")
+
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
@@ -14,11 +19,5 @@ urlpatterns = [
     path('show_publication/<slug:slug>/', views.show_publication, name='show_publication'),
     path('vue_example/', views.vue_example, name='vue_example'),
     path('vue_search/', views.vue_search, name='vue_search'),
-    path('type/', views.TypeView.as_view(), name='type_view'),
-    # path('tag/', views.TagView.as_view(), name='tag_view'),
-    # path('year/', views.YearView.as_view(), name='year_view'),
-    path('author/', views.AuthorView.as_view(), name='author_view'),
-    path('material/', views.MaterialView.as_view(), name='material_view'),
-    path('language/', views.LanguageView.as_view(), name='language_view'),
     path('vue_paper_search/', views.vue_paper_search, name='vue_paper_search'),
 ] + router.urls

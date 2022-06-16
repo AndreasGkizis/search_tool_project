@@ -2,42 +2,35 @@ from dataclasses import fields
 from rest_framework import serializers
 from .models import *
 
-
 class TypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Type
         fields = '__all__'
-
 
 class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
         fields = '__all__'
 
-
 class YearSerializer(serializers.ModelSerializer):
     class Meta:
         model = Year
         fields = '__all__'
 
-
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
         fields = '__all__'
-
         
 class MaterialSerializer(serializers.ModelSerializer):
     class Meta:
         model = Material
         fields = '__all__'
 
-
 class LanguageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Language
         fields = '__all__'
-
 
 class PaperSerializer(serializers.ModelSerializer):
 

@@ -10,12 +10,9 @@ from django.urls import reverse
 # new things for Vue in template
 import json
 import random
-# for objects to serialise to json
-from django.core import serializers
 # imports for rest_framework
 
 from rest_framework.response import Response
-from rest_framework import generics
 from .serializers import *
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import AllowAny
@@ -35,21 +32,21 @@ class PagePagination(PageNumberPagination):
             'results': data
             })
 
+
 '''
 CLASS BASED VIEWS 
 '''
+
 class PaperViewSet(ModelViewSet):
-    queryset = Paper.objects.all()
-    serializer_class = PaperSerializer
-    permission_classes = [AllowAny]
-    #added for later on permissions of users etc.. not a bad idea to define
-    pagination_class = PagePagination
-    # defines Pagination 
+    serializer_class = PaperSerializer  
+    permission_classes = [AllowAny]     # added for later on permissions of users etc.. not a bad idea to define
+    pagination_class = PagePagination   
+
     def get_queryset(self):
+        # A dictionary which gathers all the filters applied 
         filters_dict = {}
-
-        title_param = self.request.query_params.get('title')
-
+        
+        # Adding to the Dictionary with the key:value pairs that Django can use to filter objects 
         if self.request.query_params.get('title'):
             filters_dict['title__icontains'] = self.request.query_params.get('title')
             
@@ -71,82 +68,42 @@ class PaperViewSet(ModelViewSet):
         if self.request.query_params.get('material[]'):
             filters_dict['material__in'] = list(map(int, self.request.query_params.get('material[]')))
 
-        results = list(Paper.objects.filter(**filters_dict).distinct())
-        # ############### changed from set() to list() after implementing pagination, ask sergios
+        # If filter_dict is empty return all 
+        if filters_dict: 
+            results = list(Paper.objects.filter(**filters_dict).distinct())         # changed from set() to list() after implementing pagination, ask sergios
+        else:
+            results = Paper.objects.all().distinct()
         
         return results
-
 
 class YearViewSet(ModelViewSet):
     serializer_class = YearSerializer
     queryset = Year.objects.all()
-# na ginoun ola ModelViewSet?? anti gia generics.RetrieveAPIView ..nomizw kalutera gia pio polla options 
 
-# class YearView(generics.RetrieveAPIView):
-#     queryset = Year.objects.all()
-
-#     def get(self, request, *args, **kwargs):
-#         queryset = self.get_queryset()
-#         serializer = YearSerializer(queryset, many=True)
-#         return Response(serializer.data)
-
-
-class TagView(ModelViewSet):
+class TagViewSet(ModelViewSet):
     serializer_class = TagSerializer
     queryset = Tag.objects.all()
 
-    # def get(self, request, *args, **kwargs):
-    #     queryset = self.get_queryset()
-    #     serializer = TagSerializer(queryset, many=True)
-    #     return Response(serializer.data)
-
-
-class AuthorView(generics.RetrieveAPIView):
+class AuthorViewSet(ModelViewSet):
+    serializer_class = AuthorSerializer
     queryset = Author.objects.all()
 
-    def get(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        serializer = AuthorSerializer(queryset, many=True)
-        return Response(serializer.data)
-
-
-class TypeView(generics.RetrieveAPIView):
+class TypeViewSet(ModelViewSet):
+    serializer_class = TypeSerializer
     queryset = Type.objects.all()
 
-    def get(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        serializer = TypeSerializer(queryset, many=True)
-        return Response(serializer.data)
-
-
-class LanguageView(generics.RetrieveAPIView):
+class LanguageViewSet(ModelViewSet):
+    serializer_class = LanguageSerializer
     queryset = Language.objects.all()
 
-    def get(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        serializer = LanguageSerializer(queryset, many=True)
-        return Response(serializer.data)
-
-
-class MaterialView(generics.RetrieveAPIView):
+class MaterialViewSet(ModelViewSet):
+    serializer_class = MaterialSerializer
     queryset = Material.objects.all()
 
-    def get(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        serializer = MaterialSerializer(queryset, many=True)
-        return Response(serializer.data)
-
-        
-# class PaperView(ModelViewSet):
-#     queryset = Paper.objects.all()
-#     template_name = "../templates/search_tool_app/vue_search.html"
-#
-#     serializer_class = PaperSerializer
-#     # def get(self, request, *args, **kwargs):
-#
-#     #     return Response(serializer.data)
 
 ''' FUNCTION BASED VIEWS '''
+
+
 def homepage(request):
     context_dict = {}
 
