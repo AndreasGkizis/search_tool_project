@@ -39,6 +39,7 @@ class PagePagination(PageNumberPagination):
 CLASS BASED VIEWS 
 '''
 class PaperViewSet(ModelViewSet):
+    queryset = Paper.objects.all()
     serializer_class = PaperSerializer
     permission_classes = [AllowAny]
     #added for later on permissions of users etc.. not a bad idea to define
@@ -70,7 +71,7 @@ class PaperViewSet(ModelViewSet):
         if self.request.query_params.get('material[]'):
             filters_dict['material__in'] = list(map(int, self.request.query_params.get('material[]')))
 
-        results = list(Paper.objects.filter(**filters_dict))
+        results = list(Paper.objects.filter(**filters_dict).distinct())
         # ############### changed from set() to list() after implementing pagination, ask sergios
         
         return results
@@ -81,22 +82,23 @@ class YearViewSet(ModelViewSet):
     queryset = Year.objects.all()
 # na ginoun ola ModelViewSet?? anti gia generics.RetrieveAPIView ..nomizw kalutera gia pio polla options 
 
-class YearView(generics.RetrieveAPIView):
-    queryset = Year.objects.all()
+# class YearView(generics.RetrieveAPIView):
+#     queryset = Year.objects.all()
 
-    def get(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        serializer = YearSerializer(queryset, many=True)
-        return Response(serializer.data)
+#     def get(self, request, *args, **kwargs):
+#         queryset = self.get_queryset()
+#         serializer = YearSerializer(queryset, many=True)
+#         return Response(serializer.data)
 
 
-class TagView(generics.RetrieveAPIView):
+class TagView(ModelViewSet):
+    serializer_class = TagSerializer
     queryset = Tag.objects.all()
 
-    def get(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        serializer = TagSerializer(queryset, many=True)
-        return Response(serializer.data)
+    # def get(self, request, *args, **kwargs):
+    #     queryset = self.get_queryset()
+    #     serializer = TagSerializer(queryset, many=True)
+    #     return Response(serializer.data)
 
 
 class AuthorView(generics.RetrieveAPIView):

@@ -227,7 +227,7 @@
                       <li class="list-group-item">
                         <div class="fw-bold">Materials :</div>
                         <div
-                          class="list-inline-item"
+                          class="list-inline-item badge bg-light text-dark fw-normal fs-6"
                           v-for="p in i.material.length"
                           :key="p.id"
                           id="material"
