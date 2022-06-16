@@ -227,7 +227,14 @@
                       <li class="list-group-item">
                         <div class="fw-bold">Materials :</div>
                         <div
-                          class="list-inline-item badge bg-light text-dark fw-normal fs-6"
+                          class="
+                            list-inline-item
+                            badge
+                            bg-light
+                            text-dark
+                            fw-normal
+                            fs-6
+                          "
                           v-for="p in i.material.length"
                           :key="p.id"
                           id="material"
@@ -276,9 +283,22 @@
                       d-none d-md-block
                     "
                   >
-                    <img class="img-fluid" :src="i.pdf" alt="" />
-                    <button type="button" class="btn btn-success">
-                      View detailed Page
+                  <object
+    data="i.pdf"
+    width="100%"
+    style="max-height: 50rem; min-height: 20rem"
+> </object>
+                    <!-- <img class="img-fluid" :src="i.pdf" alt="" /> -->
+                    <button
+                      type="button"
+                      class="btn btn-success my-1"
+                      @click="
+                        this.$router.push({
+                          name: 'SearchDetail',
+                          params: { id: i.id },
+                        }) // -> /search/detail/i.id/
+                      ">
+                      Details
                     </button>
                   </div>
                 </div>
@@ -466,6 +486,7 @@ export default {
     },
   },
   methods: {
+    goToDetail() {},
     loadNext() {
       this.currentPage += 1;
 

@@ -43,7 +43,11 @@ class PaperSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Paper
-        fields = ['title',
+
+
+        fields = '__all__'
+        
+        ['title',
                   'slug',
                   'pdf',
                   'abstract',
@@ -56,5 +60,3 @@ class PaperSerializer(serializers.ModelSerializer):
                   'tag',
                   'material',
                   'id' ]
-
-
