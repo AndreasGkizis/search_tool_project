@@ -5,35 +5,50 @@
 
 # NAVBAR
      DONE 1 MAKE COMPATIBLE WITH SMALL SCREENS
-    
 
 # SEARCH PAGE
-    - PAGES OF RESULTS (https://www.django-rest-framework.org/api-guide/pagination/)
-    - SHOW PICTURES
-    - LINK TO DETAILS PAGE
-    - MAKE FILTERS APPLY LIKE CHOICE 1 AND CHOICE 2
+    - DONE  PAGES OF RESULTS (https://www.django-rest-framework.org/api-guide/pagination/)
+    - DONE      SHOW PICTURES
+    -       LINK TO DETAILS PAGE
+    - DONE       MAKE FILTERS APPLY LIKE CHOICE 1 AND CHOICE 2
 
     DONE 3 INTERACTIVE FILTER BAR (https://www.django-rest-framework.org/api-guide/filtering/)
     DONE    [DOING, NEED TO USE THE SELECTED FIELDS TO FILTER THE RESULTS] (https://v3.vuejs.org/guide/computed.html#computed-properties-and-watchers)
     DONE 4 MAKE SERIALIZERS FOR EVERYTHING NEEDED (EVERY MODEL?) (https://www.django-rest-framework.org/api-guide/relations/#nested-relationships)
 
 # PUBLICATION PAGE
-    1 DOWNLOAD OPTION
+    1 DOWNLOAD OPTION ?? 
     2 FULL DETAILS
     3 IMAGE SHOWING
+
+# DONE CHANGE TO POSTGRESQL
+
+THINGS TO LOOK AT 
+
+django-registration.( OXI AN EINAI APO ADMIN)
+MANY TAGS, HOW TO HANDLE 
+
 
 # REVIEW DATABASE STRUCTURE
     1 REVIEW WHICH DATA IS NEEDED/ NOT NEEDED
 
-# CHANGE TO POSTGRESQL DONE
-# POST PAGE
-    1 DE SERIALIZE?
-
 ### ADD PAPERS.......###
 
-THINGS TO LOOK AT 
+# DOCKERIZE
+# FIX REQUIREMENTS.TXT
+CLEAN UP
+MAKE PUBLIC :D
 
+
+AND + OR STA FILTRA
+    for tags : tag1 or tag 2 or tag 3
+    for types : x or x or x 
+    for year : from x to y 
+    for author : or or or 
+    material : or or or 
+
+UNIT TESTS
+INTEGRATION TESTS grafw osa skeftw 
+kai osa mporw gia vuejs
 FIXTURES. giana mhn xanw thn bash 
-django-registration.( OXI AN EINAI APO ADMIN)
-MANY TAGS, HOW TO HANDLE 
-
+Ta koumpia na fygoun apo ekei 

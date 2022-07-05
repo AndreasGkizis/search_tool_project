@@ -3,7 +3,7 @@
     <div class="row mx-auto">
       <div class="filters col-3">
         <h2>Filters</h2>
-        <span>Current page {{ currentPage }}</span>
+        <!-- <span>Current page {{ currentPage }}</span>
         <br />
         <span> Total Pages {{ results_data.total_pages }} </span>
         <br />
@@ -17,9 +17,8 @@
 
         <span
           >Previous Link -->
-          <hr />
-          {{ results_data.previous }}</span
-        >
+
+      
 
         <div class="title">
           <div class="mb-3">
@@ -111,6 +110,9 @@
               </label>
             </div>
           </div>
+          {{filters_selected.type}}
+                    {{Array.isArray(filters_selected.type)}}
+
         </div>
 
         <div class="year">
@@ -283,23 +285,20 @@
                       d-none d-md-block
                     "
                   >
-                  <object
-    data="i.pdf"
-    width="100%"
-    style="max-height: 50rem; min-height: 20rem"
-> </object>
-                    <!-- <img class="img-fluid" :src="i.pdf" alt="" /> -->
-                    <button
-                      type="button"
+                    <a class="btn btn-success" :href="i.pdf" target="_blank"
+                      >Open PDF</a
+                    >
+                    <a
                       class="btn btn-success my-1"
                       @click="
                         this.$router.push({
                           name: 'SearchDetail',
                           params: { id: i.id },
                         }) // -> /search/detail/i.id/
-                      ">
+                      "
+                    >
                       Details
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -321,6 +320,7 @@
               <a class="page-link" @click="loadNext()">Next</a>
             </li>
           </ul>
+          {{displayPages}}
         </nav>
       </div>
     </div>
@@ -484,8 +484,26 @@ export default {
         x.tag.toLowerCase().includes(this.tagQuery)
       );
     },
+    displayPages() {
+      const totalPages = this.total_pages;
+      let currentPage = this.currentPage;
+
+     if (totalPages > 3) {
+              if ([1, 2].includes(currentPage)) currentPage = 3;
+      else if ([totalPages -1, totalPages].includes(currentPage)) currentPage = totalPages - Math.trunc(5 / 2);  
+      return [...Array(5).keys()].map(i => i - Math.trunc(5 / 2) + currentPage)
+      }else {
+        return totalPages
+      }
+     }
+      
+    
   },
   methods: {
+    sayHi() {
+      console.log("hi") // dummy testing function
+    },
+    
     goToDetail() {},
     loadNext() {
       this.currentPage += 1;

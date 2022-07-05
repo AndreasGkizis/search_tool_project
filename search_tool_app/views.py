@@ -40,7 +40,7 @@ CLASS BASED VIEWS
 class PaperViewSet(ModelViewSet):
     serializer_class = PaperSerializer  
     permission_classes = [AllowAny]     # added for later on permissions of users etc.. not a bad idea to define
-    pagination_class = PagePagination   
+    pagination_class = PagePagination
 
     def get_queryset(self):
         # A dictionary which gathers all the filters applied 

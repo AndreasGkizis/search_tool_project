@@ -29,7 +29,7 @@ const routes = [
     component: Post
   },  
   {
-    path: '/search/detail/:id/',
+    path: '/search/detail/:id?/',
     name: 'SearchDetail',
     component: SearchDetail,
     props:  true 
