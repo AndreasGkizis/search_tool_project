@@ -51,4 +51,5 @@ UNIT TESTS
 INTEGRATION TESTS grafw osa skeftw 
 kai osa mporw gia vuejs
 FIXTURES. giana mhn xanw thn bash 
-Ta koumpia na fygoun apo ekei 
+Ta koumpia na fygoun apo ekei
+fix fucking year field to be year ONLY (maybe even numfield I dont know anymore)

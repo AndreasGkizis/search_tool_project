@@ -14,7 +14,7 @@ class Type(models.Model):
 
 
 class Language(models.Model):
-    language = models.CharField(max_length=100)
+    language = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return str(self.language)
@@ -29,7 +29,7 @@ class Year(models.Model):
         return str(self.year_published.year)
 
     def year(self):
-        return self.year_published.year
+        return self.year_published
 
 
 class Tag(models.Model):
