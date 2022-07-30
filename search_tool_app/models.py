@@ -28,9 +28,6 @@ class Year(models.Model):
     def __str__(self):
         return str(self.year_published.year)
 
-    def year(self):
-        return self.year_published
-
 
 class Tag(models.Model):
     tag = models.CharField(max_length=50)
@@ -74,7 +71,7 @@ class Paper(models.Model):
 
     def delete(self, *args, **kwargs):
         self.pdf.delete()
-        super().delete(*args, **kwargs)  # Call the "real" save() method.
+        super().delete(*args, **kwargs)  # Call the "real" delete() method.
 
     # def get_absolute_url(self):
     #     return reverse('show_publication', kwargs={'slug': self.slug})
