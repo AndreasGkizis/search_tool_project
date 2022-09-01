@@ -3,22 +3,6 @@
     <div class="row mx-auto">
       <div class="filters col-3">
         <h2>Filters</h2>
-        <!-- <span>Current page {{ currentPage }}</span>
-        <br />
-        <span> Total Pages {{ results_data.total_pages }} </span>
-        <br />
-        <span>
-          Next Link
-          <hr />
-          {{ results_data.next }}</span
-        >
-        <br />
-        <br />
-
-        <span
-          >Previous Link -->
-
-      
 
         <div class="title">
           <div class="mb-3">
@@ -41,25 +25,13 @@
 
         <div class="tags">
           <h4>Tags</h4>
-          <button
-            class="btn pt-0"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapsetags"
-            aria-expanded="false"
-            aria-controls="collapsetags"
-          >
-            Show tags
-          </button>
 
-          <div class="collapse" id="collapsetags">
             <input
               type="text"
               class="form-control"
               v-model="tagQuery"
               placeholder="filter tags "
             />
-            <br />
             <div v-for="i in computedTags" :key="i.id">
               <div class="form-check form-switch">
                 <input
@@ -75,27 +47,18 @@
                 >
               </div>
             </div>
-            <br />
 
-            <!-- <div v-for="i in initial_filter_data.tag" :key="i.id">
-            <div class="form-check form-switch">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                role="switch"
-                :id="i.tag"
-                :value="i.id"
-                v-model="filters_selected.tag"
-              />
-              <label class="form-check-label" :for="i.tag"> {{ i.tag }}</label>
-            </div>
-          </div> -->
-          </div>
         </div>
 
         <div class="type">
           <h3>Types</h3>
-          <div v-for="i in initial_filter_data.type" :key="i.id">
+          <input
+              type="text"
+              class="form-control"
+              v-model="typeQuery"
+              placeholder="filter types"
+            />
+          <div v-for="i in computedTypes" :key="i.id">
             <div class="form-check form-switch">
               <input
                 class="form-check-input"
@@ -144,7 +107,14 @@
 
         <div class="author">
           <h3>Author</h3>
-          <div v-for="i in initial_filter_data.author" :key="i.id">
+          <input
+              type="text"
+              class="form-control"
+              v-model="authorQuery"
+              placeholder="filter types"
+            />
+
+          <div v-for="i in computedAuthor" :key="i.id">
             <div class="form-check form-switch">
               <input
                 class="form-check-input"
@@ -163,7 +133,15 @@
 
         <div class="material">
           <h3>Material</h3>
-          <div v-for="i in initial_filter_data.material" :key="i.id">
+
+          <input
+              type="text"
+              class="form-control"
+              v-model="materialQuery"
+              placeholder="filter types"
+            />
+
+          <div v-for="i in computedMaterial" :key="i.id">
             <div class="form-check form-switch">
               <input
                 class="form-check-input"
@@ -280,25 +258,20 @@
                     class="
                       card-body
                       col-md-3
-                      mx-auto
                       text-center
-                      d-none d-md-block
-                    "
-                  >
-                    <a class="btn btn-success" :href="i.pdf" target="_blank"
-                      >Open PDF</a
-                    >
-                    <a
-                      class="btn btn-success my-1"
+                    ">
+                    <div class="btn-group-vertical gap-3 mx-auto">                    
+                      <button class="btn btn-primary" type="button" :href="i.pdf" target="_blank"
+                      >Open PDF</button>
+                      <button class="btn btn-primary" type="button"
                       @click="
                         this.$router.push({
                           name: 'SearchDetail',
                           params: { id: i.id },
                         }) // -> /search/detail/i.id/
                       "
-                    >
-                      Details
-                    </a>
+                      >Details</button>
+                    </div>                   
                   </div>
                 </div>
               </div>
@@ -352,7 +325,12 @@ export default {
       },
       results_data: [],
       tagQuery: [],
-      computedtags: [],
+      typeQuery: [],
+      authorQuery: [],
+      materialQuery: [],
+      // computedtags: [],
+      // computedTypes: [],
+      // computedAuthor:[],
       hideNextButton: true,
       hidePreviousButton: false,
       currentPage: 1,
@@ -484,6 +462,21 @@ export default {
         x.tag.toLowerCase().includes(this.tagQuery)
       );
     },
+    computedTypes(typeQuery) {
+      return this.initial_filter_data.type.filter((x) =>
+        x.type.toLowerCase().includes(this.typeQuery)
+      );
+    },
+    computedAuthor(authorQuery) {
+      return this.initial_filter_data.author.filter((x) =>
+        x.name.toLowerCase().includes(this.authorQuery)
+      );
+    },
+    computedMaterial(materialQuery) {
+      return this.initial_filter_data.material.filter((x) =>
+        x.material.toLowerCase().includes(this.materialQuery)
+      );
+    },
     displayPages() {
       const totalPages = this.total_pages;
       let currentPage = this.currentPage;
@@ -501,7 +494,7 @@ export default {
   },
   methods: {
     sayHi() {
-      console.log("hi") // dummy testing function
+      console.log("hi, this test funtion has activated") // dummy testing function
     },
     
     goToDetail() {},

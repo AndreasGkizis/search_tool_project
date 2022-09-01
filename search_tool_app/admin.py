@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Type, Year, Paper, Material, Tag, Language, Author, PaperUsedMaterial
+from .models import (PaperUsedMaterial, Type, Year, Paper, Material, Tag,
+                     Language, Author)
 
 
 class PaperAdmin(admin.ModelAdmin):

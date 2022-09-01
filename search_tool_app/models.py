@@ -1,9 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
-from django.urls import reverse
 import datetime
-
-from pkg_resources import require
 
 
 class Type(models.Model):

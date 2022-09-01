@@ -87,66 +87,21 @@
         </div>
       </div>
     </div>
-    <button type="button"
-          class="btn btn-primary" 
-          @click="this.$router.back()">
-    Go back </button>
-    <div class="popuppdf">
-      <div class="container p-5">
-        <!-- Button trigger modal -->
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Open PDF
-        </button>
-        <!-- Modal -->
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog modal-fullscreen modal-dialog-scrollable">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title text-danger" id="exampleModalLabel">
-                  PDF
-                </h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <iframe
-                  src="https://therichpost.com/sample.pdf#toolbar=0&navpanes=0&scrollbar=0"
-                  frameBorder="0"
-                  scrolling="auto"
-                  height="500%"
-                  width="100%"
-                >
-                </iframe>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-warning"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+                  <div
+                    class="
+                      card-body
+                      text-center
+                    ">
+                    <div class="btn-group-lg gap mx-auto">                    
+                      <button class="btn btn-primary" type="button" :href="results_detail.pdf" target="_blank"
+                      >Open PDF</button>
+                      <button class="btn btn-primary" type="button"
+                      @click="this.$router.back()"
+                      >Back</button>
+                    </div>                   
+                  </div>
+
   </div>
 </template>
 
