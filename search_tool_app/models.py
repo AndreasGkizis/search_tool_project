@@ -70,11 +70,6 @@ class Paper(models.Model):
         self.pdf.delete()
         super().delete(*args, **kwargs)  # Call the "real" delete() method.
 
-    # def get_absolute_url(self):
-    #     return reverse('show_publication', kwargs={'slug': self.slug})
-
-    # def delete(self, using=None, keep_parents=False):
-
     def __str__(self):
         return str(self.title)
 

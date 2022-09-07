@@ -8,9 +8,6 @@ from rest_framework.response import Response
 from .models import (Type, Language, Year, Tag, Material, Author, Paper,
                      )
 
-# new things for Vue in template
-# imports for rest_framework
-
 
 ''' start of class based views for rest_framework '''
 
@@ -77,9 +74,9 @@ class PaperViewSet(ModelViewSet):
         # If filter_dict is empty return all
         if filters_dict:
             results = list(Paper.objects.filter(**filters_dict).distinct())
+            # the ** is unpacking a Dictionary, very cool
         else:
             results = Paper.objects.all().distinct()
-
         return results
 
 

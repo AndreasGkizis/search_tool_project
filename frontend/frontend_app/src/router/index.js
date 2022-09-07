@@ -39,9 +39,10 @@ const routes = [
     path: '/:catchAll(.*)',
     name: 'PageNotFound',
     component: PageNotFound
+    // '/:catchAll(.*)' special Vue thing which catches any page that is not in the above 
   }
 ]
-
+// allows for forward and back actions in browser history
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes

@@ -1,3 +1,3 @@
 <template>
-    <h1>Page Not found, you did a BooBoo ...</h1>
+    <h1>Page Not found, There was some error ...</h1>
 </template>

@@ -54,7 +54,7 @@
 #nav {
   background: #666;
 }
-
+/* This find the active page( already applied by default as a class) and applies style to it  */
 #nav a.router-link-exact-active {
   color: #ffffff;
   background: #369;
