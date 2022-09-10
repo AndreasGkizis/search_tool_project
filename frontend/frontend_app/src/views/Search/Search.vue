@@ -148,7 +148,6 @@
                           {{ i.author[p - 1].name }}
                         </div>
                       </li>
-
                       <li class="list-group-item">
                         <div class="fw-bold">Tags :</div>
                         <div class="list-inline-item" v-for="p in i.tag.length" :key="p.id" id="tags">
@@ -245,6 +244,7 @@ export default {
   },
   mounted() {
     // FILTER FIELDS DATA
+    // replace the console log with something like bugsnag
     getAPI
       .get("/year/")
       .then((response) => {

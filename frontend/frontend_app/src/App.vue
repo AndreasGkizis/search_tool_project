@@ -22,7 +22,6 @@
                   >Home</router-link
                 >
               </li>
-
               <li class="nav-item">
                 <router-link :to="{ name: 'Post' }" class="nav-link"
                   >Post</router-link
