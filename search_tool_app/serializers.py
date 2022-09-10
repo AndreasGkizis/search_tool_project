@@ -57,16 +57,16 @@ class PaperSerializer(serializers.ModelSerializer):
 
         fields = '__all__'
 
-        ['title',
-         'slug',
-         'pdf',
-         'abstract',
-         'reviewed',
-         'date_added',
-         'year_id',
-         'type_id',
-         'language',
-         'author',
-         'tag',
-         'material',
-         'id']
+        # ['title',
+        #  'slug',
+        #  'pdf',
+        #  'abstract',
+        #  'reviewed',
+        #  'date_added',
+        #  'year_id',
+        #  'type_id',
+        #  'language',
+        #  'author',
+        #  'tag',
+        #  'material',
+        #  'id']
