@@ -13,7 +13,7 @@ from .models import (Type, Language, Year, Tag, Material, Author, Paper,
 
 
 class PagePagination(PageNumberPagination):
-    page_size = 4
+    page_size = 3
     # Set page size here
 
     def get_paginated_response(self, data):

@@ -41,9 +41,6 @@
               </label>
             </div>
           </div>
-          {{ filters_selected.type }}
-          {{ Array.isArray(filters_selected.type) }}
-
         </div>
 
         <div class="year">
