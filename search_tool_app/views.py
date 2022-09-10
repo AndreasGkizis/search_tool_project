@@ -13,7 +13,7 @@ from .models import (Type, Language, Year, Tag, Material, Author, Paper,
 
 
 class PagePagination(PageNumberPagination):
-    page_size = 2
+    page_size = 4
     # Set page size here
 
     def get_paginated_response(self, data):
@@ -33,43 +33,41 @@ CLASS BASED VIEWS
 
 class PaperViewSet(ModelViewSet):
     serializer_class = PaperSerializer
-    # added for later on permissions of users etc.. 
+    # added for later on permissions of users etc..
     permission_classes = [AllowAny]
     pagination_class = PagePagination
+
+    def append_to_list(self, x):
+        return list(map(int, self.request.GET.getlist(x)))
 
     def get_queryset(self):
         # A dictionary which gathers all the filters applied
         filters_dict = {}
+        params = self.request.query_params
 
         # Adding to the Dictionary with the key:value pairs that Django can
         # use to filter objects
-        if self.request.query_params.get('title'):
-            filters_dict['title__icontains'] = self.request.query_params.get(
-                'title')
 
-        if self.request.query_params.get('year[]'):
-            filters_dict['year_id__in'] = list(
-                map(int, self.request.query_params.get('year[]')))
+        if params.get('title'):
+            filters_dict['title__icontains'] = params.__getitem__('title')
 
-        if self.request.GET.getlist('type[]'):
-            filters_dict['type_id__in'] = list(
-                map(int, self.request.GET.getlist('type[]')))
+        if params.getlist('year[]'):
+            filters_dict['year_id__in'] = self.append_to_list('year[]')
 
-        if self.request.query_params.get('langueage[]'):
-            filters_dict['language__in'] = list(
-                map(int, self.request.query_params.get('langueage[]')))
+        if params.getlist('type[]'):
+            filters_dict['type_id__in'] = self.append_to_list('type[]')
 
-        if self.request.query_params.get('author[]'):
-            filters_dict['author__in'] = list(
-                map(int, self.request.query_params.get('author[]')))
+        if params.getlist('language[]'):
+            filters_dict['language__in'] = self.append_to_list('language[]')
 
-        if self.request.GET.getlist('tag[]'):
-            filters_dict['tag__in'] = list(
-                map(int, self.request.GET.getlist('tag[]')))
+        if params.getlist('author[]'):
+            filters_dict['author__in'] = self.append_to_list('author[]')
 
-        if self.request.query_params.get('material[]'):
-            filters_dict['material__in'] = list(
-                map(int, self.request.query_params.get('material[]')))
+        if params.getlist('tag[]'):
+            filters_dict['tag__in'] = self.append_to_list('tag[]')
+
+        if params.getlist('material[]'):
+            filters_dict['material__in'] = self.append_to_list('material[]')
 
         # If filter_dict is empty return all
         if filters_dict:
