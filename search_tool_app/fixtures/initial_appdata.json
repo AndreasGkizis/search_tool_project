@@ -537,5 +537,113 @@
       9
     ]
   }
+},
+{
+  "model": "search_tool_app.paperusedmaterial",
+  "pk": 1,
+  "fields": {
+    "material": 1,
+    "paper": 1,
+    "material_used": false
+  }
+},
+{
+  "model": "search_tool_app.paperusedmaterial",
+  "pk": 2,
+  "fields": {
+    "material": 2,
+    "paper": 1,
+    "material_used": false
+  }
+},
+{
+  "model": "search_tool_app.paperusedmaterial",
+  "pk": 4,
+  "fields": {
+    "material": 4,
+    "paper": 1,
+    "material_used": false
+  }
+},
+{
+  "model": "search_tool_app.paperusedmaterial",
+  "pk": 5,
+  "fields": {
+    "material": 4,
+    "paper": 2,
+    "material_used": false
+  }
+},
+{
+  "model": "search_tool_app.paperusedmaterial",
+  "pk": 6,
+  "fields": {
+    "material": 1,
+    "paper": 3,
+    "material_used": false
+  }
+},
+{
+  "model": "search_tool_app.paperusedmaterial",
+  "pk": 7,
+  "fields": {
+    "material": 7,
+    "paper": 4,
+    "material_used": true
+  }
+},
+{
+  "model": "search_tool_app.paperusedmaterial",
+  "pk": 8,
+  "fields": {
+    "material": 3,
+    "paper": 4,
+    "material_used": false
+  }
+},
+{
+  "model": "search_tool_app.paperusedmaterial",
+  "pk": 9,
+  "fields": {
+    "material": 5,
+    "paper": 7,
+    "material_used": false
+  }
+},
+{
+  "model": "search_tool_app.paperusedmaterial",
+  "pk": 10,
+  "fields": {
+    "material": 4,
+    "paper": 6,
+    "material_used": false
+  }
+},
+{
+  "model": "search_tool_app.paperusedmaterial",
+  "pk": 11,
+  "fields": {
+    "material": 7,
+    "paper": 6,
+    "material_used": false
+  }
+},
+{
+  "model": "search_tool_app.paperusedmaterial",
+  "pk": 12,
+  "fields": {
+    "material": 8,
+    "paper": 8,
+    "material_used": false
+  }
+},
+{
+  "model": "search_tool_app.paperusedmaterial",
+  "pk": 13,
+  "fields": {
+    "material": 8,
+    "paper": 7,
+    "material_used": false
+  }
 }
 ]

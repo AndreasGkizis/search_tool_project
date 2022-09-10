@@ -27,22 +27,25 @@ const routes = [
     path: '/post',
     name: 'Post',
     component: Post
-  },  
+  },
   {
+    // This will allow to grap parameters into the props pas of each component 
+
     path: '/search/detail/:id?/',
     name: 'SearchDetail',
     component: SearchDetail,
-    props:  true 
-    // This will allow to grap parameters into the props pas of each component 
+    props: true
   },
   {
+    // '/:catchAll(.*)' special Vue thing which catches any page that is not in the above 
+
     path: '/:catchAll(.*)',
     name: 'PageNotFound',
     component: PageNotFound
-    // '/:catchAll(.*)' special Vue thing which catches any page that is not in the above 
   }
 ]
 // allows for forward and back actions in browser history
+
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes

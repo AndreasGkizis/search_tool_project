@@ -43,7 +43,6 @@
       </nav>
     </div>
     <router-view />
-    
     <!-- all components (pages..) are injected into the router-view component . all else stays the same FOR EVERY PAGE  -->
   </div>
 </template>

@@ -11,7 +11,8 @@ class PaperUsedMaterialAdmin(admin.ModelAdmin):
     list_display = ('paper', 'material', 'material_used',)
 
 
-# Register your models here. Language, PaperUsedMaterial
+# Register your models here. Language, PaperUsedMaterial, etc..
+
 admin.site.register(Type)
 admin.site.register(Year)
 admin.site.register(Language)
