@@ -82,7 +82,7 @@ class ModelauthorTest(TestCase):
 
     def setUp(self):
         self.data1 = Author.objects.create(
-            name="onerandomperson",  country_of_origin="shitland")
+            name="onerandomperson",  country_of_origin="someland")
 
     def test_author_model_test(self):
         '''
@@ -91,7 +91,7 @@ class ModelauthorTest(TestCase):
         data = self.data1
         self.assertTrue(isinstance(data, Author))
         self.assertEqual(str(data), "onerandomperson")
-        self.assertEqual(data.country_of_origin, "shitland")
+        self.assertEqual(data.country_of_origin, "someland")
 
 
 class ModelpaperusedmaterialTest(TestCase):

@@ -404,7 +404,7 @@ export default {
   },
   methods: {
     sayHi() {
-      console.log("hi, this test funtion has activated") 
+      console.log("hi, this test funtion has activated")
       // dummy testing function
     },
 
