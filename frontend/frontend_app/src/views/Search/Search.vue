@@ -170,7 +170,7 @@
                       text-center
                     ">
                     <div class="btn-group-vertical gap-3 mx-auto">
-                      <button class="btn btn-primary" type="button" :href="i.pdf" target="_blank">Open PDF</button>
+                      <a class="btn btn-primary" type="button" :href="i.pdf" target="_blank">Open PDF</a>
                       <!-- Open pdf stopped working... no idea why -->
                       <button class="btn btn-primary" type="button" @click="
                         this.$router.push({
