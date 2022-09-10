@@ -1,0 +1,541 @@
+[
+{
+  "model": "search_tool_app.type",
+  "pk": 1,
+  "fields": {
+    "type": "Papers"
+  }
+},
+{
+  "model": "search_tool_app.type",
+  "pk": 2,
+  "fields": {
+    "type": "Posters"
+  }
+},
+{
+  "model": "search_tool_app.type",
+  "pk": 3,
+  "fields": {
+    "type": "Case Studies"
+  }
+},
+{
+  "model": "search_tool_app.type",
+  "pk": 4,
+  "fields": {
+    "type": "Journal"
+  }
+},
+{
+  "model": "search_tool_app.type",
+  "pk": 5,
+  "fields": {
+    "type": "Book"
+  }
+},
+{
+  "model": "search_tool_app.type",
+  "pk": 6,
+  "fields": {
+    "type": "Article"
+  }
+},
+{
+  "model": "search_tool_app.type",
+  "pk": 7,
+  "fields": {
+    "type": "Thesis"
+  }
+},
+{
+  "model": "search_tool_app.language",
+  "pk": 1,
+  "fields": {
+    "language": "Spanish"
+  }
+},
+{
+  "model": "search_tool_app.language",
+  "pk": 2,
+  "fields": {
+    "language": "English"
+  }
+},
+{
+  "model": "search_tool_app.language",
+  "pk": 3,
+  "fields": {
+    "language": "Greek"
+  }
+},
+{
+  "model": "search_tool_app.language",
+  "pk": 4,
+  "fields": {
+    "language": "Italian"
+  }
+},
+{
+  "model": "search_tool_app.year",
+  "pk": 1,
+  "fields": {
+    "year_published": "2020-09-10",
+    "convention_published": "Convention 1",
+    "convention_venue": "Barcelona"
+  }
+},
+{
+  "model": "search_tool_app.year",
+  "pk": 2,
+  "fields": {
+    "year_published": "2019-11-01",
+    "convention_published": "Convention 2",
+    "convention_venue": "Athens"
+  }
+},
+{
+  "model": "search_tool_app.year",
+  "pk": 3,
+  "fields": {
+    "year_published": "2005-05-10",
+    "convention_published": "Convention 3",
+    "convention_venue": "Berlin"
+  }
+},
+{
+  "model": "search_tool_app.tag",
+  "pk": 1,
+  "fields": {
+    "tag": "Lifting"
+  }
+},
+{
+  "model": "search_tool_app.tag",
+  "pk": 2,
+  "fields": {
+    "tag": "Restoration"
+  }
+},
+{
+  "model": "search_tool_app.tag",
+  "pk": 3,
+  "fields": {
+    "tag": "Mosaics"
+  }
+},
+{
+  "model": "search_tool_app.tag",
+  "pk": 4,
+  "fields": {
+    "tag": "Stone"
+  }
+},
+{
+  "model": "search_tool_app.tag",
+  "pk": 5,
+  "fields": {
+    "tag": "Metal"
+  }
+},
+{
+  "model": "search_tool_app.tag",
+  "pk": 6,
+  "fields": {
+    "tag": "Wood"
+  }
+},
+{
+  "model": "search_tool_app.tag",
+  "pk": 7,
+  "fields": {
+    "tag": "In-situ"
+  }
+},
+{
+  "model": "search_tool_app.tag",
+  "pk": 8,
+  "fields": {
+    "tag": "Underwater"
+  }
+},
+{
+  "model": "search_tool_app.tag",
+  "pk": 9,
+  "fields": {
+    "tag": "Methodology"
+  }
+},
+{
+  "model": "search_tool_app.material",
+  "pk": 1,
+  "fields": {
+    "material": "Acetone"
+  }
+},
+{
+  "model": "search_tool_app.material",
+  "pk": 2,
+  "fields": {
+    "material": "Paraloid B-44"
+  }
+},
+{
+  "model": "search_tool_app.material",
+  "pk": 3,
+  "fields": {
+    "material": "Paraloid B-48N"
+  }
+},
+{
+  "model": "search_tool_app.material",
+  "pk": 4,
+  "fields": {
+    "material": "Paraloid B-72"
+  }
+},
+{
+  "model": "search_tool_app.material",
+  "pk": 5,
+  "fields": {
+    "material": "Paraloid B-67"
+  }
+},
+{
+  "model": "search_tool_app.material",
+  "pk": 6,
+  "fields": {
+    "material": "Renaissance Wax"
+  }
+},
+{
+  "model": "search_tool_app.material",
+  "pk": 7,
+  "fields": {
+    "material": "Hide Glue"
+  }
+},
+{
+  "model": "search_tool_app.material",
+  "pk": 8,
+  "fields": {
+    "material": "Citric Acid"
+  }
+},
+{
+  "model": "search_tool_app.author",
+  "pk": 1,
+  "fields": {
+    "name": "Dr Sunshine Russon",
+    "country_of_origin": "US"
+  }
+},
+{
+  "model": "search_tool_app.author",
+  "pk": 2,
+  "fields": {
+    "name": "Stav Ruth",
+    "country_of_origin": "BG"
+  }
+},
+{
+  "model": "search_tool_app.author",
+  "pk": 3,
+  "fields": {
+    "name": "Stana Ruthie Ruser",
+    "country_of_origin": "US"
+  }
+},
+{
+  "model": "search_tool_app.author",
+  "pk": 4,
+  "fields": {
+    "name": "Oscar McRuth",
+    "country_of_origin": "DE"
+  }
+},
+{
+  "model": "search_tool_app.author",
+  "pk": 5,
+  "fields": {
+    "name": "Stacy Remzija Popularkins",
+    "country_of_origin": "PO"
+  }
+},
+{
+  "model": "search_tool_app.author",
+  "pk": 6,
+  "fields": {
+    "name": "Rambone R. Monster-Edwards",
+    "country_of_origin": "IT"
+  }
+},
+{
+  "model": "search_tool_app.author",
+  "pk": 7,
+  "fields": {
+    "name": "Ruth O'Rachelle",
+    "country_of_origin": "IE"
+  }
+},
+{
+  "model": "search_tool_app.author",
+  "pk": 8,
+  "fields": {
+    "name": "Oscar Stanie Rues",
+    "country_of_origin": "UK"
+  }
+},
+{
+  "model": "search_tool_app.author",
+  "pk": 9,
+  "fields": {
+    "name": "Russell Rusers",
+    "country_of_origin": "US"
+  }
+},
+{
+  "model": "search_tool_app.author",
+  "pk": 10,
+  "fields": {
+    "name": "Stanley R. Reisz",
+    "country_of_origin": "SW"
+  }
+},
+{
+  "model": "search_tool_app.author",
+  "pk": 11,
+  "fields": {
+    "name": "Stavros Rudomanski",
+    "country_of_origin": "GR"
+  }
+},
+{
+  "model": "search_tool_app.author",
+  "pk": 12,
+  "fields": {
+    "name": "Oscar Ruths",
+    "country_of_origin": "UK"
+  }
+},
+{
+  "model": "search_tool_app.paper",
+  "pk": 1,
+  "fields": {
+    "title": "Research for Paraloid-B74 vs B-44",
+    "slug": "research-for-paraloid-b74-vs-b-44",
+    "pdf": "papers/pdfs/Research_for_Paraloid-B74_vs_B-44.pdf",
+    "abstract": "This is a placeholder for an abstract for Research for Paraloid-B74 vs B-44",
+    "reviewed": false,
+    "date_added": "2022-09-10",
+    "year_id": 1,
+    "type_id": 6,
+    "language": [
+      2,
+      3
+    ],
+    "author": [
+      1,
+      11
+    ],
+    "tag": [
+      9
+    ]
+  }
+},
+{
+  "model": "search_tool_app.paper",
+  "pk": 2,
+  "fields": {
+    "title": "Poster for Underwater Object lifting",
+    "slug": "poster-for-underwater-object-lifting",
+    "pdf": "papers/pdfs/Poster_for_Underwater_Object_lifting.pdf",
+    "abstract": "This is a placeholder for an abstract for Poster for Underwater Object lifting",
+    "reviewed": false,
+    "date_added": "2022-09-10",
+    "year_id": 2,
+    "type_id": 2,
+    "language": [
+      3,
+      4
+    ],
+    "author": [
+      4,
+      5
+    ],
+    "tag": [
+      1,
+      8
+    ]
+  }
+},
+{
+  "model": "search_tool_app.paper",
+  "pk": 3,
+  "fields": {
+    "title": "Case study: Conservation of church",
+    "slug": "case-study-conservation-of-church",
+    "pdf": "papers/pdfs/Case_study_Conservation_of_church.pdf",
+    "abstract": "This is a placeholder for an abstract for Case study: Conservation of church",
+    "reviewed": false,
+    "date_added": "2022-09-10",
+    "year_id": 3,
+    "type_id": 3,
+    "language": [
+      1,
+      2
+    ],
+    "author": [
+      8,
+      9
+    ],
+    "tag": [
+      2,
+      3,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "search_tool_app.paper",
+  "pk": 4,
+  "fields": {
+    "title": "Comparison between glues on wooden substrate",
+    "slug": "comparison-between-glues-on-wooden-substrate",
+    "pdf": "papers/pdfs/Comparison_between_glues_on_wooden_substrate.pdf",
+    "abstract": "This is a placeholder for an abstract for \r\nComparison between glues on wooden substrate",
+    "reviewed": false,
+    "date_added": "2022-09-10",
+    "year_id": 3,
+    "type_id": 7,
+    "language": [
+      1,
+      3
+    ],
+    "author": [
+      4,
+      11
+    ],
+    "tag": [
+      6,
+      7,
+      9
+    ]
+  }
+},
+{
+  "model": "search_tool_app.paper",
+  "pk": 5,
+  "fields": {
+    "title": "Underwater excavation",
+    "slug": "underwater-excavation",
+    "pdf": "papers/pdfs/Underwater_excavation.pdf",
+    "abstract": "This is a placeholder for an abstract for \r\nUnderwater excavation",
+    "reviewed": false,
+    "date_added": "2022-09-10",
+    "year_id": 1,
+    "type_id": 2,
+    "language": [
+      2
+    ],
+    "author": [
+      1
+    ],
+    "tag": [
+      4,
+      5,
+      6,
+      8,
+      9
+    ]
+  }
+},
+{
+  "model": "search_tool_app.paper",
+  "pk": 6,
+  "fields": {
+    "title": "In-situ Ceramics restoration",
+    "slug": "in-situ-ceramics-restoration",
+    "pdf": "papers/pdfs/In-situ_Ceramics_restoration.pdf",
+    "abstract": "This is a placeholder for an abstract for \r\n\r\nIn-situ Ceramics restoration",
+    "reviewed": false,
+    "date_added": "2022-09-10",
+    "year_id": 2,
+    "type_id": 5,
+    "language": [
+      1,
+      2
+    ],
+    "author": [
+      6,
+      7,
+      8
+    ],
+    "tag": [
+      3,
+      4,
+      6,
+      7
+    ]
+  }
+},
+{
+  "model": "search_tool_app.paper",
+  "pk": 7,
+  "fields": {
+    "title": "Proposals for reconstructing sections in mosaics",
+    "slug": "proposals-for-reconstructing-sections-in-mosaics",
+    "pdf": "papers/pdfs/Proposals_for_reconstructing_missing_sections_in_mosaics_Pt8bSTo.pdf",
+    "abstract": "This is a placeholder for an abstract for \r\nProposals for reconstructing sections in mosaics",
+    "reviewed": false,
+    "date_added": "2022-09-10",
+    "year_id": 1,
+    "type_id": 1,
+    "language": [
+      2,
+      3
+    ],
+    "author": [
+      1,
+      4,
+      6
+    ],
+    "tag": [
+      2,
+      3,
+      4,
+      9
+    ]
+  }
+},
+{
+  "model": "search_tool_app.paper",
+  "pk": 8,
+  "fields": {
+    "title": "Foam-honeycomb support for extracted mosaics",
+    "slug": "foam-honeycomb-support-for-extracted-mosaics",
+    "pdf": "papers/pdfs/Foam-honeycomb_support_for_extracted_mosaics.pdf",
+    "abstract": "This is a placeholder for an abstract for \r\nFoam-honeycomb support for extracted mosaics",
+    "reviewed": false,
+    "date_added": "2022-09-10",
+    "year_id": 2,
+    "type_id": 7,
+    "language": [
+      1,
+      3
+    ],
+    "author": [
+      7,
+      9,
+      11
+    ],
+    "tag": [
+      3,
+      4,
+      6,
+      9
+    ]
+  }
+}
+]
