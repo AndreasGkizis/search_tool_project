@@ -100,6 +100,7 @@ I must admit there are a lot still I would like to add to this project, below yo
 
 To do:
 - Add tests
+- Add User roles
 - Add the option of posting new publications from the Post page
 - Ability to export a number of selected publications (in CSV?)
 - Dockerise
