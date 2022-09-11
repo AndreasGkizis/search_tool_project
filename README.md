@@ -1,7 +1,7 @@
 # Search Tool Project
 ## Description
 
-This application has been created with the aim to help conservators in finding relative publucations according to the materials used in the research.
+This application has been created with the aim to help conservators in finding relative publications according to the materials used in the research.
 
 This would allow for the user to navigate the publication according to the materials they have available to find the options an techniques possible.
 This was done as part of a self learning process and thesis for the Technological Educational Institute of Athens, Department of Conservation of Antiquities and Works of Art. 
@@ -13,13 +13,13 @@ This was done as part of a self learning process and thesis for the Technologica
 1. [Setup](#setup)
 1. [Project Status](#project-status)
 1. [Room for Improvement](#room-for-improvement)
-1. [Acknowledgements](#acknowledgements)
+1. [Acknowledgments](#acknowledgments)
 1. [Contact](#contact)
 
 
 ## Technologies Used
 - Python 3.8.5
-- PosgreSQL 14.5
+- PostgreSQL 14.5
 - Django 3.1.6
 - Django REST framework 3.13.0
 - Vue 3 Js
@@ -30,19 +30,19 @@ In the project's directory run
 ```
 $ python manage.py runserver
 ```
-This will run the backend Django server which will then be ready to serve the frontend part.
+This will run the back-end Django server which will then be ready to serve the front-end part.
 
 Open another window and navigate to 
 ```
 $ cd frontend/frontend/
 ```
-After that run the frontend server as well 
+After that run the front-end server as well 
 ```
 $ npm run serve 
 ```
 If setup is default navigate to http://localhost:8080/search and you should reach the page below .
 
-This is a scheenshot of the search in which by switching the toggles on and of the results will be updated to match the selected items.
+This is a screenshot of the search in which by switching the toggles on and of the results will be updated to match the selected items.
 The "Open PDF" button on the right will open the publication file in a new tab and the "Details" button will open the detailed view of each publication.
 
 The text input over every search field is responsive and will filter the available options to present only the ones matching the input.
@@ -52,7 +52,7 @@ The text input over every search field is responsive and will filter the availab
 ## Setup
 In this section I will describe how to set this project up. The description might seems too detailed but this is how I would appreciate finding it as new to programming.
 
-It is suggested to use a virtual enviroment when setting up, this way your local system will remain unafftected by the packages involved 
+It is suggested to use a virtual environment when setting up, this way your local system will remain unaffected by the packages involved 
 
 **[Here](https://realpython.com/intro-to-pyenv/#virtual-environments-and-pyenv)** is a great guide to using pyenv which has really helped me
 
@@ -74,19 +74,19 @@ It is suggested to use a virtual enviroment when setting up, this way your local
     ```
     $ cd search_tool_project/
     ```
-3. Install all the required packages for it to run as intented.
+3. Install all the required packages for it to run as intended.
     ```
     $ pip install -r requirments.txt
     ```
-4. Migrate the tables and schema to the PosgreSQL database according to the models of Django.
+4. Migrate the tables and schema to the PostgreSQL database according to the models of Django.
      ```
     $ python manage.py migrate
     ```
-5. Since now the schema is created we can populate it with data I have created for the demonastration of the weboages functinality.
+5. Since now the schema is created we can populate it with data I have created for the demonstration of the wed-page's functionality.
     ```
     $ python manage.py loaddata search_tool_app/fixtures/initial_appdata.json
     ```
-9. Navigate inside the froned folder and install vue/cli
+9. Navigate inside the front-end folder and install vue/cli
     ```
     $ cd frontend/frontend && npm install @vue/cli
     ```
@@ -108,9 +108,9 @@ To do:
 - And more !
 
 
-## Acknowledgements
+## Acknowledgments
 
-**Many thanks to [Sergios Aftsidis](https://github.com/safts) and [Panagiotis Spirou](https://github.com/panagspirou) for the help and guidance througout this :)**
+**Many thanks to [Sergios Aftsidis](https://github.com/safts) and [Panagiotis Spirou](https://github.com/panagspirou) for the help and guidance throughout this :)**
 
 
 ## Contact
