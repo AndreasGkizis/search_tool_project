@@ -1,10 +1,4 @@
 # Search Tool Project
-## Description
-
-This application has been created with the aim to help conservators in finding relative publications according to the materials used in the research.
-
-This would allow for the user to navigate the publication according to the materials they have available to find the options an techniques possible.
-This was done as part of a self learning process and thesis for the Technological Educational Institute of Athens, Department of Conservation of Antiquities and Works of Art. 
 
 ## Table of Contents
 1. [Description](#description)
@@ -16,6 +10,13 @@ This was done as part of a self learning process and thesis for the Technologica
 1. [Acknowledgments](#acknowledgments)
 1. [Contact](#contact)
 
+## Description
+
+This application has been created with the aim to help conservators in finding relative publications according to the materials used in the research.
+
+This would allow for the user to navigate the publication according to the materials they have available to find the options an techniques possible.
+This was done as part of a self learning process and thesis for the Technological Educational Institute of Athens, Department of Conservation of Antiquities and Works of Art. 
+
 
 ## Technologies Used
 - Python 3.8.5
@@ -23,31 +24,6 @@ This was done as part of a self learning process and thesis for the Technologica
 - Django 3.1.6
 - Django REST framework 3.13.0
 - Vue 3 Js
-
-
-## Usage and Screenshots
-In the project's directory run
-```
-$ python manage.py runserver
-```
-This will run the back-end Django server which will then be ready to serve the front-end part.
-
-Open another window and navigate to 
-```
-$ cd frontend/frontend/
-```
-After that run the front-end server as well 
-```
-$ npm run serve 
-```
-If setup is default navigate to http://localhost:8080/search and you should reach the page below .
-
-This is a screenshot of the search in which by switching the toggles on and of the results will be updated to match the selected items.
-The "Open PDF" button on the right will open the publication file in a new tab and the "Details" button will open the detailed view of each publication.
-
-The text input over every search field is responsive and will filter the available options to present only the ones matching the input.
-
-![Search page](./media/pictures/Search_view.png)
 
 ## Setup
 In this section I will describe how to set this project up. The description might seems too detailed but this is how I would appreciate finding it as new to programming.
@@ -76,7 +52,7 @@ It is suggested to use a virtual environment when setting up, this way your loca
     ```
 3. Install all the required packages for it to run as intended.
     ```
-    $ pip install -r requirments.txt
+    $ pip install -r requirements.txt
     ```
 4. Migrate the tables and schema to the PostgreSQL database according to the models of Django.
      ```
@@ -88,8 +64,33 @@ It is suggested to use a virtual environment when setting up, this way your loca
     ```
 9. Navigate inside the front-end folder and install vue/cli
     ```
-    $ cd frontend/frontend && npm install @vue/cli
+    $ cd frontend/frontend_app && npm install @vue/cli
     ```
+
+## Usage and Screenshots
+In the project's directory run
+```
+$ python manage.py runserver
+```
+This will run the back-end Django server which will then be ready to serve the front-end part.
+
+Open another window and navigate to 
+```
+$ cd frontend/frontend/
+```
+After that run the front-end server as well 
+```
+$ npm run serve 
+```
+If setup is default navigate to http://localhost:8080/search and you should reach the page below .
+
+This is a screenshot of the search in which by switching the toggles on and of the results will be updated to match the selected items.
+The "Open PDF" button on the right will open the publication file in a new tab and the "Details" button will open the detailed view of each publication.
+
+The text input over every search field is responsive and will filter the available options to present only the ones matching the input.
+
+![Search page](./media/pictures/Search_view.png)
+
 
 ## Project Status
 

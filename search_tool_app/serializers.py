@@ -39,7 +39,6 @@ class LanguageSerializer(serializers.ModelSerializer):
 
 
 class PaperSerializer(serializers.ModelSerializer):
-
     year_id = serializers.SlugRelatedField(
         many=False, read_only=True, slug_field='year_published')
     type_id = serializers.SlugRelatedField(
@@ -54,5 +53,4 @@ class PaperSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Paper
-
         fields = '__all__'

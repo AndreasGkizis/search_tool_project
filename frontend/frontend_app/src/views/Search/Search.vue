@@ -230,9 +230,6 @@ export default {
       typeQuery: [],
       authorQuery: [],
       materialQuery: [],
-      // computedtags: [],
-      // computedTypes: [],
-      // computedAuthor:[],
       total_pages: 0,
       hideNextButton: true,
       hidePreviousButton: false,
@@ -245,7 +242,6 @@ export default {
     getAPI
       .get("/year/")
       .then((response) => {
-        console.log("year api data recieved ");
         this.initial_filter_data.year = response.data;
       })
       .catch((err) => {
@@ -255,7 +251,6 @@ export default {
     getAPI
       .get("/type/")
       .then((response) => {
-        console.log("type api data recieved ");
         this.initial_filter_data.type = response.data;
       })
       .catch((err) => {
@@ -265,7 +260,6 @@ export default {
     getAPI
       .get("/language/")
       .then((response) => {
-        console.log("language api data recieved ");
         this.initial_filter_data.language = response.data;
       })
       .catch((err) => {
@@ -275,7 +269,6 @@ export default {
     getAPI
       .get("/author/")
       .then((response) => {
-        console.log("author api data recieved ");
         this.initial_filter_data.author = response.data;
       })
       .catch((err) => {
@@ -285,7 +278,6 @@ export default {
     getAPI
       .get("/tag/")
       .then((response) => {
-        console.log("Tag api data recieved ");
         this.initial_filter_data.tag = response.data;
         this.computedtags = response.data;
       })
@@ -296,7 +288,6 @@ export default {
     getAPI
       .get("/material/")
       .then((response) => {
-        console.log("material api data recieved ");
         this.initial_filter_data.material = response.data;
       })
       .catch((err) => {
@@ -310,8 +301,6 @@ export default {
         this.results_data = response.data;
         this.hideNextButton = false;
         this.hidePreviousButton = true;
-
-        console.log("Paper api data recieved and logged , no error!");
       })
       .catch((err) => {
         console.log(err);
@@ -352,8 +341,6 @@ export default {
             },
           })
           .then((response) => {
-            console.log(this.$router.params);
-            console.log(response.data);
             this.results_data = response.data;
           })
           .catch((err) => {
@@ -400,11 +387,6 @@ export default {
 
   },
   methods: {
-    sayHi() {
-      console.log("hi, this test funtion has activated")
-      // dummy testing function
-    },
-
     loadNext() {
       this.currentPage += 1;
 
@@ -421,8 +403,6 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response.data);
-
           this.results_data = response.data;
 
           this.hideNextButton = true;
@@ -454,7 +434,6 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response.data);
           this.results_data = response.data;
 
           this.hideNextButton = true;
@@ -487,7 +466,6 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response.data);
           this.results_data = response.data;
 
           this.hideNextButton = true;

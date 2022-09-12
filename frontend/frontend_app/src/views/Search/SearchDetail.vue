@@ -84,7 +84,6 @@ export default {
     getAPI
       .get("/paper/" + this.id)
       .then((response) => {
-        console.log("Paper api data with id = " + this.id + " received ");
         this.results_detail = response.data;
       })
       .catch((err) => {
